@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerie Photos de Volontaires français">
+    <title>Galerie Photos - Volontaires français</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1 class="logo-text">Volontaires français</h1>
+                    </a>
+                </div>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Accueil</a></li>
+                        <li><a href="equipe.html" class="nav-link">L'équipe</a></li>
+                        <li><a href="adhesion.html" class="nav-link">Adhésion en ligne</a></li>
+                        <li><a href="actu.html" class="nav-link">Actu</a></li>
+                        <li><a href="galerie.html" class="nav-link active">Galerie Photos</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Rechercher..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <a href="https://www.helloasso.com/associations/volontaires-francais/adhesions/adhesion-test-2025-2026" target="_blank" class="btn-member">Espace adhérent</a>
+                </div>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Galerie Photos</h1>
+                <p class="page-subtitle">Nos souvenirs olympiques et paralympiques</p>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <div class="container">
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">Toutes</button>
+                    <button class="filter-btn" data-filter="paris2024">Paris 2024</button>
+                    <button class="filter-btn" data-filter="evenements">Événements</button>
+                    <button class="filter-btn" data-filter="equipe">Équipe</button>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <div class="gallery-item" data-category="paris2024">
+                        <div class="gallery-image">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <p class="gallery-caption">Volontaires Paris 2024</p>
+                    </div>
+                    <div class="gallery-item" data-category="paris2024">
+                        <div class="gallery-image">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <p class="gallery-caption">Cérémonie d'ouverture</p>
+                    </div>
+                    <div class="gallery-item" data-category="evenements">
+                        <div class="gallery-image">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <p class="gallery-caption">Événement communautaire</p>
+                    </div>
+                    <div class="gallery-item" data-category="equipe">
+                        <div class="gallery-image">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <p class="gallery-caption">Équipe Volontaires français</p>
+                    </div>
+                    <div class="gallery-item" data-category="paris2024">
+                        <div class="gallery-image">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <p class="gallery-caption">Jeux Paralympiques</p>
+                    </div>
+                    <div class="gallery-item" data-category="evenements">
+                        <div class="gallery-image">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <p class="gallery-caption">Rencontre des volontaires</p>
+                    </div>
+                    <div class="gallery-item" data-category="paris2024">
+                        <div class="gallery-image">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <p class="gallery-caption">Stade olympique</p>
+                    </div>
+                    <div class="gallery-item" data-category="equipe">
+                        <div class="gallery-image">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <p class="gallery-caption">Conseil d'administration</p>
+                    </div>
+                </div>
+
+                <div class="gallery-info">
+                    <p><i class="fas fa-info-circle"></i> Cette galerie sera enrichie avec de nouvelles photos de nos événements et activités. Restez connectés !</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-prev" id="lightboxPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-next" id="lightboxNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImage">
+            <p id="lightboxCaption"></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-logo">Volontaires français</h3>
+                    <p>Association internationale des volontaires de Jeux olympiques et paralympiques</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="equipe.html">L'équipe</a></li>
+                        <li><a href="adhesion.html">Adhésion</a></li>
+                        <li><a href="actu.html">Actualités</a></li>
+                        <li><a href="galerie.html">Galerie Photos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Adhérer</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.helloasso.com/associations/volontaires-francais/adhesions/adhesion-test-2025-2026" target="_blank">Adhésion 2025-2026</a></li>
+                        <li><a href="https://www.helloasso.com/associations/volontaires-francais/boutiques/vente-pin-s" target="_blank">Boutique - Pin's</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suivez-nous</h4>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61581761488412" target="_blank" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/volontaires.francais/" target="_blank" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/association-volontaire-fran%C3%A7ais/" target="_blank" class="footer-social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Volontaires français. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
