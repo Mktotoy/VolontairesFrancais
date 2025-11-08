@@ -598,6 +598,55 @@ img {
     line-height: 1.8;
 }
 
+.adhesion-details {
+    margin-bottom: 60px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.detail-item {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.detail-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.detail-item h3 {
+    font-size: 1.3rem;
+    color: var(--color-dark);
+    margin-bottom: 15px;
+}
+
+.detail-item p {
+    color: var(--color-gray);
+    line-height: 1.8;
+}
+
 .widget-section {
     margin-bottom: 60px;
 }
