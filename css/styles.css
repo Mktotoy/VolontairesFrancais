@@ -82,6 +82,10 @@ img {
     display: block;
 }
 
+.logo-mobile {
+    display: none;
+}
+
 .logo-text {
     font-family: var(--font-logo);
     font-size: 1.8rem;
@@ -1118,8 +1122,19 @@ img {
     }
 }
 
+@media (max-width: 768px) {
+    .logo-desktop {
+        display: none;
+    }
+
+    .logo-mobile {
+        display: block;
+        height: 45px;
+    }
+}
+
 @media (max-width: 480px) {
-    .logo-img {
+    .logo-mobile {
         height: 40px;
     }
 
