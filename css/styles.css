@@ -76,6 +76,12 @@ img {
     padding: 15px 0;
 }
 
+.logo-img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
 .logo-text {
     font-family: var(--font-logo);
     font-size: 1.8rem;
@@ -150,10 +156,15 @@ img {
 .btn-member {
     background-color: var(--color-blue);
     color: var(--color-white);
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 8px 15px;
+    border-radius: 20px;
     font-weight: 600;
+    font-size: 0.9rem;
     transition: var(--transition);
+}
+
+.nav-member-mobile {
+    display: none;
 }
 
 .btn-member:hover {
@@ -1059,6 +1070,14 @@ img {
         display: none;
     }
 
+    .nav-member-mobile {
+        display: block;
+    }
+
+    .btn-member {
+        display: none;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
@@ -1100,6 +1119,10 @@ img {
 }
 
 @media (max-width: 480px) {
+    .logo-img {
+        height: 40px;
+    }
+
     .logo-text {
         font-size: 1.4rem;
     }
