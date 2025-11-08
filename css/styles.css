@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+@font-face {
+    font-family: 'Walaweh';
+    src: url('../fonts/Walaweh.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 :root {
     --color-blue: #067fcc;
@@ -10,7 +18,7 @@
     --color-gray: #666666;
     --color-dark: #333333;
     --color-black: #000000;
-    --font-logo: 'Nunito', Arial, sans-serif;
+    --font-logo: 'Walaweh', 'Righteous', Arial, sans-serif;
     --font-body: Arial, sans-serif;
     --transition: all 0.3s ease;
 }
