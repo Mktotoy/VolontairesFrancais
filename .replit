@@ -1,4 +1,4 @@
-modules = ["python-3.11"]
+modules = ["web", "nodejs-20", "python-3.12"]
 [agent]
 expertMode = true
 
@@ -34,6 +34,13 @@ externalPort = 80
 localPort = 34721
 externalPort = 3001
 
+[[ports]]
+localPort = 46333
+externalPort = 3000
+
 [deployment]
 deploymentTarget = "autoscale"
 run = ["python3", "server.py"]
+
+[nix]
+channel = "stable-25_05"
