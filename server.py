@@ -13,10 +13,10 @@ class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         
         if path == '/':
             self.path = '/index.html'
-        elif not os.path.splitext(path)[1]:
-            html_path = path.lstrip('/') + '.html'
-            if os.path.exists(html_path):
-                self.path = '/' + html_path
+        elif not os.path.splitext(path)[1] and not path.endswith('/'):
+            html_file = path.lstrip('/') + '.html'
+            if os.path.exists(html_file):
+                self.path = '/' + html_file
         
         return super().do_GET()
     
