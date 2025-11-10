@@ -2,10 +2,24 @@
 import http.server
 import socketserver
 import os
+from urllib.parse import urlparse
 
 PORT = 5000
 
 class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        parsed_path = urlparse(self.path)
+        path = parsed_path.path
+        
+        if path == '/':
+            self.path = '/index.html'
+        elif not os.path.splitext(path)[1]:
+            html_path = path.lstrip('/') + '.html'
+            if os.path.exists(html_path):
+                self.path = '/' + html_path
+        
+        return super().do_GET()
+    
     def end_headers(self):
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.send_header("Pragma", "no-cache")
