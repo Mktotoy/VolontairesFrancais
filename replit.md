@@ -69,8 +69,15 @@ Each page follows the same structural pattern:
 The navigation uses:
 - Active state highlighting via `.active` class
 - Five main sections accessible from all pages
+- Clean URLs without .html extensions (e.g., `/equipe`, `/adhesion`, `/actu`)
 - Search functionality in header
 - External link to HelloAsso member space
+
+**URL Structure:**
+- All pages are accessible via clean URLs without file extensions
+- The Python server automatically maps extensionless paths to their .html files
+- Examples: `/` → `index.html`, `/equipe` → `equipe.html`, `/adhesion` → `adhesion.html`
+- This provides better SEO and a more professional appearance
 
 ### Content Management
 
@@ -93,6 +100,7 @@ Based on requirements, the news section should display articles about:
 A simple Python 3 HTTP server (`server.py`) is included for local development:
 - Serves static files on port 5000
 - Implements cache-busting headers for development
+- Handles clean URL routing (removes .html extensions)
 - Binds to 0.0.0.0 for Replit compatibility
 - No production-grade features (not intended for production use)
 
@@ -170,3 +178,17 @@ This architecture eliminates the need for:
 **Trade-offs:**
 - **Pros**: Zero infrastructure, instant deployment, maximum reliability
 - **Cons**: Content updates require file edits, no dynamic personalization, limited search functionality
+
+## SEO & Features
+
+### Sitemap
+- **File**: `sitemap.xml`
+- **Purpose**: Search engine optimization and site discovery
+- **Structure**: Lists all public pages with metadata (lastmod, changefreq, priority)
+- **Note**: Update the domain URL in sitemap.xml when deploying to a custom domain
+
+### Team Social Links
+- **Location**: Team member cards in `equipe.html`
+- **Implementation**: Commented HTML templates ready to use
+- **How to add**: Uncomment the social buttons in each team member's card and replace placeholder URLs with actual LinkedIn/Facebook profile links
+- **Styling**: Pre-configured hover effects and icon colors in `css/styles.css`
