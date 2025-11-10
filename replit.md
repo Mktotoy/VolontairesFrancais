@@ -49,6 +49,7 @@ CSS is organized with:
 - Gallery lightbox with keyboard navigation (arrows, escape)
 - Gallery filtering by category (Paris 2024, Événements, Équipe)
 - Active page highlighting in navigation
+- FAQ accordion functionality with smooth expand/collapse transitions
 
 ### Page Architecture
 
@@ -58,6 +59,7 @@ CSS is organized with:
 3. `adhesion.html` - Online membership registration page
 4. `actu.html` - News/announcements section
 5. `galerie.html` - Photo gallery
+6. `faq.html` - Frequently Asked Questions with Schema.org FAQPage markup
 
 Each page follows the same structural pattern:
 - Consistent header with navigation and search bar
@@ -192,3 +194,15 @@ This architecture eliminates the need for:
 - **Implementation**: Commented HTML templates ready to use
 - **How to add**: Uncomment the social buttons in each team member's card and replace placeholder URLs with actual LinkedIn/Facebook profile links
 - **Styling**: Pre-configured hover effects and icon colors in `css/styles.css`
+
+### FAQ Page
+- **File**: `faq.html`
+- **Purpose**: Answer frequently asked questions about the association
+- **Features**:
+  - Interactive accordion design with smooth animations
+  - 11 Q&A covering membership, eligibility, association purpose, and policies
+  - Schema.org FAQPage structured data for enhanced SEO
+  - Numbered questions with gradient badges
+  - Mobile-responsive layout
+- **SEO**: Implements Schema.org FAQPage markup for rich results in search engines
+- **Content**: Covers topics like membership requirements, nationality restrictions, future volunteer preparation, and association independence

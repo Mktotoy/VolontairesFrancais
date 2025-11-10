@@ -31,6 +31,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/faq</loc>
+        <lastmod>2025-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/mentions-legales</loc>
         <lastmod>2025-11-10</lastmod>
         <changefreq>yearly</changefreq>
