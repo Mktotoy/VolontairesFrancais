@@ -14,8 +14,16 @@ Preferred communication style: Simple, everyday language.
 
 **Content Updates:**
 - **Homepage (index.html)**: Updated "Notre Association" section to emphasize Paris 2024 origins and inclusivity message (COJO, Club France, Ville Hôte all welcome). Simplified CTA section to focus on social media engagement.
-- **Membership Page (adhesion.html)**: Renamed from "Adhésion en ligne" to "Pourquoi adhérer" (both page title and browser tab title). Updated CSS classes from `.adhesion` to `.membership`.
-- **Navigation Optimization**: Reduced "Adhérer" CTAs to 2 locations only (header button + hero banner). Removed from footer "Liens rapides" and CTA section to avoid redundancy.
+- **Membership Page (adhesion.html)**: 
+  - Renamed from "Adhésion en ligne" to "Pourquoi adhérer" (both page title and browser tab title)
+  - Added "Conditions d'adhésion" section with pricing (15€/year) and eligibility criteria
+  - Eligibility: French nationality + (former Olympic volunteer OR Milano Cortina reservist)
+  - Important disclaimer about association not guaranteeing volunteer selection
+  - Updated CSS classes from `.adhesion` to `.membership`
+- **Navigation Optimization**: 
+  - Reduced "Adhérer" CTAs to 2 locations only (header button + hero banner)
+  - Removed "Galerie Photos" link from navigation menu (page file kept for future use)
+  - Removed "Adhérer" from footer "Liens rapides" to avoid redundancy
 
 **Architecture Improvements:**
 - **Jinja2 Build Pipeline**: Implemented template-based architecture with `build.py` script
