@@ -1,229 +1,254 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Actualités</h1>
+        <p class="page-subtitle">
+            Les dernières nouvelles de Volontaires français
+        </p>
+    </div>
+</section>
 
-{% block content %}
-            <section class="page-header">
-                <div class="container">
-                    <h1 class="page-title">Actualités</h1>
-                    <p class="page-subtitle">
-                        Les dernières nouvelles de Volontaires français
+<section class="news">
+    <div class="container">
+        <article class="news-article">
+            <div class="article-header">
+                <h2 class="article-title">
+                    C'est le moment ! 🚀 Les adhésions sont ouvertes !
+                </h2>
+                <p class="article-date">
+                    <i class="far fa-calendar"></i> 11 novembre 2025
+                </p>
+            </div>
+            <div class="article-content">
+                <div class="article-preview">
+                    <p>
+                        <strong
+                            >Les adhésions à l'association « Volontaires
+                            français » sont officiellement ouvertes !</strong
+                        >
+                    </p>
+                    <p>
+                        Vous pouvez dès maintenant devenir membre et rejoindre
+                        le réseau national des volontaires olympiques et
+                        paralympiques via notre page HelloAsso sécurisée...
                     </p>
                 </div>
-            </section>
+                <div class="article-full" style="display: none">
+                    <p>
+                        Vous pouvez dès maintenant devenir membre et rejoindre
+                        le réseau national des volontaires olympiques et
+                        paralympiques via notre page HelloAsso sécurisée :
+                    </p>
+                    <div class="article-cta">
+                        <a
+                            href="https://www.helloasso.com/associations/volontaires-francais/adhesions/adherez-a-volontaires-francais"
+                            target="_blank"
+                            class="btn-primary"
+                        >
+                            ➡️ Adhérer maintenant ⬅️
+                        </a>
+                    </div>
 
-            <section class="news">
-                <div class="container">
-                    <article class="news-article">
-                        <div class="article-header">
-                            <h2 class="article-title">C'est le moment ! 🚀 Les adhésions sont ouvertes !</h2>
-                            <p class="article-date">
-                                <i class="far fa-calendar"></i> 11 novembre 2025
-                            </p>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-preview">
-                                <p>
-                                    <strong>Les adhésions à l'association « Volontaires français » sont officiellement ouvertes !</strong>
-                                </p>
-                                <p>
-                                    Vous pouvez dès maintenant devenir membre et rejoindre le réseau national des volontaires olympiques et paralympiques via notre page HelloAsso sécurisée...
-                                </p>
-                            </div>
-                            <div class="article-full" style="display: none;">
-                                <p>
-                                    Vous pouvez dès maintenant devenir membre et rejoindre le réseau national des volontaires olympiques et paralympiques via notre page HelloAsso sécurisée :
-                                </p>
-                                <div class="article-cta">
-                                    <a href="https://www.helloasso.com/associations/volontaires-francais/adhesions/adherez-a-volontaires-francais" target="_blank" class="btn-primary">
-                                        ➡️ Adhérer maintenant ⬅️
-                                    </a>
-                                </div>
-                                
-                                <h3>Pour rappel, qui peut adhérer ?</h3>
-                                <p>L'association est ouverte à tous les volontaires français, sous deux conditions :</p>
-                                <ol>
-                                    <li><strong>Être de nationalité française.</strong></li>
-                                    <li><strong>ET</strong> remplir l'une de ces deux conditions :
-                                        <ul>
-                                            <li>Avoir été volontaire sur une Olympiade (été ou hiver). <em>(Que vous ayez été volontaire pour le COJO, le Club France ou la Ville Hôte, c'est la même famille !)</em></li>
-                                            <li>OU être titulaire d'une mission affectée ou réserviste pour Milano Cortina.</li>
-                                        </ul>
-                                    </li>
-                                </ol>
-                                
-                                <h3>En devenant membre aujourd'hui, vous :</h3>
-                                <ul class="article-list">
-                                    <li>✅ Rejoignez officiellement la communauté pour nos prochains événements (dès le 6 décembre !).</li>
-                                    <li>✅ Accédez au soutien pour les futurs volontaires (notamment pour #MilanoCortina2026).</li>
-                                    <li>✅ Devenez un acteur de la transmission de l'héritage de Paris 2024.</li>
-                                </ul>
-                                
-                                <p><strong>L'aventure continue, et elle commence ici.</strong></p>
-                            </div>
-                            <button class="btn-read-more" onclick="toggleArticle(this)">
-                                Lire plus <i class="fas fa-chevron-down"></i>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article class="news-article">
-                        <div class="article-header">
-                            <h2 class="article-title">Pourquoi adhérer ?</h2>
-                            <p class="article-date">
-                                <i class="far fa-calendar"></i> 6 novembre 2025
-                            </p>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-preview">
-                                <h3>🌟 WOW ! MERCI ! ❤️</h3>
-                                <p>
-                                    Nous sommes tous extrêmement heureux et agréablement surpris par l'enthousiasme incroyable partagé dans vos commentaires depuis le début de cette semaine. Franchement, ça nous fait chaud au cœur !
-                                </p>
-                            </div>
-                            <div class="article-full" style="display: none;">
-                                <h3>🙌 Vous l'avez confirmé :</h3>
-                                <p>
-                                    La famille des volontaires est bien là…<br />
-                                    et l'aventure ne fait que commencer !<br />
-                                    Alors, on continue ! 💪
-                                </p>
-
-                                <h3>
-                                    ❓ Vous nous avez demandé ce que l'association
-                                    allait vous apporter concrètement.
-                                </h3>
-
-                                <p>
-                                    Que vous soyez un ancien de Paris 2024 (ou d'une
-                                    Olympiade précédente !)<br />
-                                    ou un futur volontaire pour les prochaines
-                                    échéances,<br />
-                                    ➡️
-                                    <strong
-                                        >notre mission est de vous
-                                        accompagner.</strong
+                    <h3>Pour rappel, qui peut adhérer ?</h3>
+                    <p>
+                        L'association est ouverte à tous les volontaires
+                        français, sous deux conditions :
+                    </p>
+                    <ol>
+                        <li><strong>Être de nationalité française.</strong></li>
+                        <li>
+                            <strong>ET</strong> remplir l'une de ces deux
+                            conditions :
+                            <ul>
+                                <li>
+                                    Avoir été volontaire sur une Olympiade (été
+                                    ou hiver).
+                                    <em
+                                        >(Que vous ayez été volontaire pour le
+                                        COJO, le Club France ou la Ville Hôte,
+                                        c'est la même famille !)</em
                                     >
-                                </p>
+                                </li>
+                                <li>
+                                    OU être titulaire d'une mission affectée ou
+                                    réserviste pour Milano Cortina.
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
 
-                                <h3>💬 Rejoindre Volontaires français, c'est...</h3>
+                    <h3>En devenant membre aujourd'hui, vous :</h3>
+                    <ul class="article-list">
+                        <li>
+                            ✅ Rejoignez officiellement la communauté pour nos
+                            prochains événements (dès le 6 décembre !).
+                        </li>
+                        <li>
+                            ✅ Accédez au soutien pour les futurs volontaires
+                            (notamment pour #MilanoCortina2026).
+                        </li>
+                        <li>
+                            ✅ Devenez un acteur de la transmission de
+                            l'héritage de Paris 2024.
+                        </li>
+                    </ul>
 
-                                <ul class="article-list">
-                                    <li>
-                                        ✅ Rester connecté à la famille des
-                                        volontaires.
-                                    </li>
-                                    <li>
-                                        ✅ Préparer sereinement vos futures
-                                        missions.
-                                    </li>
-                                    <li>
-                                        ✅ Valoriser l'expérience incroyable que
-                                        vous avez acquise.
-                                    </li>
-                                </ul>
-
-                                <h3>🔥 D'ici là...</h3>
-
-                                <p><strong>Parlez-en autour de vous</strong></p>
-
-                                <div class="article-cta">
-                                    <a href="/adhesion" class="btn-primary"
-                                        >Adhérer maintenant</a
-                                    >
-                                </div>
-                            </div>
-                            <button class="btn-read-more" onclick="toggleArticle(this)">
-                                Lire plus <i class="fas fa-chevron-down"></i>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article class="news-article">
-                        <div class="article-header">
-                            <h2 class="article-title">La création</h2>
-                            <p class="article-date">
-                                <i class="far fa-calendar"></i> 28 octobre 2025
-                            </p>
-                        </div>
-                        <div class="article-content">
-                            <div class="article-preview">
-                                <p>
-                                    Après de nombreux mois de travaux, nous avons le
-                                    plaisir de vous annoncer la création de notre
-                                    nouvelle association :
-                                    <strong>"Volontaires français"</strong>.
-                                </p>
-                                <p>
-                                    Cette association était un projet, c'est
-                                    maintenant une réalité !
-                                </p>
-                            </div>
-                            <div class="article-full" style="display: none;">
-                                <p>
-                                    Notre objectif est de rassembler, soutenir et
-                                    valoriser tous les volontaires français ayant
-                                    des missions lors des Jeux Olympiques et
-                                    Paralympiques d'hier et de demain en créant une
-                                    communauté active et solidaire autour de vos
-                                    expériences uniques et de vos initiatives.
-                                </p>
-
-                                <p>
-                                    Pour ne rien manquer et être parmi les premiers
-                                    à découvrir le lancement de notre campagne
-                                    d'adhésion, connectez-vous dès maintenant à nos
-                                    réseaux sociaux :
-                                </p>
-
-                                <div class="article-social-links">
-                                    <a
-                                        href="https://www.facebook.com/profile.php?id=61581761488412"
-                                        target="_blank"
-                                        class="article-social-link"
-                                    >
-                                        <i class="fab fa-facebook-f"></i> Facebook :
-                                        Cliquez ici !
-                                    </a>
-                                    <a
-                                        href="https://www.instagram.com/volontaires.francais/"
-                                        target="_blank"
-                                        class="article-social-link"
-                                    >
-                                        <i class="fab fa-instagram"></i> Instagram :
-                                        Cliquez ici !
-                                    </a>
-                                    <a
-                                        href="https://www.linkedin.com/company/association-volontaire-fran%C3%A7ais/"
-                                        target="_blank"
-                                        class="article-social-link"
-                                    >
-                                        <i class="fab fa-linkedin-in"></i> LinkedIn
-                                        : Cliquez ici !
-                                    </a>
-                                </div>
-
-                                <p>
-                                    Rejoignez-nous et soyez au cœur de l'actualité
-                                    de l'association : partagez vos expériences,
-                                    découvrez des initiatives inspirantes et restez
-                                    connecté à cette belle communauté de
-                                    volontaires.
-                                </p>
-
-                                <p>
-                                    Merci pour votre engagement et à très bientôt
-                                    sur nos réseaux !
-                                </p>
-
-                                <p class="article-signature">
-                                    Chaleureusement,<br />L'équipe Volontaires
-                                    français
-                                </p>
-                            </div>
-                            <button class="btn-read-more" onclick="toggleArticle(this)">
-                                Lire plus <i class="fas fa-chevron-down"></i>
-                            </button>
-                        </div>
-                    </article>
+                    <p>
+                        <strong
+                            >L'aventure continue, et elle commence ici.</strong
+                        >
+                    </p>
                 </div>
-            </section>
+                <button class="btn-read-more" onclick="toggleArticle(this)">
+                    Lire plus <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </article>
+
+        <article class="news-article">
+            <div class="article-header">
+                <h2 class="article-title">Pourquoi adhérer ?</h2>
+                <p class="article-date">
+                    <i class="far fa-calendar"></i> 6 novembre 2025
+                </p>
+            </div>
+            <div class="article-content">
+                <div class="article-preview">
+                    <h3>🌟 WOW ! MERCI ! ❤️</h3>
+                    <p>
+                        Nous sommes tous extrêmement heureux et agréablement
+                        surpris par l'enthousiasme incroyable partagé dans vos
+                        commentaires depuis le début de cette semaine.
+                        Franchement, ça nous fait chaud au cœur !
+                    </p>
+                </div>
+                <div class="article-full" style="display: none">
+                    <h3>🙌 Vous l'avez confirmé :</h3>
+                    <p>
+                        La famille des volontaires est bien là…<br />
+                        et l'aventure ne fait que commencer !<br />
+                        Alors, on continue ! 💪
+                    </p>
+
+                    <h3>
+                        ❓ Vous nous avez demandé ce que l'association allait
+                        vous apporter concrètement.
+                    </h3>
+
+                    <p>
+                        Que vous soyez un ancien de Paris 2024 (ou d'une
+                        Olympiade précédente !)<br />
+                        ou un futur volontaire pour les prochaines échéances,<br />
+                        ➡️
+                        <strong>notre mission est de vous accompagner.</strong>
+                    </p>
+
+                    <h3>💬 Rejoindre Volontaires français, c'est...</h3>
+
+                    <ul class="article-list">
+                        <li>
+                            ✅ Rester connecté à la famille des volontaires.
+                        </li>
+                        <li>✅ Préparer sereinement vos futures missions.</li>
+                        <li>
+                            ✅ Valoriser l'expérience incroyable que vous avez
+                            acquise.
+                        </li>
+                    </ul>
+
+                    <h3>🔥 D'ici là...</h3>
+
+                    <p><strong>Parlez-en autour de vous</strong></p>
+                </div>
+                <button class="btn-read-more" onclick="toggleArticle(this)">
+                    Lire plus <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </article>
+
+        <article class="news-article">
+            <div class="article-header">
+                <h2 class="article-title">La création</h2>
+                <p class="article-date">
+                    <i class="far fa-calendar"></i> 28 octobre 2025
+                </p>
+            </div>
+            <div class="article-content">
+                <div class="article-preview">
+                    <p>
+                        Après de nombreux mois de travaux, nous avons le plaisir
+                        de vous annoncer la création de notre nouvelle
+                        association :
+                        <strong>"Volontaires français"</strong>.
+                    </p>
+                    <p>
+                        Cette association était un projet, c'est maintenant une
+                        réalité !
+                    </p>
+                </div>
+                <div class="article-full" style="display: none">
+                    <p>
+                        Notre objectif est de rassembler, soutenir et valoriser
+                        tous les volontaires français ayant des missions lors
+                        des Jeux Olympiques et Paralympiques d'hier et de demain
+                        en créant une communauté active et solidaire autour de
+                        vos expériences uniques et de vos initiatives.
+                    </p>
+
+                    <p>
+                        Pour ne rien manquer et être parmi les premiers à
+                        découvrir le lancement de notre campagne d'adhésion,
+                        connectez-vous dès maintenant à nos réseaux sociaux :
+                    </p>
+
+                    <div class="article-social-links">
+                        <a
+                            href="https://www.facebook.com/profile.php?id=61581761488412"
+                            target="_blank"
+                            class="article-social-link"
+                        >
+                            <i class="fab fa-facebook-f"></i> Facebook : Cliquez
+                            ici !
+                        </a>
+                        <a
+                            href="https://www.instagram.com/volontaires.francais/"
+                            target="_blank"
+                            class="article-social-link"
+                        >
+                            <i class="fab fa-instagram"></i> Instagram : Cliquez
+                            ici !
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/company/association-volontaire-fran%C3%A7ais/"
+                            target="_blank"
+                            class="article-social-link"
+                        >
+                            <i class="fab fa-linkedin-in"></i> LinkedIn :
+                            Cliquez ici !
+                        </a>
+                    </div>
+
+                    <p>
+                        Rejoignez-nous et soyez au cœur de l'actualité de
+                        l'association : partagez vos expériences, découvrez des
+                        initiatives inspirantes et restez connecté à cette belle
+                        communauté de volontaires.
+                    </p>
+
+                    <p>
+                        Merci pour votre engagement et à très bientôt sur nos
+                        réseaux !
+                    </p>
+
+                    <p class="article-signature">
+                        Chaleureusement,<br />L'équipe Volontaires français
+                    </p>
+                </div>
+                <button class="btn-read-more" onclick="toggleArticle(this)">
+                    Lire plus <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </article>
+    </div>
+</section>
 {% endblock %}
