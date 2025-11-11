@@ -9,10 +9,11 @@ Volontaires français est une association dédiée à rassembler, soutenir et va
 ## 🌟 Fonctionnalités
 
 - **Page d'accueil** : Présentation de l'association, mission et objectifs
-- **L'équipe** : Présentation des 11 membres du conseil d'administration
-- **Adhésion en ligne** : Formulaire d'adhésion HelloAsso intégré
+- **L'équipe** : Présentation des 11 membres du conseil d'administration avec photos
+- **Pourquoi adhérer** : Avantages de l'adhésion et formulaire HelloAsso intégré
 - **Actualités** : Articles et nouvelles de l'association
 - **Galerie Photos** : Photos des événements olympiques et activités
+- **FAQ** : Questions fréquentes avec Schema.org markup
 
 ## 🎨 Charte Graphique
 
@@ -34,9 +35,17 @@ Le site est un site statique en HTML, CSS et JavaScript pur (pas de framework).
 - Python 3.11+ (pour le serveur de développement)
 
 ### Lancer le site
+
+1. **Générer les pages HTML** (après modification des templates) :
+```bash
+python3 build.py
+```
+
+2. **Démarrer le serveur** :
 ```bash
 python3 server.py
 ```
+
 Le site sera accessible sur `http://localhost:5000`
 
 ## 📁 Structure du projet
@@ -45,9 +54,15 @@ Le site sera accessible sur `http://localhost:5000`
 volontaires-francais/
 ├── index.html              # Page d'accueil
 ├── equipe.html             # Page équipe
-├── adhesion.html           # Page adhésion
+├── adhesion.html           # Page pourquoi adhérer
 ├── actu.html               # Page actualités
 ├── galerie.html            # Page galerie photos
+├── faq.html                # Page FAQ
+├── mentions-legales.html   # Mentions légales
+├── templates/              # Templates Jinja2
+│   ├── base.html           # Layout de base
+│   ├── partials/           # Header et footer
+│   └── pages/              # Templates de pages
 ├── css/
 │   └── styles.css          # Styles globaux
 ├── js/
@@ -56,6 +71,8 @@ volontaires-francais/
 │   ├── Walaweh.otf         # Police custom
 │   └── LOGO_*.png          # Logos de l'association
 ├── images/                 # Images du site
+│   └── equipe/             # Photos des membres
+├── build.py                # Script de build Jinja2
 └── server.py               # Serveur de développement
 ```
 

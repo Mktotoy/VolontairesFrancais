@@ -10,6 +10,28 @@ The project is a multi-page static website built with vanilla HTML, CSS, and Jav
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes (November 2025)
+
+**Content Updates:**
+- **Homepage (index.html)**: Updated "Notre Association" section to emphasize Paris 2024 origins and inclusivity message (COJO, Club France, Ville Hôte all welcome). Simplified CTA section to focus on social media engagement.
+- **Membership Page (adhesion.html)**: Renamed from "Adhésion en ligne" to "Pourquoi adhérer" (both page title and browser tab title). Updated CSS classes from `.adhesion` to `.membership`.
+- **Navigation Optimization**: Reduced "Adhérer" CTAs to 2 locations only (header button + hero banner). Removed from footer "Liens rapides" and CTA section to avoid redundancy.
+
+**Architecture Improvements:**
+- **Jinja2 Build Pipeline**: Implemented template-based architecture with `build.py` script
+  - Header and footer factored into `templates/partials/`
+  - Base layout template with block system (`templates/base.html`)
+  - Page-specific templates in `templates/pages/`
+  - Static HTML generation maintains SEO benefits while enabling code reuse
+  - Navigation active states managed dynamically via template variables
+  - Regenerate pages with: `python3 build.py`
+
+**Team Photos:**
+- Added 9 professional team member photos from `images/equipe/` directory
+- Implemented circular photo display with CSS styling (border-radius, object-fit: cover)
+- Photos mapped to: Fabian, Mathilde, Philippe, Alexa, Enora, Florence, Emmanuelle, Marie-Anne, Sébastien
+- 3 members without photos (Julien, Océane, Patrice) display default icon placeholders
+
 ## System Architecture
 
 ### Frontend Architecture
