@@ -31,7 +31,10 @@ class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-with socketserver.TCPServer(("0.0.0.0", PORT), NoCacheHTTPRequestHandler) as httpd:
+class ReusableTCPServer(socketserver.TCPServer):
+    allow_reuse_address = True
+
+with ReusableTCPServer(("0.0.0.0", PORT), NoCacheHTTPRequestHandler) as httpd:
     print(f"✨ Serveur démarré sur le port {PORT}")
     print(f"🌐 Accédez au site via l'interface Replit")
     httpd.serve_forever()
