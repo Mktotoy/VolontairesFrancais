@@ -556,11 +556,11 @@ img {
     color: var(--color-white);
 }
 
-.adhesion {
+.membership {
     padding: 60px 0 80px;
 }
 
-.adhesion-intro {
+.membership-intro {
     text-align: center;
     margin-bottom: 50px;
 }
@@ -633,7 +633,7 @@ img {
     line-height: 1.8;
 }
 
-.adhesion-details {
+.membership-details {
     margin-bottom: 60px;
 }
 
@@ -1344,7 +1344,7 @@ img {
         font-size: 2rem;
     }
 
-    .about, .mission, .cta, .team, .adhesion, .news, .gallery {
+    .about, .mission, .cta, .team, .membership, .news, .gallery {
         padding: 50px 0;
     }
 
