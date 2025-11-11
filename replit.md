@@ -20,6 +20,11 @@ Preferred communication style: Simple, everyday language.
   - Eligibility: French nationality + (former Olympic volunteer OR Milano Cortina reservist)
   - Important disclaimer about association not guaranteeing volunteer selection
   - Updated CSS classes from `.adhesion` to `.membership`
+- **News Page (actu.html)**:
+  - Added new article dated 11 November 2025: "C'est le moment ! 🚀 Les adhésions sont ouvertes !"
+  - Updated dates: "La création" (28 October 2025), "Pourquoi adhérer ?" (6 November 2025)
+  - Implemented "Lire plus" / "Lire moins" toggle system for better readability
+  - Articles display preview by default with expandable full content
 - **Navigation Optimization**: 
   - Reduced "Adhérer" CTAs to 2 locations only (header button + hero banner)
   - Removed "Galerie Photos" link from navigation menu (page file kept for future use)
