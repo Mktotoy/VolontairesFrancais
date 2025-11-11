@@ -126,8 +126,8 @@ PAGES = {
     'adhesion.html': {
         'template': 'pages/adhesion.html',
         'context': {
-            'page_title': 'Adhésion en ligne - Volontaires français',
-            'meta_description': 'Adhérer à Volontaires français - Rejoignez la communauté',
+            'page_title': 'Pourquoi adhérer - Volontaires français',
+            'meta_description': 'Découvrez pourquoi adhérer à Volontaires français - Rejoignez la communauté',
             'active_page': 'adhesion'
         }
     },
