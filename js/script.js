@@ -208,3 +208,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function toggleArticle(button) {
+    const articleContent = button.closest('.article-content');
+    const preview = articleContent.querySelector('.article-preview');
+    const fullContent = articleContent.querySelector('.article-full');
+    const icon = button.querySelector('i');
+    
+    if (fullContent.style.display === 'none') {
+        preview.style.display = 'none';
+        fullContent.style.display = 'block';
+        button.innerHTML = 'Lire moins <i class="fas fa-chevron-up"></i>';
+    } else {
+        preview.style.display = 'block';
+        fullContent.style.display = 'none';
+        button.innerHTML = 'Lire plus <i class="fas fa-chevron-down"></i>';
+    }
+}

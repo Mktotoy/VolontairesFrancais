@@ -953,6 +953,61 @@ img {
     color: var(--color-gray);
 }
 
+.btn-read-more {
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--color-blue), var(--color-green));
+    color: var(--color-white);
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 15px rgba(6, 127, 204, 0.3);
+}
+
+.btn-read-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(6, 127, 204, 0.4);
+}
+
+.btn-read-more i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.article-preview,
+.article-full {
+    transition: opacity 0.3s ease;
+}
+
+.article-content ol {
+    margin: 20px 0 20px 30px;
+    line-height: 1.8;
+}
+
+.article-content ol li {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+.article-content ol li ul {
+    margin-top: 10px;
+    margin-left: 20px;
+    list-style: disc;
+}
+
+.article-content ol li ul li {
+    margin-bottom: 10px;
+}
+
+.article-content em {
+    color: var(--color-blue);
+    font-style: italic;
+}
+
 .article-cta {
     margin-top: 30px;
     text-align: center;
