@@ -67,7 +67,7 @@ volontaires-francais/
 - [LinkedIn](https://www.linkedin.com/company/association-volontaire-fran%C3%A7ais/)
 
 ### HelloAsso
-- [Adhésion](https://www.helloasso.com/associations/volontaires-francais/adhesions/adhesion-test-2025-2026)
+- [Adhésion](https://www.helloasso.com/associations/volontaires-francais/adhesions/adherez-a-volontaires-francais)
 - [Boutique Pin's](https://www.helloasso.com/associations/volontaires-francais/boutiques/vente-pin-s)
 
 ## ⚙️ Fonctionnalités techniques
