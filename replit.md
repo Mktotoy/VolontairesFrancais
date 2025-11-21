@@ -21,10 +21,12 @@ Preferred communication style: Simple, everyday language.
   - Important disclaimer about association not guaranteeing volunteer selection
   - Updated CSS classes from `.adhesion` to `.membership`
 - **News Page (actu.html)**:
-  - Added new article dated 11 November 2025: "C'est le moment ! 🚀 Les adhésions sont ouvertes !"
+  - Latest article (20 November 2025): "🎉 Première action concrète : CHECK ! ✅" - First videoconference for Milano Cortina 2026 volunteers with photo
+  - Added article dated 11 November 2025: "C'est le moment ! 🚀 Les adhésions sont ouvertes !"
   - Updated dates: "La création" (28 October 2025), "Pourquoi adhérer ?" (6 November 2025)
   - Implemented "Lire plus" / "Lire moins" toggle system for better readability
   - Articles display preview by default with expandable full content
+  - Article images with responsive styling (border-radius, full width)
 - **Navigation Optimization**: 
   - Reduced "Adhérer" CTAs to 2 locations only (header button + hero banner)
   - Removed "Galerie Photos" link from navigation menu (page file kept for future use)
