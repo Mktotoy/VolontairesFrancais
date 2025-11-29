@@ -10,17 +10,32 @@ type Post = {
   content?: string | null;
   excerpt?: string | null;
   published_at?: string | null;
-  date_created?: string | null;
   status?: string | null;
+  category?: string | number | null;
+  featured_picture?: string | null;
+  seo?: any;
 };
 
-export const revalidate = 300; // ISR for 5 minutes
+export const revalidate = 0; // always fetch fresh
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 
 async function fetchPost(slug: string): Promise<Post | null> {
   try {
     const posts = await directus.request(
       readItems('posts', {
-        fields: ['id', 'title', 'slug', 'content', 'excerpt', 'published_at', 'date_created', 'status'],
+        fields: [
+          'id',
+          'title',
+          'slug',
+          'content',
+          'excerpt',
+          'published_at',
+          'status',
+          'category',
+          'featured_picture',
+          'seo',
+        ],
         filter: { slug: { _eq: slug }, status: { _eq: 'published' } },
         limit: 1,
       })
@@ -38,12 +53,27 @@ function formatDate(dateStr?: string | null) {
   return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(dateStr));
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
-  const post = await fetchPost(params.slug);
+const DIRECTUS_URL = process.env.NEXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8055';
+function getAssetUrl(fileId?: string | null) {
+  if (!fileId) return null;
+  return `${DIRECTUS_URL}/assets/${fileId}`;
+}
+
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug: rawSlug } = await params;
+  let slug = rawSlug;
+  try {
+    slug = decodeURIComponent(rawSlug);
+  } catch {
+    // keep raw slug if decoding fails
+  }
+  const post = await fetchPost(slug);
   if (!post) {
     notFound();
   }
-  const date = post.published_at || post.date_created;
+  const date = post.published_at;
+  const image = getAssetUrl(post.featured_picture);
+  const seo = post.seo || {};
 
   return (
     <>
@@ -62,6 +92,11 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       <section className="news">
         <div className="container">
           <article className="news-article">
+            {image && (
+              <div className="article-image">
+                <img src={image} alt={post.title} style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+              </div>
+            )}
             <div className="article-content">
               {post.content ? (
                 <div className="article-full" dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -72,6 +107,14 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </article>
         </div>
       </section>
+
+      {seo && (
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(seo) }}
+        />
+      )}
     </>
   );
 }
