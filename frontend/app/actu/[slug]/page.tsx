@@ -2,6 +2,7 @@ import directus from '@/lib/directus';
 import { readItems } from '@directus/sdk';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { getAssetUrl } from '@/lib/assets';
 
 type Post = {
   id: number;
@@ -53,11 +54,6 @@ function formatDate(dateStr?: string | null) {
   return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(dateStr));
 }
 
-const DIRECTUS_URL = process.env.NEXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8055';
-function getAssetUrl(fileId?: string | null) {
-  if (!fileId) return null;
-  return `${DIRECTUS_URL}/assets/${fileId}`;
-}
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug: rawSlug } = await params;
