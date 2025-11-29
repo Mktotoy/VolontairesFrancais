@@ -59,15 +59,15 @@ export default function Footer() {
                             <a
                                 href="https://www.linkedin.com/company/association-volontaire-fran%C3%A7ais/"
                                 target="_blank"
-                                class="footer-social-link"
+                                className="footer-social-link"
                                 aria-label="LinkedIn"
                             >
-                                <i class="fab fa-linkedin-in"></i>
+                                <i className="fab fa-linkedin-in"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="footer-bottom">
+                <div className="footer-bottom">
                     <p>&copy; {currentYear} Volontaires français. Tous droits réservés.</p>
                 </div>
             </div>

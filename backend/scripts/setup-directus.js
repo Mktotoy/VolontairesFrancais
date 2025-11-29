@@ -700,12 +700,14 @@ async function main() {
     await ensureField(token, 'team_members', {
       field: 'image',
       type: 'uuid',
-      meta: { interface: 'file', options: { folder: null } },
+      meta: { interface: 'file', options: { folder: null }, special: ['file'] },
       schema: {
         name: 'image',
         table: 'team_members',
         data_type: 'uuid',
         is_nullable: true,
+        foreign_key_table: 'directus_files',
+        foreign_key_column: 'id',
       },
     });
     await ensureField(token, 'team_members', {
