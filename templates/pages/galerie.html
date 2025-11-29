@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+            <section class="page-header">
+                <div class="container">
+                    <h1 class="page-title">Galerie Photos</h1>
+                    <p class="page-subtitle">
+                        Nos souvenirs olympiques et paralympiques
+                    </p>
+                </div>
+            </section>
+
+            <section class="gallery">
+                <div class="container">
+                    <div class="gallery-filters">
+                        <button class="filter-btn active" data-filter="all">
+                            Toutes
+                        </button>
+                        <button class="filter-btn" data-filter="paris2024">
+                            Paris 2024
+                        </button>
+                        <button class="filter-btn" data-filter="evenements">
+                            Événements
+                        </button>
+                        <button class="filter-btn" data-filter="equipe">
+                            Équipe
+                        </button>
+                    </div>
+
+                    <div class="gallery-grid" id="galleryGrid">
+                        <div class="gallery-item" data-category="paris2024">
+                            <div class="gallery-image">
+                                <i class="fas fa-image"></i>
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <p class="gallery-caption">
+                                Volontaires Paris 2024
+                            </p>
+                        </div>
+                        <div class="gallery-item" data-category="paris2024">
+                            <div class="gallery-image">
+                                <i class="fas fa-image"></i>
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <p class="gallery-caption">Cérémonie d'ouverture</p>
+                        </div>
+                        <div class="gallery-item" data-category="evenements">
+                            <div class="gallery-image">
+                                <i class="fas fa-image"></i>
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <p class="gallery-caption">
+                                Événement communautaire
+                            </p>
+                        </div>
+                        <div class="gallery-item" data-category="equipe">
+                            <div class="gallery-image">
+                                <i class="fas fa-image"></i>
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <p class="gallery-caption">
+                                Équipe Volontaires français
+                            </p>
+                        </div>
+                        <div class="gallery-item" data-category="paris2024">
+                            <div class="gallery-image">
+                                <i class="fas fa-image"></i>
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <p class="gallery-caption">Jeux Paralympiques</p>
+                        </div>
+                        <div class="gallery-item" data-category="evenements">
+                            <div class="gallery-image">
+                                <i class="fas fa-image"></i>
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <p class="gallery-caption">
+                                Rencontre des volontaires
+                            </p>
+                        </div>
+                        <div class="gallery-item" data-category="paris2024">
+                            <div class="gallery-image">
+                                <i class="fas fa-image"></i>
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <p class="gallery-caption">Stade olympique</p>
+                        </div>
+                        <div class="gallery-item" data-category="equipe">
+                            <div class="gallery-image">
+                                <i class="fas fa-image"></i>
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <p class="gallery-caption">
+                                Conseil d'administration
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-info">
+                        <p>
+                            <i class="fas fa-info-circle"></i> Cette galerie
+                            sera enrichie avec de nouvelles photos de nos
+                            événements et activités. Restez connectés !
+                        </p>
+                    </div>
+                </div>
+            </section>
+{% endblock %}
+
+{% block after_main %}
+
+        <div id="lightbox" class="lightbox">
+            <button class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-prev" id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-next" id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-content">
+                <img src="" alt="" id="lightboxImage" />
+                <p id="lightboxCaption"></p>
+            </div>
+        </div>
+{% endblock %}
