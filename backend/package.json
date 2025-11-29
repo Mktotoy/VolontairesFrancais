@@ -4,10 +4,12 @@
   "description": "Directus Backend",
   "main": "index.js",
   "scripts": {
-    "start": "directus start"
+    "start": "node -r ./init-env.js -r dotenv/config node_modules/.bin/directus start",
+    "dev": "node -r ./init-env.js -r dotenv/config node_modules/.bin/directus start"
   },
   "dependencies": {
     "directus": "^11.13.4",
+    "dotenv": "^17.2.3",
     "pg": "^8.0.0"
   }
 }

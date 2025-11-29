@@ -1,5 +1,6 @@
 import directus from '@/lib/directus';
 import { readItems } from '@directus/sdk';
+import { getAssetUrl } from '@/lib/assets';
 
 type TeamMember = {
   id: number;
@@ -11,8 +12,6 @@ type TeamMember = {
   sort?: number | null;
   image?: string | null; // directus_files id
 };
-
-const DIRECTUS_URL = process.env.NEXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8055';
 
 export const revalidate = 300; // revalidate every 5 minutes
 
@@ -40,10 +39,6 @@ function groupByCategory(members: TeamMember[]) {
   }, {});
 }
 
-function getImageUrl(fileId?: string | null) {
-  if (!fileId) return null;
-  return `${DIRECTUS_URL}/assets/${fileId}`;
-}
 
 export default async function EquipePage() {
   const members = await fetchTeam();
@@ -80,7 +75,7 @@ export default async function EquipePage() {
               <h2 className="section-title">{category}</h2>
               <div className="team-grid">
                 {grouped[category].map((member) => {
-                  const photo = getImageUrl(member.image);
+                  const photo = getAssetUrl(member.image);
                   const name = member.full_name || `${member.first_name} ${member.last_name}`;
                   return (
                     <div className="team-card" key={member.id}>
