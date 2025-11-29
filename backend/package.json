@@ -7,7 +7,7 @@
     "start": "directus start"
   },
   "dependencies": {
-    "directus": "^10.0.0",
+    "directus": "^11.13.4",
     "pg": "^8.0.0"
   }
 }
