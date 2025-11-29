@@ -8,7 +8,7 @@ env/
 venv/
 
 # Replit
-.replit
+
 .breakpoints
 .config/
 .cache/
@@ -29,3 +29,7 @@ Thumbs.db
 *.tmp
 *.bak
 attached_assets/
+
+# Node / JS
+node_modules/
+**/node_modules/

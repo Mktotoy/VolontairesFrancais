@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Directus Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "directus start"
+  },
+  "dependencies": {
+    "directus": "^10.0.0",
+    "pg": "^8.0.0"
+  }
+}
