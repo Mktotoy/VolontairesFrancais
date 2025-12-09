@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   env: {
-    DIRECTUS_API_URL: 'http://localhost:8055'
+    DIRECTUS_API_URL: 'http://127.0.0.1:8055'
   },
   allowedDevOrigins: [
     '*.janeway.replit.dev',
@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
         // Directus admin interface
         {
           source: '/admin/:path*',
-          destination: 'http://localhost:8055/admin/:path*',
+          destination: 'http://127.0.0.1:8055/admin/:path*',
         },
         // Directus API routes - authentication
         {
