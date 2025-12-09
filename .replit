@@ -18,7 +18,7 @@ outputType = "webview"
 
 [deployment]
 build = ["sh", "-c", "npm run build"]
-run = ["sh", "-c", "npm start"]
+run = ["npm", "start"]
 deploymentTarget = "cloudrun"
 
 [[ports]]
