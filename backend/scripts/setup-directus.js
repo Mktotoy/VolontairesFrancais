@@ -183,6 +183,18 @@ async function main() {
         comment: 'Social network links',
       },
     },
+    {
+      collection: 'press_articles',
+      meta: {
+        icon: 'newspaper',
+        display_template: '{{title}}',
+      },
+      schema: {
+        name: 'press_articles',
+        schema: 'public',
+        comment: 'Press articles',
+      },
+    },
   ];
 
   for (const c of collections) {
@@ -793,6 +805,110 @@ async function main() {
         table: 'faq',
         data_type: 'integer',
         is_nullable: true,
+      },
+    });
+
+    // press_articles
+    await ensureField(token, 'press_articles', {
+      field: 'id',
+      type: 'integer',
+      meta: { interface: 'integer', hidden: false, readonly: true },
+      schema: {
+        name: 'id',
+        table: 'press_articles',
+        data_type: 'integer',
+        is_primary_key: true,
+        has_auto_increment: true,
+        is_nullable: false,
+      },
+    });
+    await ensureField(token, 'press_articles', {
+      field: 'title',
+      type: 'string',
+      meta: { interface: 'input', required: true },
+      schema: {
+        name: 'title',
+        table: 'press_articles',
+        data_type: 'varchar',
+        max_length: 255,
+        is_nullable: false,
+      },
+    });
+    await ensureField(token, 'press_articles', {
+      field: 'source',
+      type: 'string',
+      meta: { interface: 'input' },
+      schema: {
+        name: 'source',
+        table: 'press_articles',
+        data_type: 'varchar',
+        max_length: 255,
+        is_nullable: true,
+      },
+    });
+    await ensureField(token, 'press_articles', {
+      field: 'publication_date',
+      type: 'timestamp',
+      meta: { interface: 'datetime' },
+      schema: {
+        name: 'publication_date',
+        table: 'press_articles',
+        data_type: 'timestamp',
+        is_nullable: true,
+      },
+    });
+    await ensureField(token, 'press_articles', {
+      field: 'url',
+      type: 'string',
+      meta: { interface: 'input' },
+      schema: {
+        name: 'url',
+        table: 'press_articles',
+        data_type: 'varchar',
+        max_length: 255,
+        is_nullable: true,
+      },
+    });
+    await ensureField(token, 'press_articles', {
+      field: 'extract',
+      type: 'text',
+      meta: { interface: 'textarea' },
+      schema: {
+        name: 'extract',
+        table: 'press_articles',
+        data_type: 'text',
+        is_nullable: true,
+      },
+    });
+    await ensureField(token, 'press_articles', {
+      field: 'image',
+      type: 'uuid',
+      meta: { interface: 'file', options: { folder: null }, special: ['file'] },
+      schema: {
+        name: 'image',
+        table: 'press_articles',
+        data_type: 'uuid',
+        is_nullable: true,
+        foreign_key_table: 'directus_files',
+        foreign_key_column: 'id',
+      },
+    });
+
+    await ensureField(token, 'press_articles', {
+      field: 'status',
+      type: 'string',
+      meta: {
+        interface: 'select-dropdown',
+        options: { choices: ['draft', 'published'] },
+        default_value: 'draft',
+      },
+      schema: {
+        name: 'status',
+        table: 'press_articles',
+        data_type: 'varchar',
+        max_length: 50,
+        is_nullable: false,
+        default_value: 'draft',
       },
     });
 

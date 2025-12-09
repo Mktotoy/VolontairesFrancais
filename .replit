@@ -1,57 +1,33 @@
 modules = ["nodejs-22"]
 
 [workflows]
-runButton = "Project"
+runButton = "Run"
 
 [[workflows.workflow]]
-name = "frontend"
+name = "Run"
 mode = "sequential"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd frontend && npm run dev"
-waitForPort = 5000
+args = "npm start"
+waitForPort = 3000
 
 [workflows.workflow.metadata]
 outputType = "webview"
 
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "dev"
-
-[[workflows.workflow]]
-name = "dev"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "bash -c \"(cd backend && npm start) & (cd frontend && npm run dev) & wait\""
-waitForPort = 5000
-
-[workflows.workflow.metadata]
-outputType = "webview"
-
-[agent]
-expertMode = true
+[deployment]
+build = ["sh", "-c", "npm run build"]
+run = ["sh", "-c", "npm start"]
+deploymentTarget = "cloudrun"
 
 [[ports]]
 localPort = 3000
-externalPort = 3000
-
-[[ports]]
-localPort = 5000
 externalPort = 80
 
 [[ports]]
 localPort = 8055
 externalPort = 3001
 
-[[ports]]
-localPort = 41863
-externalPort = 3002
+[agent]
+expertMode = true
