@@ -357,6 +357,37 @@ async function seedSocial(token) {
   }
 }
 
+async function seedPressArticles(token) {
+  const articles = [
+    {
+      title: "Paris 2024 : une association pour les volontaires français",
+      source: "L'Équipe",
+      date: "2024-11-28T10:00:00",
+      url: "https://www.lequipe.fr",
+      extract: "Une nouvelle association voit le jour pour rassembler les 45 000 volontaires de Paris 2024...",
+    },
+    {
+      title: "Les bénévoles des JO se fédèrent",
+      source: "Le Monde",
+      date: "2024-11-15T14:30:00",
+      url: "https://www.lemonde.fr",
+      extract: "Pour ne pas perdre le lien créé pendant les Jeux, les volontaires français créent leur structure...",
+    }
+  ];
+
+  for (const article of articles) {
+    // We don't have a unique slug field for press articles, so we'll check by title
+    await upsertByField(token, 'press_articles', 'title', article.title, {
+      title: article.title,
+      source: article.source,
+      publication_date: article.date,
+      url: article.url,
+      extract: article.extract,
+      status: 'published'
+    });
+  }
+}
+
 async function main() {
   const token = await login();
   console.log('Authenticated.');
@@ -366,6 +397,7 @@ async function main() {
   await seedFaq(token);
   await seedTeam(token);
   await seedSocial(token);
+  await seedPressArticles(token);
 
   console.log('Seeding completed.');
 }

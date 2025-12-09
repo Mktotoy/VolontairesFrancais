@@ -50,6 +50,11 @@ export default function Header() {
                                 </Link>
                             </li>
                             <li>
+                                <Link href="/on-parle-de-nous" className={`nav-link ${isActive('/on-parle-de-nous')}`}>
+                                    On parle de nous
+                                </Link>
+                            </li>
+                            <li>
                                 <Link href="/faq" className={`nav-link ${isActive('/faq')}`}>
                                     FAQ
                                 </Link>
