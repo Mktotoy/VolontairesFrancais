@@ -1,0 +1,1467 @@
+GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/images/LOGO_NOIR_COULEUR_1.png 404 (Not Found)Understand this error
+MONOGRAMME_COULEUR_FOND_BLANC.png:1  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/images/MONOGRAMME_COULEUR_FOND_BLANC.png 404 (Not Found)Understand this error
+forward-logs-shared.ts:95 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+forward-logs-shared.ts:95 [HMR] connected
+forward-logs-shared.ts:95 [Fast Refresh] rebuilding
+forward-logs-shared.ts:95 [Fast Refresh] done in 1027ms
+43Mixed Content: The page at '<URL>' was loaded over HTTPS, but requested an insecure element '<URL>'. This request was automatically upgraded to HTTPS, For more information see <URL>Understand this warning
+Header.tsx:43  GET http://localhost:8055/assets/fb14287a-2022-48c4-aec9-f22a9360a1b6 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/76bb2dc2-c298-494d-985e-bbb8e7de9d38 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/aa9cdc11-b241-4421-9c95-df86e36a4c4d net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/b7f8c914-f55d-4570-ac70-8282f05dfe06 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/eba9bd74-a9cd-4f8c-8dea-6717322226ee net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/f6e17497-75cc-4c17-bb88-dd182413e1ed net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/25d3adad-84e8-4249-8d24-58ad5d23b1d4 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/7a890022-d9c4-4d6b-b639-3ee4500afaf4 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/67c3d416-8f10-45c7-8fb8-7bfa38b260f4 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/85ebb6e0-c4ec-44ee-951d-7658975ba754 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/87c64b5c-ccab-4be6-acbe-0f8840b85af1 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error
+Header.tsx:43  GET http://localhost:8055/assets/a459db80-aaa0-4ee6-ba93-5e8ae8c392f1 net::ERR_CONNECTION_REFUSED
+L @ react-dom-client.development.js:30063
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4276
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+progress @ react-server-dom-turbopack-client.browser.development.js:4736
+Promise.then
+startReadingFromStream @ react-server-dom-turbopack-client.browser.development.js:4743
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4986
+Promise.then
+exports.createFromFetch @ react-server-dom-turbopack-client.browser.development.js:4968
+createFromNextFetch @ fetch-server-response.ts:487
+createFetch @ fetch-server-response.ts:373
+fetchServerResponse @ fetch-server-response.ts:195
+navigateDynamicallyWithNoPrefetch @ navigation.ts:473
+navigate @ navigation.ts:206
+navigateReducer @ navigate-reducer.ts:165
+clientReducer @ router-reducer.ts:30
+action @ app-router-instance.ts:227
+runAction @ app-router-instance.ts:107
+dispatchAction @ app-router-instance.ts:184
+dispatch @ app-router-instance.ts:225
+(anonymous) @ use-action-queue.ts:51
+startTransition @ react-dom-client.development.js:9208
+dispatch @ use-action-queue.ts:50
+dispatchAppRouterAction @ use-action-queue.ts:22
+dispatchNavigateAction @ app-router-instance.ts:296
+(anonymous) @ link.tsx:293
+startTransition @ react.development.js:554
+linkClicked @ link.tsx:292
+onClick @ link.tsx:642
+executeDispatch @ react-dom-client.development.js:20541
+runWithFiberInDEV @ react-dom-client.development.js:984
+processDispatchQueue @ react-dom-client.development.js:20591
+(anonymous) @ react-dom-client.development.js:21162
+batchedUpdates$1 @ react-dom-client.development.js:3375
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:20745
+dispatchEvent @ react-dom-client.development.js:25671
+dispatchDiscreteEvent @ react-dom-client.development.js:25639
+<a>
+exports.jsx @ react-jsx-runtime.development.js:342
+LinkComponent @ link.tsx:725
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12134
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+<LinkComponent>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:342
+Header @ Header.tsx:43
+react_stack_bottom_frame @ react-dom-client.development.js:28016
+renderWithHooksAgain @ react-dom-client.development.js:8082
+renderWithHooks @ react-dom-client.development.js:7994
+updateFunctionComponent @ react-dom-client.development.js:10499
+beginWork @ react-dom-client.development.js:12083
+runWithFiberInDEV @ react-dom-client.development.js:984
+performUnitOfWork @ react-dom-client.development.js:18995
+workLoopConcurrentByScheduler @ react-dom-client.development.js:18989
+renderRootConcurrent @ react-dom-client.development.js:18971
+performWorkOnRoot @ react-dom-client.development.js:17832
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:20382
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+RootLayout @ layout.tsx:27
+initializeElement @ react-server-dom-turbopack-client.browser.development.js:1922
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4560
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+getOutlinedModel @ react-server-dom-turbopack-client.browser.development.js:2299
+parseModelString @ react-server-dom-turbopack-client.browser.development.js:2689
+(anonymous) @ react-server-dom-turbopack-client.browser.development.js:4491
+initializeModelChunk @ react-server-dom-turbopack-client.browser.development.js:1812
+resolveModelChunk @ react-server-dom-turbopack-client.browser.development.js:1657
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4390
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+<RootLayout>
+initializeFakeTask @ react-server-dom-turbopack-client.browser.development.js:3340
+initializeDebugInfo @ react-server-dom-turbopack-client.browser.development.js:3365
+initializeDebugChunk @ react-server-dom-turbopack-client.browser.development.js:1756
+processFullStringRow @ react-server-dom-turbopack-client.browser.development.js:4339
+processFullBinaryRow @ react-server-dom-turbopack-client.browser.development.js:4250
+processBinaryChunk @ react-server-dom-turbopack-client.browser.development.js:4463
+progress @ react-server-dom-turbopack-client.browser.development.js:4735
+"use server"
+ResponseInstance @ react-server-dom-turbopack-client.browser.development.js:2744
+createResponseFromOptions @ react-server-dom-turbopack-client.browser.development.js:4596
+exports.createFromReadableStream @ react-server-dom-turbopack-client.browser.development.js:5000
+module evaluation @ app-index.tsx:211
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateModuleFromParent @ dev-base.ts:162
+commonJsRequire @ runtime-utils.ts:389
+(anonymous) @ app-next-turbopack.ts:11
+(anonymous) @ app-bootstrap.ts:79
+loadScriptsInSequence @ app-bootstrap.ts:23
+appBootstrap @ app-bootstrap.ts:61
+module evaluation @ app-next-turbopack.ts:10
+(anonymous) @ dev-base.ts:244
+runModuleExecutionHooks @ dev-base.ts:278
+instantiateModule @ dev-base.ts:238
+getOrInstantiateRuntimeModule @ dev-base.ts:128
+registerChunk @ runtime-backend-dom.ts:57
+await in registerChunk
+registerChunk @ dev-base.ts:1149
+(anonymous) @ dev-backend-dom.ts:126
+(anonymous) @ dev-backend-dom.ts:126Understand this error

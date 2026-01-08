@@ -1,0 +1,483 @@
+				else
+					OLD_SERVER_SCRIPT=$(find "$OLD_DISTRO_DIR_FULL_PATH/bin/" -maxdepth 1 -type f -executable)
+					echo "Old server script: $OLD_SERVER_SCRIPT"
+				fi
+
+				OLD_SERVER_SCRIPT_PATH=$(readlink -f "$OLD_SERVER_SCRIPT")
+				echo "Old server script path: $OLD_SERVER_SCRIPT_PATH"
+
+				if [[ -z "$OLD_SERVER_SCRIPT_PATH" ]]; then
+					echo "Something went wrong, old server script path is empty. Skipping old server $OLD_DISTRO_ID."
+					continue
+				fi
+
+				if [[ ! -f "$OLD_SERVER_PIDFILE" ]]; then
+					OLD_PID=$(pgrep -f "$OLD_SERVER_SCRIPT_PATH")
+					if [[ -n "$OLD_PID" ]]; then
+						touch "$OLD_SERVER_PIDFILE"
+						echo "$OLD_PID" > "$OLD_SERVER_PIDFILE"
+						echo "Wrote to PID file for $OLD_DISTRO_ID: $OLD_SERVER_PIDFILE"
+					fi
+				fi
+
+				if [[ -f "$OLD_SERVER_PIDFILE" ]]; then
+					OLD_PID=$(cat "$OLD_SERVER_PIDFILE")
+					echo "Old server PID: $OLD_PID"
+					if [[ -z "$OLD_PID" ]]; then
+						OLD_PID=$(pgrep -f "$OLD_SERVER_SCRIPT_PATH")
+						if [[ -n "$OLD_PID" ]]; then
+							echo "$OLD_PID" > "$OLD_SERVER_PIDFILE"
+							echo "Restored PID file for $OLD_DISTRO_ID: $OLD_SERVER_PIDFILE."
+						fi
+					fi
+					# Check if PID is non-empty and if process with OLD_PID is running
+					if [[ -n "$OLD_PID" ]] && ps -p "$OLD_PID" > /dev/null 2>&1; then
+						OLD_RUNNING_PROCESS="$(ps -o pid,args -p $OLD_PID | grep -F $OLD_SERVER_SCRIPT_PATH)"
+						if [[ -n "$OLD_RUNNING_PROCESS" ]]; then
+							echo "Old server $OLD_DISTRO_ID (PID $OLD_PID) is running."
+						fi
+					else
+						echo "Old server $OLD_DISTRO_ID (PID $OLD_PID) is not running."
+						delete_server
+						continue
+					fi
+				else
+					echo "No PID file found for old server $OLD_DISTRO_ID ($OLD_SERVER_PIDFILE) and no processes matching the script path."
+					delete_server
+					continue
+				fi
+			fi
+		done
+		echo "Finished cleaning up old server installations."
+	else
+		echo "No server bin directory found at $SERVER_DATA_DIR/bin. Skipping cleanup of old servers."
+	fi
+}
+
+terminateTree() {
+	for cpid in $(/usr/bin/pgrep -P $1); do
+		terminateTree $cpid
+	done
+	kill -9 $1 > /dev/null 2>&1
+}
+
+kill_running_server() {
+	if [[ -n "$1" ]]; then
+		echo "Killing server process with PID $1 (and all its children)"
+		terminateTree $1
+	fi
+}
+
+# Check if platform is supported
+KERNEL="$(uname -s)"
+case $KERNEL in
+	Darwin)
+		PLATFORM="darwin"
+		;;
+	Linux)
+		PLATFORM="linux"
+		;;
+	FreeBSD)
+		PLATFORM="freebsd"
+		;;
+	DragonFly)
+		PLATFORM="dragonfly"
+		;;
+	*)
+		echo "Error platform not supported: $KERNEL"
+		print_install_results_and_exit 1
+		;;
+esac
+
+# Check machine architecture
+ARCH="$(uname -m)"
+case $ARCH in
+	x86_64 | amd64)
+		SERVER_ARCH="x64"
+		;;
+	armv7l | armv8l)
+		SERVER_ARCH="armhf"
+		;;
+	arm64 | aarch64)
+		SERVER_ARCH="arm64"
+		;;
+	ppc64le)
+		SERVER_ARCH="ppc64le"
+		;;
+	riscv64)
+		SERVER_ARCH="riscv64"
+		;;
+	*)
+		echo "Error architecture not supported: $ARCH"
+		print_install_results_and_exit 1
+		;;
+esac
+
+# https://www.freedesktop.org/software/systemd/man/os-release.html
+OS_RELEASE_ID="$(grep -i '^ID=' /etc/os-release 2>/dev/null | sed 's/^ID=//gi' | sed 's/"//g')"
+if [[ -z $OS_RELEASE_ID ]]; then
+	OS_RELEASE_ID="$(grep -i '^ID=' /usr/lib/os-release 2>/dev/null | sed 's/^ID=//gi' | sed 's/"//g')"
+	if [[ -z $OS_RELEASE_ID ]]; then
+		OS_RELEASE_ID="unknown"
+	fi
+fi
+
+# Acquire lock at the beginning of the script
+acquire_lock
+
+# Add trap to release lock on exit
+trap release_lock EXIT INT TERM
+
+clean_up_old_servers
+
+# Create installation folder
+if [[ ! -d $SERVER_DIR ]]; then
+	mkdir -p $SERVER_DIR
+	if (( $? > 0 )); then
+		echo "Error creating server install directory"
+		print_install_results_and_exit 1
+	fi
+fi
+
+if [ -n "$SSH_AUTH_SOCK" ]; then
+	ln -s -f $SSH_AUTH_SOCK $SERVER_SSH_AGENT_SOCKET
+fi
+export SSH_AUTH_SOCK=$SERVER_SSH_AGENT_SOCKET
+
+if [[ "$SERVER_ARCH" == "arm64" ]]; then
+	SERVER_ARCH="arm"
+fi
+if [[ "$DISTRO_QUALITY" == "insider" ]]; then
+	SERVER_DOWNLOAD_URL="$DISTRO_QUALITY/$DISTRO_IDE_VERSION-$DISTRO_COMMIT/$PLATFORM-$SERVER_ARCH/Antigravity - Insiders-reh.tar.gz"
+else
+	SERVER_DOWNLOAD_URL="$DISTRO_QUALITY/$DISTRO_IDE_VERSION-$DISTRO_COMMIT/$PLATFORM-$SERVER_ARCH/Antigravity-reh.tar.gz"
+fi
+
+if [[ "$PLATFORM" == "linux" ]]; then
+	# Check ldd version based on format "ldd (.*) 2.28"
+	version=$(ldd --version | head -n 1 | grep -oE '[0-9]+.[0-9]+$')
+	if (( $? > 0 )); then
+		echo "Warning: ldd not found"
+		GLIBC_VERSION_GOOD="false"
+	else
+		major=$(echo "$version" | cut -d '.' -f 1)
+		minor=$(echo "$version" | cut -d '.' -f 2)
+
+		if [[ "$major" -eq 2 && "$minor" -ge 28 ]]; then
+			GLIBC_VERSION_GOOD="true"
+		else
+			GLIBC_VERSION_GOOD="false"
+		fi
+	fi
+
+	if [[ "$GLIBC_VERSION_GOOD" = "false" ]]; then
+		echo "Warning: valid glibc version not found. Antigravity only supports remote connections with glibc >= 2.28, such as Ubuntu 20.04, Debian 10, or CentOS 8."
+	fi
+fi
+
+# Check if server script is already installed
+if [[ ! -f $SERVER_SCRIPT ]]; then
+	if [[ "$PLATFORM" != "darwin" ]] && [[ "$PLATFORM" != "linux" ]]; then
+		echo "Error "$PLATFORM" needs manual installation of remote extension host"
+		print_install_results_and_exit 1
+	fi
+
+	pushd $SERVER_DIR > /dev/null
+
+	temp_file=$(mktemp)
+
+	if [[ "$SERVER_APP_NAME" == "antigravity-server" || "$SERVER_APP_NAME" == "antigravity-server-insiders" ]]; then
+		### ANTIGRAVITY
+		DOWNLOAD_URLS=(
+			"https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/$SERVER_DOWNLOAD_URL"
+			"https://redirector.gvt1.com/edgedl/release2/j0qc3/antigravity/$SERVER_DOWNLOAD_URL"
+			"https://edgedl.me.gvt1.com/edgedl/antigravity/$SERVER_DOWNLOAD_URL"
+			"https://redirector.gvt1.com/edgedl/antigravity/$SERVER_DOWNLOAD_URL"
+		)
+
+		download_success=0
+		for url in "${DOWNLOAD_URLS[@]}"; do
+			if [[ ! -z $(which wget) ]]; then
+				wget --tries=3 --timeout=10 --continue --quiet -O $temp_file "$url"
+			else
+				echo "Error need wget to download server binary"
+				print_install_results_and_exit 1
+			fi
+
+			if (( $? == 0 )); then
+				download_success=1
+				break
+			else
+				echo "Download failed from $url, trying next URL..."
+			fi
+		done
+
+		if (( download_success == 0 )); then
+			echo "Error downloading server from all URLs"
+			print_install_results_and_exit 1
+		fi
+
+	else
+		### INTERNAL
+		if [[ "$DISTRO_IDE_VERSION" == "development" || "$DISTRO_QUALITY" == "insider" ]]; then
+			cp "$(ls -dt /google/data/ro/teams/jetski-fix/cloudtop-insiders/latest/reh-linux-x64/*.tar.gz | head -n 1)" $temp_file
+		else
+			cp /google/data/ro/teams/jetski-fix/cloudtop/$DISTRO_IDE_VERSION/Jetski-reh-linux-x64.tar.gz $temp_file
+		fi
+
+		if (( $? > 0 )); then
+			echo "Error no reh tarball at x20"
+			print_install_results_and_exit 1
+		fi
+	fi
+
+	mv $temp_file vscode-server.tar.gz
+
+	tar -xf vscode-server.tar.gz
+	if (( $? > 0 )); then
+		echo "Error while extracting server contents"
+		print_install_results_and_exit 1
+	fi
+
+	if [[ ! -f $SERVER_SCRIPT ]]; then
+		echo "Error server contents are corrupted"
+		print_install_results_and_exit 1
+	fi
+
+	rm -f vscode-server.tar.gz
+
+	popd > /dev/null
+else
+	echo "Server script already installed in $SERVER_SCRIPT"
+fi
+
+# Try to find if server is already running
+if [[ -f $SERVER_PIDFILE ]]; then
+	SERVER_PID="$(cat $SERVER_PIDFILE)"
+	if [[ -z $SERVER_PID ]]; then
+		SERVER_PID=$(pgrep -f "$SERVER_SCRIPT")
+		if [[ -n $SERVER_PID ]]; then
+			touch $SERVER_PIDFILE
+			echo $SERVER_PID > $SERVER_PIDFILE
+		fi
+	fi
+	if [[ -n $SERVER_PID ]]; then
+		if [[ -n $(ps -o pid,args -p $SERVER_PID | grep $SERVER_SCRIPT) ]]; then
+			SERVER_RUNNING_PROCESS="$SERVER_PID"
+			echo "Found running server process: $SERVER_RUNNING_PROCESS"
+		fi
+	fi
+else
+	SERVER_RUNNING_PROCESS="$(pgrep -f "$SERVER_SCRIPT")"
+	if [[ -z $SERVER_RUNNING_PROCESS ]]; then
+		SERVER_PID=
+	else
+		SERVER_PID=$SERVER_RUNNING_PROCESS
+		touch $SERVER_PIDFILE
+		echo $SERVER_PID > $SERVER_PIDFILE
+	fi
+fi
+
+if [[ -z $SERVER_RUNNING_PROCESS ]]; then
+	if [[ -f $SERVER_LOGFILE ]]; then
+		rm $SERVER_LOGFILE
+	fi
+	if [[ -f $SERVER_TOKENFILE ]]; then
+		rm $SERVER_TOKENFILE
+	fi
+
+	touch $SERVER_TOKENFILE
+	chmod 600 $SERVER_TOKENFILE
+	SERVER_CONNECTION_TOKEN="761435671027"
+	echo $SERVER_CONNECTION_TOKEN > $SERVER_TOKENFILE
+
+	$SERVER_SCRIPT --start-server --host=127.0.0.1 $SERVER_LISTEN_FLAG $SERVER_INITIAL_EXTENSIONS --connection-token-file $SERVER_TOKENFILE --telemetry-level off --enable-remote-auto-shutdown --accept-server-license-terms &> $SERVER_LOGFILE &
+	echo $! > $SERVER_PIDFILE
+	SERVER_PID=$(cat $SERVER_PIDFILE)
+else
+	echo "Server script is already running $SERVER_SCRIPT"
+fi
+
+if [[ -f $SERVER_TOKENFILE && -n $(cat $SERVER_TOKENFILE) ]]; then
+	SERVER_CONNECTION_TOKEN="$(cat $SERVER_TOKENFILE)"
+else
+	echo "Error server token file not found $SERVER_TOKENFILE"
+	if [[ -n $SERVER_PID ]]; then
+		kill_running_server $SERVER_PID
+	fi
+	print_install_results_and_exit 1
+fi
+
+if [[ -f $SERVER_LOGFILE ]]; then
+	for i in {1..15}; do
+		LISTENING_ON="$(cat $SERVER_LOGFILE | grep -E 'Extension host agent listening on .+' | sed 's/Extension host agent listening on //')"
+		if [[ -n $LISTENING_ON ]]; then
+			break
+		fi
+		sleep 0.5
+	done
+
+	if [[ -z $LISTENING_ON ]]; then
+		echo "Error server did not start sucessfully"
+		if [[ -n $SERVER_PID ]]; then
+			kill_running_server $SERVER_PID
+		fi
+		print_install_results_and_exit 1
+	fi
+else
+	echo "Error server log file not found $SERVER_LOGFILE"
+	if [[ -n $SERVER_PID ]]; then
+		kill_running_server $SERVER_PID
+	fi
+	print_install_results_and_exit 1
+fi
+
+# Finish server setup
+print_install_results_and_wait
+
+2025-12-09 14:23:19.420 [info] [Info	- 13:23:19.403] Launching SSH server with command: ssh -v -T -D 51771 653ee67a-14f9-4617-a985-2d1694e1752e@653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev bash -s
+2025-12-09 14:23:19.440 [info] [Trace	- 13:23:19.439] [stderr] OpenSSH_for_Windows_9.5p2, LibreSSL 3.8.2
+
+2025-12-09 14:23:19.442 [info] [Trace	- 13:23:19.442] [stderr] debug1: Reading configuration data C:\\Users\\thoma/.ssh/config
+
+2025-12-09 14:23:19.443 [info] [Trace	- 13:23:19.443] [stderr] debug1: C:\\Users\\thoma/.ssh/config line 1: Applying options for *.replit.dev
+
+2025-12-09 14:23:19.546 [info] [Trace	- 13:23:19.545] [stderr] debug1: Connecting to 653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev [64:ff9b::2294:8613] port 22.
+
+2025-12-09 14:23:19.647 [info] [Trace	- 13:23:19.647] [stderr] debug1: Connection established.
+
+2025-12-09 14:23:19.650 [info] [Trace	- 13:23:19.650] [stderr] debug1: identity file C:\\Users\\thoma/.ssh/replit type 0
+
+2025-12-09 14:23:19.651 [info] [Trace	- 13:23:19.650] [stderr] debug1: identity file C:\\Users\\thoma/.ssh/replit-cert type -1
+
+2025-12-09 14:23:19.652 [info] [Trace	- 13:23:19.651] [stderr] debug1: Local version string SSH-2.0-OpenSSH_for_Windows_9.5
+
+2025-12-09 14:23:19.747 [info] [Trace	- 13:23:19.746] [stderr] debug1: Remote protocol version 2.0, remote software version Replit-SSH-Proxy
+
+2025-12-09 14:23:19.747 [info] [Trace	- 13:23:19.747] [stderr] debug1: compat_banner: no match: Replit-SSH-Proxy
+
+2025-12-09 14:23:19.748 [info] [Trace	- 13:23:19.747] [stderr] debug1: Authenticating to 653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev:22 as '653ee67a-14f9-4617-a985-2d1694e1752e'
+
+2025-12-09 14:23:19.749 [info] [Trace	- 13:23:19.748] [stderr] debug1: load_hostkeys: fopen C:\\Users\\thoma/.ssh/known_hosts2: No such file or directory
+
+2025-12-09 14:23:19.749 [info] [Trace	- 13:23:19.749] [stderr] debug1: load_hostkeys: fopen __PROGRAMDATA__\\ssh/ssh_known_hosts: No such file or directory
+
+2025-12-09 14:23:19.750 [info] [Trace	- 13:23:19.749] [stderr] debug1: load_hostkeys: fopen __PROGRAMDATA__\\ssh/ssh_known_hosts2: No such file or directory
+
+2025-12-09 14:23:19.751 [info] [Trace	- 13:23:19.750] [stderr] debug1: SSH2_MSG_KEXINIT sent
+
+2025-12-09 14:23:19.758 [info] [Trace	- 13:23:19.757] [stderr] debug1: SSH2_MSG_KEXINIT received
+
+2025-12-09 14:23:19.758 [info] [Trace	- 13:23:19.758] [stderr] debug1: kex: algorithm: curve25519-sha256
+
+2025-12-09 14:23:19.759 [info] [Trace	- 13:23:19.758] [stderr] debug1: kex: host key algorithm: ecdsa-sha2-nistp384
+
+2025-12-09 14:23:19.759 [info] [Trace	- 13:23:19.759] [stderr] debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+
+2025-12-09 14:23:19.760 [info] [Trace	- 13:23:19.759] [stderr] debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+
+2025-12-09 14:23:19.762 [info] [Trace	- 13:23:19.761] [stderr] debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+
+2025-12-09 14:23:19.967 [info] [Trace	- 13:23:19.966] [stderr] debug1: SSH2_MSG_KEX_ECDH_REPLY received
+
+2025-12-09 14:23:19.973 [info] [Trace	- 13:23:19.973] [stderr] debug1: Server host key: ecdsa-sha2-nistp384 SHA256:wjMUe0F6zWoqEz3wRRr05nsFrw6VHdDemwlP+Sx3xNU
+
+2025-12-09 14:23:19.974 [info] [Trace	- 13:23:19.974] [stderr] debug1: load_hostkeys: fopen C:\\Users\\thoma/.ssh/known_hosts2: No such file or directory
+
+2025-12-09 14:23:19.975 [info] [Trace	- 13:23:19.974] [stderr] debug1: load_hostkeys: fopen __PROGRAMDATA__\\ssh/ssh_known_hosts: No such file or directory
+
+2025-12-09 14:23:19.975 [info] [Trace	- 13:23:19.975] [stderr] debug1: load_hostkeys: fopen __PROGRAMDATA__\\ssh/ssh_known_hosts2: No such file or directory
+
+2025-12-09 14:23:19.978 [info] [Trace	- 13:23:19.977] [stderr] Warning: Permanently added '653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev' (ECDSA) to the list of known hosts.
+
+2025-12-09 14:23:19.978 [info] [Trace	- 13:23:19.978] [stderr] debug1: check_host_key: hostkey not known or explicitly trusted: disabling UpdateHostkeys
+
+2025-12-09 14:23:19.985 [info] [Trace	- 13:23:19.984] [stderr] debug1: ssh_packet_send2_wrapped: resetting send seqnr 3
+
+2025-12-09 14:23:19.985 [info] [Trace	- 13:23:19.985] [stderr] debug1: rekey out after 134217728 blocks
+
+2025-12-09 14:23:19.985 [info] [Trace	- 13:23:19.985] [stderr] debug1: SSH2_MSG_NEWKEYS sent
+
+2025-12-09 14:23:19.986 [info] [Trace	- 13:23:19.985] [stderr] debug1: expecting SSH2_MSG_NEWKEYS
+
+2025-12-09 14:23:19.986 [info] [Trace	- 13:23:19.985] [stderr] debug1: ssh_packet_read_poll2: resetting read seqnr 3
+
+2025-12-09 14:23:19.987 [info] [Trace	- 13:23:19.986] [stderr] debug1: SSH2_MSG_NEWKEYS received
+
+2025-12-09 14:23:19.987 [info] [Trace	- 13:23:19.986] [stderr] debug1: rekey in after 134217728 blocks
+
+2025-12-09 14:23:19.988 [info] [Trace	- 13:23:19.987] [stderr] debug1: get_agent_identities: ssh_get_authentication_socket: No such file or directory
+
+2025-12-09 14:23:19.989 [info] [Trace	- 13:23:19.988] [stderr] debug1: Will attempt key: C:\\Users\\thoma/.ssh/replit RSA SHA256:pQxIiydAX6nIf+s0+i+ve31gNLz9eGjj3Z8tTADnrRI explicit
+
+2025-12-09 14:23:19.989 [info] [Trace	- 13:23:19.988] [stderr] debug1: SSH2_MSG_EXT_INFO received
+
+2025-12-09 14:23:19.989 [info] [Trace	- 13:23:19.989] [stderr] debug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512,ssh-rsa,ssh-dss>
+
+2025-12-09 14:23:19.990 [info] [Trace	- 13:23:19.989] [stderr] debug1: kex_ext_info_check_ver: ping@openssh.com=<0>
+
+2025-12-09 14:23:20.236 [info] [Trace	- 13:23:20.236] [stderr] debug1: SSH2_MSG_SERVICE_ACCEPT received
+
+2025-12-09 14:23:20.341 [info] [Trace	- 13:23:20.340] [stderr] Welcome to the Replit SSH Proxy.
+
+2025-12-09 14:23:20.341 [info] [Trace	- 13:23:20.340] [stderr] 
+
+2025-12-09 14:23:20.341 [info] [Trace	- 13:23:20.340] [stderr] Visit https://docs.replit.com/replit-workspace/ssh to learn more about SSH on Replit.
+
+2025-12-09 14:23:20.341 [info] [Trace	- 13:23:20.341] [stderr] debug1: Authentications that can continue: password,publickey
+
+2025-12-09 14:23:20.341 [info] [Trace	- 13:23:20.341] [stderr] debug1: Next authentication method: publickey
+
+2025-12-09 14:23:20.342 [info] [Trace	- 13:23:20.341] [stderr] debug1: Offering public key: C:\\Users\\thoma/.ssh/replit RSA SHA256:pQxIiydAX6nIf+s0+i+ve31gNLz9eGjj3Z8tTADnrRI explicit
+
+2025-12-09 14:23:20.681 [info] [Trace	- 13:23:20.681] [stderr] debug1: Server accepts key: C:\\Users\\thoma/.ssh/replit RSA SHA256:pQxIiydAX6nIf+s0+i+ve31gNLz9eGjj3Z8tTADnrRI explicit
+
+2025-12-09 14:23:20.866 [info] [Trace	- 13:23:20.865] [stderr] Authenticated to 653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev ([64:ff9b::2294:8613]:22) using "publickey".
+
+2025-12-09 14:23:20.867 [info] [Trace	- 13:23:20.866] [stderr] debug1: Local connections to LOCALHOST:51771 forwarded to remote address socks:0
+
+2025-12-09 14:23:20.867 [info] [Trace	- 13:23:20.866] [stderr] debug1: Local forwarding listening on ::1 port 51771.
+
+2025-12-09 14:23:20.868 [info] [Trace	- 13:23:20.868] [stderr] debug1: channel 0: new port-listener [port listener] (inactive timeout: 0)
+
+2025-12-09 14:23:20.869 [info] [Trace	- 13:23:20.868] [stderr] debug1: Local forwarding listening on 127.0.0.1 port 51771.
+
+2025-12-09 14:23:20.869 [info] [Trace	- 13:23:20.869] [stderr] debug1: channel 1: new port-listener [port listener] (inactive timeout: 0)
+
+2025-12-09 14:23:20.870 [info] [Trace	- 13:23:20.869] [stderr] debug1: channel 2: new session [client-session] (inactive timeout: 0)
+
+2025-12-09 14:23:20.870 [info] [Trace	- 13:23:20.870] [stderr] debug1: Entering interactive session.
+
+2025-12-09 14:23:20.871 [info] [Trace	- 13:23:20.870] [stderr] debug1: pledge: network
+
+2025-12-09 14:23:21.336 [info] [Trace	- 13:23:21.336] [stderr] debug1: Sending command: bash -s
+
+2025-12-09 14:23:21.337 [info] [Trace	- 13:23:21.336] [stderr] debug1: pledge: network
+
+2025-12-09 14:23:21.606 [info] [Trace	- 13:23:21.605] main: line 43: /home/runner/.antigravity-server/.installation_lock: No such file or directory
+2025-12-09 14:23:21.606 [info] [Trace	- 13:23:21.605] Waiting for lock...
+2025-12-09 14:23:21.634 [info] [Trace	- 13:23:21.634] flock: 200: Bad file descriptor
+2025-12-09 14:23:21.638 [info] [Trace	- 13:23:21.637] Lock acquired, proceeding with installation.
+2025-12-09 14:23:21.638 [info] [Trace	- 13:23:21.637] Cleaning up old server installations...
+2025-12-09 14:23:21.638 [info] [Trace	- 13:23:21.637] No server bin directory found at /home/runner/.antigravity-server/bin. Skipping cleanup of old servers.
+2025-12-09 14:23:21.772 [info] [Trace	- 13:23:21.772] Error need wget to download server binary
+2025-12-09 14:23:21.777 [info] [Trace	- 13:23:21.775] Error: installation failed.
+2025-12-09 14:23:21.777 [info] [Trace	- 13:23:21.775] f643f96932b232f986515716: start
+2025-12-09 14:23:21.777 [info] [Trace	- 13:23:21.775] exitCode==1==
+2025-12-09 14:23:21.777 [info] [Error	- 13:23:21.775] An error occurred while starting the server, with exit code: 1
+More info can be found in the Output tab.
+2025-12-09 14:23:21.785 [info] [Trace	- 13:23:21.784] [stderr] debug1: client_input_channel_req: channel 2 rtype exit-status reply 0
+
+2025-12-09 14:23:21.789 [info] [Trace	- 13:23:21.788] [stderr] debug1: channel 2: free: client-session, nchannels 3
+
+2025-12-09 14:23:21.789 [info] [Trace	- 13:23:21.788] [stderr] debug1: channel 0: free: port listener, nchannels 2
+
+2025-12-09 14:23:21.789 [info] [Trace	- 13:23:21.788] [stderr] debug1: channel 1: free: port listener, nchannels 1
+
+2025-12-09 14:23:21.796 [info] [Trace	- 13:23:21.796] [stderr] Transferred: sent 17712, received 3092 bytes, in 0.9 seconds
+
+2025-12-09 14:23:21.797 [info] [Trace	- 13:23:21.796] [stderr] Bytes per second: sent 19315.2, received 3371.9
+
+2025-12-09 14:23:21.797 [info] [Trace	- 13:23:21.797] [stderr] debug1: Exit status 0
+
+2025-12-09 14:23:21.804 [info] [Error	- 13:23:21.803] SSH server closed unexpectedly.

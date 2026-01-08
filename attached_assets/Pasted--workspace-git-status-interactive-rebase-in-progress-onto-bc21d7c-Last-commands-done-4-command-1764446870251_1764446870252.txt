@@ -1,0 +1,264 @@
+~/workspace$ git status
+interactive rebase in progress; onto bc21d7c
+Last commands done (4 commands done):
+   pick 5b04d8b # Configure deployment scripts and environment settings for production
+   pick eaa6876 # Restored to '21061c01beb1742cf4b097a4741b1d3bef2d5ec5'
+  (see more in file .git/rebase-merge/done)
+No commands remaining.
+You are currently editing a commit while rebasing branch 'cms-directus' on 'bc21d7c'.
+  (use "git commit --amend" to amend the current commit)
+  (use "git rebase --continue" once you are satisfied with your changes)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+    modified:   .replit
+    deleted:    .tools/node-v20.19.6-win-x64.zip
+    deleted:    .tools/node-v20.19.6-win-x64/CHANGELOG.md
+    deleted:    .tools/node-v20.19.6-win-x64/LICENSE
+    deleted:    .tools/node-v20.19.6-win-x64/README.md
+    deleted:    .tools/node-v20.19.6-win-x64/corepack
+    deleted:    .tools/node-v20.19.6-win-x64/corepack.cmd
+    deleted:    .tools/node-v20.19.6-win-x64/install_tools.bat
+    deleted:    .tools/node-v20.19.6-win-x64/node.exe
+    deleted:    .tools/node-v20.19.6-win-x64/nodevars.bat
+    deleted:    .tools/node-v20.19.6-win-x64/npm
+    deleted:    .tools/node-v20.19.6-win-x64/npm.cmd
+    deleted:    .tools/node-v20.19.6-win-x64/npx
+    deleted:    .tools/node-v20.19.6-win-x64/npx.cmd
+    deleted:    .tools/node-v22-SHASUMS256.txt
+    deleted:    .tools/node-v22.21.1-win-x64.zip
+    deleted:    .tools/node-v22.21.1-win-x64/CHANGELOG.md
+    deleted:    .tools/node-v22.21.1-win-x64/LICENSE
+    deleted:    .tools/node-v22.21.1-win-x64/README.md
+    deleted:    .tools/node-v22.21.1-win-x64/corepack
+    deleted:    .tools/node-v22.21.1-win-x64/corepack.cmd
+    deleted:    .tools/node-v22.21.1-win-x64/install_tools.bat
+    deleted:    .tools/node-v22.21.1-win-x64/node.exe
+    deleted:    .tools/node-v22.21.1-win-x64/nodevars.bat
+    deleted:    .tools/node-v22.21.1-win-x64/npm
+    deleted:    .tools/node-v22.21.1-win-x64/npm.cmd
+    deleted:    .tools/node-v22.21.1-win-x64/npm.ps1
+    deleted:    .tools/node-v22.21.1-win-x64/npx
+    deleted:    .tools/node-v22.21.1-win-x64/npx.cmd
+    deleted:    .tools/node-v22.21.1-win-x64/npx.ps1
+    modified:   backend/.env
+    modified:   backend/package-lock.json
+    modified:   backend/package.json
+    modified:   frontend/app/actu/[slug]/page.tsx
+    modified:   frontend/app/actu/page.tsx
+    modified:   frontend/app/equipe/page.tsx
+    modified:   frontend/lib/directus.ts
+    modified:   frontend/next.config.ts
+    modified:   frontend/package.json
+    deleted:    legacy_site/actu.html
+    deleted:    legacy_site/adhesion.html
+    deleted:    legacy_site/build.py
+    deleted:    legacy_site/css/styles.css
+    deleted:    legacy_site/equipe.html
+    deleted:    legacy_site/faq.html
+    deleted:    legacy_site/fonts/Walaweh.otf
+    deleted:    legacy_site/galerie.html
+    deleted:    legacy_site/images/LOGO_BLANC.png
+    deleted:    legacy_site/images/LOGO_BLANC_1.png
+    deleted:    legacy_site/images/LOGO_BLANC_COULEUR.png
+    deleted:    legacy_site/images/LOGO_BLANC_COULEUR_1.png
+    deleted:    legacy_site/images/LOGO_NOIR.png
+    deleted:    legacy_site/images/LOGO_NOIR_1.png
+    deleted:    legacy_site/images/LOGO_NOIR_COULEUR.png
+    deleted:    legacy_site/images/LOGO_NOIR_COULEUR_1.png
+    deleted:    legacy_site/images/MONOGRAMME_BLANC.png
+    deleted:    legacy_site/images/MONOGRAMME_COULEUR_FOND_BLANC.png
+    deleted:    legacy_site/images/MONOGRAMME_COULEUR_FOND_NOIR.png
+    deleted:    legacy_site/images/MONOGRAMME_NOIR.png
+    deleted:    legacy_site/images/equipe/Alexa.jpg
+    deleted:    legacy_site/images/equipe/Emmanuelle.jpg
+    deleted:    legacy_site/images/equipe/Enora.jpg
+    deleted:    legacy_site/images/equipe/Fabian.jpg
+    deleted:    legacy_site/images/equipe/Florence.jpg
+    deleted:    legacy_site/images/equipe/Julien.jpeg
+    deleted:    legacy_site/images/equipe/Marie-Anne.jpg
+    deleted:    legacy_site/images/equipe/Mathilde.jpg
+    deleted:    legacy_site/images/equipe/Oceane.jpeg
+    deleted:    legacy_site/images/equipe/Patrice.jpeg
+    deleted:    legacy_site/images/equipe/Philippe.jpg
+    deleted:    legacy_site/images/equipe/Sebastien.jpg
+    deleted:    legacy_site/images/favicon.ico
+    deleted:    legacy_site/images/visio-milano-cortina-2026.jpg
+    deleted:    legacy_site/index.html
+    deleted:    legacy_site/js/script.js
+    deleted:    legacy_site/mentions-legales.html
+    deleted:    legacy_site/pyproject.toml
+    deleted:    legacy_site/replit.md
+    deleted:    legacy_site/server.py
+    deleted:    legacy_site/sitemap.xml
+    deleted:    legacy_site/templates/base.html
+    deleted:    legacy_site/templates/pages/actu.html
+    deleted:    legacy_site/templates/pages/adhesion.html
+    deleted:    legacy_site/templates/pages/equipe.html
+    deleted:    legacy_site/templates/pages/faq.html
+    deleted:    legacy_site/templates/pages/galerie.html
+    deleted:    legacy_site/templates/pages/index.html
+    deleted:    legacy_site/templates/pages/mentions-legales.html
+    deleted:    legacy_site/templates/partials/footer.html
+    deleted:    legacy_site/templates/partials/header.html
+    deleted:    legacy_site/uv.lock
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+    backend/init-env.js
+    backend/server.js
+    backend/uploads/f157329e-2be3-4f8b-aac6-880c24be679e__e9dcbd6d37cf1a1351d2786febd96ceaf3ef6132.avif
+    frontend/lib/assets.ts
+    replit.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+~/workspace$ git add --all
+~/workspace$ git commit -m "cleaning for prod"
+[detached HEAD 84d3d0a] cleaning for prod
+ 96 files changed, 1254 insertions(+), 17159 deletions(-)
+ delete mode 100644 .tools/node-v20.19.6-win-x64.zip
+ delete mode 100644 .tools/node-v20.19.6-win-x64/CHANGELOG.md
+ delete mode 100644 .tools/node-v20.19.6-win-x64/LICENSE
+ delete mode 100644 .tools/node-v20.19.6-win-x64/README.md
+ delete mode 100644 .tools/node-v20.19.6-win-x64/corepack
+ delete mode 100644 .tools/node-v20.19.6-win-x64/corepack.cmd
+ delete mode 100644 .tools/node-v20.19.6-win-x64/install_tools.bat
+ delete mode 100644 .tools/node-v20.19.6-win-x64/node.exe
+ delete mode 100644 .tools/node-v20.19.6-win-x64/nodevars.bat
+ delete mode 100644 .tools/node-v20.19.6-win-x64/npm
+ delete mode 100644 .tools/node-v20.19.6-win-x64/npm.cmd
+ delete mode 100644 .tools/node-v20.19.6-win-x64/npx
+ delete mode 100644 .tools/node-v20.19.6-win-x64/npx.cmd
+ delete mode 100644 .tools/node-v22-SHASUMS256.txt
+ delete mode 100644 .tools/node-v22.21.1-win-x64.zip
+ delete mode 100644 .tools/node-v22.21.1-win-x64/CHANGELOG.md
+ delete mode 100644 .tools/node-v22.21.1-win-x64/LICENSE
+ delete mode 100644 .tools/node-v22.21.1-win-x64/README.md
+ delete mode 100644 .tools/node-v22.21.1-win-x64/corepack
+ delete mode 100644 .tools/node-v22.21.1-win-x64/corepack.cmd
+ delete mode 100644 .tools/node-v22.21.1-win-x64/install_tools.bat
+ delete mode 100644 .tools/node-v22.21.1-win-x64/node.exe
+ delete mode 100644 .tools/node-v22.21.1-win-x64/nodevars.bat
+ delete mode 100644 .tools/node-v22.21.1-win-x64/npm
+ delete mode 100644 .tools/node-v22.21.1-win-x64/npm.cmd
+ delete mode 100644 .tools/node-v22.21.1-win-x64/npm.ps1
+ delete mode 100644 .tools/node-v22.21.1-win-x64/npx
+ delete mode 100644 .tools/node-v22.21.1-win-x64/npx.cmd
+ delete mode 100644 .tools/node-v22.21.1-win-x64/npx.ps1
+ create mode 100644 backend/init-env.js
+ create mode 100644 backend/server.js
+ create mode 100644 backend/uploads/f157329e-2be3-4f8b-aac6-880c24be679e__e9dcbd6d37cf1a1351d2786febd96ceaf3ef6132.avif
+ create mode 100644 frontend/lib/assets.ts
+ delete mode 100644 legacy_site/actu.html
+ delete mode 100644 legacy_site/adhesion.html
+ delete mode 100644 legacy_site/build.py
+ delete mode 100644 legacy_site/css/styles.css
+ delete mode 100644 legacy_site/equipe.html
+ delete mode 100644 legacy_site/faq.html
+ delete mode 100644 legacy_site/fonts/Walaweh.otf
+ delete mode 100644 legacy_site/galerie.html
+ delete mode 100644 legacy_site/images/LOGO_BLANC.png
+ delete mode 100644 legacy_site/images/LOGO_BLANC_1.png
+ delete mode 100644 legacy_site/images/LOGO_BLANC_COULEUR.png
+ delete mode 100644 legacy_site/images/LOGO_BLANC_COULEUR_1.png
+ delete mode 100644 legacy_site/images/LOGO_NOIR.png
+ delete mode 100644 legacy_site/images/LOGO_NOIR_1.png
+ delete mode 100644 legacy_site/images/LOGO_NOIR_COULEUR.png
+ delete mode 100644 legacy_site/images/LOGO_NOIR_COULEUR_1.png
+ delete mode 100644 legacy_site/images/MONOGRAMME_BLANC.png
+ delete mode 100644 legacy_site/images/MONOGRAMME_COULEUR_FOND_BLANC.png
+ delete mode 100644 legacy_site/images/MONOGRAMME_COULEUR_FOND_NOIR.png
+ delete mode 100644 legacy_site/images/MONOGRAMME_NOIR.png
+ delete mode 100644 legacy_site/images/equipe/Alexa.jpg
+ delete mode 100644 legacy_site/images/equipe/Emmanuelle.jpg
+ delete mode 100644 legacy_site/images/equipe/Enora.jpg
+ delete mode 100644 legacy_site/images/equipe/Fabian.jpg
+ delete mode 100644 legacy_site/images/equipe/Florence.jpg
+ delete mode 100644 legacy_site/images/equipe/Julien.jpeg
+ delete mode 100644 legacy_site/images/equipe/Marie-Anne.jpg
+ delete mode 100644 legacy_site/images/equipe/Mathilde.jpg
+ delete mode 100644 legacy_site/images/equipe/Oceane.jpeg
+ delete mode 100644 legacy_site/images/equipe/Patrice.jpeg
+ delete mode 100644 legacy_site/images/equipe/Philippe.jpg
+ delete mode 100644 legacy_site/images/equipe/Sebastien.jpg
+ delete mode 100644 legacy_site/images/favicon.ico
+ delete mode 100644 legacy_site/images/visio-milano-cortina-2026.jpg
+ delete mode 100644 legacy_site/index.html
+ delete mode 100644 legacy_site/js/script.js
+ delete mode 100644 legacy_site/mentions-legales.html
+ delete mode 100644 legacy_site/pyproject.toml
+ delete mode 100644 legacy_site/replit.md
+ delete mode 100644 legacy_site/server.py
+ delete mode 100644 legacy_site/sitemap.xml
+ delete mode 100644 legacy_site/templates/base.html
+ delete mode 100644 legacy_site/templates/pages/actu.html
+ delete mode 100644 legacy_site/templates/pages/adhesion.html
+ delete mode 100644 legacy_site/templates/pages/equipe.html
+ delete mode 100644 legacy_site/templates/pages/faq.html
+ delete mode 100644 legacy_site/templates/pages/galerie.html
+ delete mode 100644 legacy_site/templates/pages/index.html
+ delete mode 100644 legacy_site/templates/pages/mentions-legales.html
+ delete mode 100644 legacy_site/templates/partials/footer.html
+ delete mode 100644 legacy_site/templates/partials/header.html
+ delete mode 100644 legacy_site/uv.lock
+ create mode 100644 replit.md
+~/workspace$ git push
+fatal: You are not currently on a branch.
+To push the history leading to the current (detached HEAD)
+state now, use
+
+    git push origin HEAD:<name-of-remote-branch>
+
+~/workspace$ git branch -a
+* cms-directus
+  main
+  replit-agent
+  remotes/gitsafe-backup/main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/cms-directus
+  remotes/origin/cms-strapi
+  remotes/origin/main
+~/workspace$ git rebase --abort
+fatal: no rebase in progress
+~/workspace$ git push origin cms-directus
+
+To https://github.com/Mktotoy/VolontairesFrancais
+ ! [rejected]        cms-directus -> cms-directus (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Mktotoy/VolontairesFrancais'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+~/workspace$ git pull origin cms-directus
+From https://github.com/Mktotoy/VolontairesFrancais
+ * branch            cms-directus -> FETCH_HEAD
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint:
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint:
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+~/workspace$ git push origin cms-directus --force
+Enumerating objects: 278, done.
+Counting objects: 100% (271/271), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (238/238), done.
+Writing objects: 100% (254/254), 5.99 MiB | 6.14 MiB/s, done.
+Total 254 (delta 84), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (84/84), completed with 9 local objects.
+To https://github.com/Mktotoy/VolontairesFrancais
+ + bc21d7c...07b8bcb cms-directus -> cms-directus (forced update)
+~/workspace$ git status
+On branch cms-directus
+Your branch is up to date with 'origin/cms-directus'.
+
+nothing to commit, working tree clean
+~/workspace$ 

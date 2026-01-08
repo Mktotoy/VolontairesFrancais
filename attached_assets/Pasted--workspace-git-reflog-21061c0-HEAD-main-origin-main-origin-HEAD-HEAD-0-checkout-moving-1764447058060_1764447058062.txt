@@ -1,0 +1,52 @@
+~/workspace$ git reflog
+21061c0 (HEAD -> main, origin/main, origin/HEAD) HEAD@{0}: checkout: moving from cms-directus to main
+3e1ae19 (cms-directus) HEAD@{1}: reset: moving to 3e1ae1989e1d068a30d84831bbaf430c68e10762
+07b8bcb (origin/cms-directus, gitsafe-backup/main) HEAD@{2}: commit: Saved progress at the end of the loop
+eaa6876 HEAD@{3}: rebase (abort): returning to refs/heads/cms-directus
+84d3d0a HEAD@{4}: commit: cleaning for prod
+bc21d7c HEAD@{5}: reset: moving to origin/cms-directus
+47dddfc HEAD@{6}: rebase (pick): Configure deployment scripts and environment settings for production
+43ac163 HEAD@{7}: rebase (pick): Remove the old static website and its build system
+8ba1cd0 HEAD@{8}: rebase (pick): Add a simple Python server to host the website
+bc21d7c HEAD@{9}: rebase (start): checkout origin/cms-directus
+eaa6876 HEAD@{10}: reset: moving to eaa68764073ed1b1c613115c910c6d5d5cad87aa
+5b04d8b HEAD@{11}: commit: Configure deployment scripts and environment settings for production
+1cedcb5 HEAD@{12}: commit: Remove the old static website and its build system
+ab628f2 HEAD@{13}: commit: Add a simple Python server to host the website
+f46a67f HEAD@{14}: checkout: moving from main to cms-directus
+21061c0 (HEAD -> main, origin/main, origin/HEAD) HEAD@{15}: commit: Published your App
+0232a4b HEAD@{16}: commit: Published your App
+79ad40b HEAD@{17}: commit: Include introductory paragraph in full article view
+066e083 HEAD@{18}: commit: Published your App
+cec8d97 HEAD@{19}: commit: Update news article with exact user-provided text and formatting
+200fbc4 HEAD@{20}: commit: Saved progress at the end of the loop
+227cfa8 HEAD@{21}: commit: Add recent volunteer preparation event news and photo
+05b8908 HEAD@{22}: commit: Published your App
+e54fd51 HEAD@{23}: commit: Published your App
+1864014 HEAD@{24}: commit: Published your App
+0c044d8 HEAD@{25}: commit: Update news section to announce membership opening and add content toggle
+ba654ca HEAD@{26}: commit: Update website content and navigation for new membership drive
+d8086e8 HEAD@{27}: commit: Update news article to announce membership and add content toggle
+38a0bfd HEAD@{28}: commit: Published your App
+3286770 HEAD@{29}: commit: Published your App
+58f895c HEAD@{30}: commit: Published your App
+79ad633 HEAD@{31}: commit: Published your App
+b13a717 HEAD@{32}: commit: Update text and structure for the adhesion page to better explain benefits
+b0b05fe HEAD@{33}: commit: Update website content and navigation to clarify membership benefits
+a0ebaa1 HEAD@{34}: commit: Add detailed membership conditions and update navigation and footer links
+aa12e4e HEAD@{35}: commit: Update footer to use internal links for adhesion and correct association name
+3f8f006 HEAD@{36}: commit: Update footer text and organization details for the French Volunteers association
+e045146 HEAD@{37}: commit: Update website to include team photos, FAQ, and build script
+2999577 HEAD@{38}: commit: Add team member photos to their profiles and update page titles
+e1e460e HEAD@{39}: commit: Add team member photos and update website structure and content
+a2b6113 HEAD@{40}: commit: Update association description and streamline membership calls to action
+6e04ac6 HEAD@{41}: commit: Transitioned from Plan to Build mode
+6e1e221 HEAD@{42}: commit: Saved progress at the end of the loop
+bcd53c2 HEAD@{43}: commit: Allow server to restart without port binding errors
+9de4653 HEAD@{44}: commit: Saved progress at the end of the loop
+18eb633 HEAD@{45}: commit: Update navigation and membership links to streamline the joining process
+c576564 HEAD@{46}: commit: Update website content and adjust logo image for better display
+1a860b0 HEAD@{47}: commit: Update membership links to new HelloAsso page
+3fc44e5 HEAD@{48}: commit: Transitioned from Plan to Build mode
+3ecb51c HEAD@{49}: commit: Deployed your application
+:
