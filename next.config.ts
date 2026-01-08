@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     "*.janeway.replit.dev",
     "*.replit.dev",
     "*.repl.co",
-    "localhost:5000",
+    "localhost:3000",
   ],
   async rewrites() {
     return {
