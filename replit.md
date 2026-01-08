@@ -7,23 +7,23 @@ Volontaires français is a website for a French association dedicated to support
 **Purpose**: Showcase the association, enable member recruitment, share news and information, and build a community of French Olympic volunteers.
 
 **Current Status (November 2025)**: 
-- ✅ **Frontend**: Next.js 16 running on port 5000 - fully functional
+- ✅ **Frontend**: Next.js 16 running on port 3000 - fully functional
 - ✅ **Backend**: Directus v11.13.4 CMS on port 8055 with PostgreSQL integration
-- ✅ **Admin Interface**: Accessible via `/admin` proxy (port 5000 → 8055)
+- ✅ **Admin Interface**: Accessible via `/admin` proxy (port 3000 → 8055)
 - ✅ **Database**: PostgreSQL created and configured via environment variables
 - Active folders: `frontend/` (Next.js app), `backend/` (Directus CMS), `attached_assets/` (media)
 
 **How to run both services:**
 ```bash
 cd backend && npm start &  # Starts Directus on port 8055
-cd frontend && npm run dev  # Starts Next.js on port 5000
+cd frontend && npm run dev  # Starts Next.js on port 3000
 ```
 
 **Accessing the services:**
-- Frontend: http://localhost:5000 (homepage, articles, team, FAQ)
-- Admin Panel: http://localhost:5000/admin (Directus CMS)
-- API Routes: http://localhost:5000/items/* (proxied from backend)
-- Assets: http://localhost:5000/assets/* (proxied file storage)
+- Frontend: http://localhost:3000 (homepage, articles, team, FAQ)
+- Admin Panel: http://localhost:3000/admin (Directus CMS)
+- API Routes: http://localhost:3000/items/* (proxied from backend)
+- Assets: http://localhost:3000/assets/* (proxied file storage)
 
 **Asset Loading:**
 - Frontend pages use centralized `getAssetUrl()` helper (`lib/assets.ts`)
@@ -183,7 +183,7 @@ const items = await directus.request(readItems('collection', { fields, filter, s
 - `NEXT_PUBLIC_DIRECTUS_URL`, `NEXT_PUBLIC_DIRECTUS_TOKEN`: Frontend API access
 
 **Port Configuration & URL Routing**:
-- Frontend (Next.js): Port 5000 (configured via `npm run dev`)
+- Frontend (Next.js): Port 3000 (configured via `npm run dev`)
 - Backend (Express API): Port 8055 (runs via `npm start`)
 - Database (PostgreSQL): Configured via DATABASE_URL environment variable
 
@@ -208,7 +208,7 @@ const items = await directus.request(readItems('collection', { fields, filter, s
 
 **Accessing the system:**
 ```
-Frontend:     http://localhost:5000
-Admin Panel:  http://localhost:5000/admin  ← Directus CMS
-API Routes:   http://localhost:5000/items/* (posts, team_members, faq, etc.)
+Frontend:     http://localhost:3000
+Admin Panel:  http://localhost:3000/admin  ← Directus CMS
+API Routes:   http://localhost:3000/items/* (posts, team_members, faq, etc.)
 ```
