@@ -50,6 +50,16 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div className="footer-section">
+                        <h4>Contact</h4>
+                        <ul className="footer-links">
+                            <li>
+                                <a href="mailto:volontairesfrancais@gmail.com">
+                                    <i className="fas fa-envelope"></i> volontairesfrancais@gmail.com
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="footer-section">
                         <h4>Suivez-nous</h4>
                         <div className="footer-social">
                             <a

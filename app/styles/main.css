@@ -384,6 +384,34 @@ img {
     line-height: 1.8;
 }
 
+.contact {
+    padding: 80px 0;
+    background-color: var(--color-light-gray);
+    text-align: center;
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    color: var(--color-gray);
+    margin-bottom: 30px;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.contact-btn i {
+    font-size: 1.2rem;
+}
+
 .cta {
     padding: 80px 0;
     background: linear-gradient(135deg, var(--color-red), var(--color-yellow));
