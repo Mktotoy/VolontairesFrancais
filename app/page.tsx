@@ -95,6 +95,22 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="contact">
+        <div className="container">
+          <div className="contact-content">
+            <h2 className="section-title">Nous contacter</h2>
+            <p>Une question ? Une suggestion ? N'hésitez pas à nous écrire !</p>
+            <a
+              href="mailto:volontairesfrancais@gmail.com"
+              className="btn-primary contact-btn"
+            >
+              <i className="fas fa-envelope"></i>
+              Nous contacter
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="cta">
         <div className="container">
           <div className="cta-content">
