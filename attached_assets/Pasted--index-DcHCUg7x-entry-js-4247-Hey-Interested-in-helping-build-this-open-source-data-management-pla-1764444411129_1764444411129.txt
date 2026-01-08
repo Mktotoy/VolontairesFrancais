@@ -1,0 +1,50 @@
+
+
+index.DcHCUg7x.entry.js:4247 Hey! Interested in helping build this open-source data management platform?
+If so, join our growing team of contributors at: https://directus.chat
+index.DcHCUg7x.entry.js:4248 🐰 Starting Directus...
+/extensions/sources/index.js:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+index.DcHCUg7x.entry.js:3256 Couldn't load extensions
+UKt @ index.DcHCUg7x.entry.js:3256Understand this warning
+index.DcHCUg7x.entry.js:3256 TypeError: Failed to fetch dynamically imported module: https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/extensions/sources/index.js
+UKt @ index.DcHCUg7x.entry.js:3256Understand this warning
+index.DcHCUg7x.entry.js:4248 🕓 Application Loaded: 1071.265869140625 ms
+index.DcHCUg7x.entry.js:4248 ✨ Project Information
+index.DcHCUg7x.entry.js:4248 Environment: production
+5a80e236-8c37-452b-99c6-27bad9d08f4e:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+88e8cd04-a70f-4859-bf67-18a1619c0ddc:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+50d80dbe-2b64-4907-a362-e4c01bec300f:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+/translations?fields%5B%5D=language&fields%5B%5D=key&fields%5B%5D=value&filter%5Blanguage%5D%5B_eq%5D=fr-FR&limit=-1:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+/policies/me/globals:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+/translations?fields%5B%5D=language&fields%5B%5D=key&fields%5B%5D=value&filter%5Blanguage%5D%5B_eq%5D=fr-FR&limit=-1:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+5a80e236-8c37-452b-99c6-27bad9d08f4e:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+index.DcHCUg7x.entry.js:4248 [app-module-bar-avatar-error] https://vuejs.org/error-reference/#runtime-1
+i.config.errorHandler @ index.DcHCUg7x.entry.js:4248Understand this warning
+index.DcHCUg7x.entry.js:4248 TypeError: Cannot read properties of null (reading 'id')
+    at ho.fn (index.DcHCUg7x.entry.js:2912:143387)
+    at Ir (runtime-core.esm-bundler-C5MyH5Ph.js:10:3323)
+    at get value (runtime-core.esm-bundler-C5MyH5Ph.js:10:15250)
+    at Proxy.<anonymous> (index.DcHCUg7x.entry.js:2912:144698)
+    at yn (runtime-core.esm-bundler-C5MyH5Ph.js:16:33586)
+    at En.k [as fn] (runtime-core.esm-bundler-C5MyH5Ph.js:16:25289)
+    at En.run (runtime-core.esm-bundler-C5MyH5Ph.js:10:1910)
+    at U (runtime-core.esm-bundler-C5MyH5Ph.js:16:25668)
+    at se (runtime-core.esm-bundler-C5MyH5Ph.js:16:24264)
+    at q (runtime-core.esm-bundler-C5MyH5Ph.js:16:24033)
+i.config.errorHandler @ index.DcHCUg7x.entry.js:4248Understand this warning
+index.DcHCUg7x.entry.js:4248 [app-notifications-drawer-error] https://vuejs.org/error-reference/#runtime-0
+i.config.errorHandler @ index.DcHCUg7x.entry.js:4248Understand this warning
+index.DcHCUg7x.entry.js:4248 TypeError: Cannot read properties of null (reading 'id')
+    at ho.fn (index-DEmZCduw.js:1:1421)
+    at Ir (runtime-core.esm-bundler-C5MyH5Ph.js:10:3323)
+    at get value (runtime-core.esm-bundler-C5MyH5Ph.js:10:15250)
+    at ho.fn (index-DEmZCduw.js:1:1591)
+    at Ir (runtime-core.esm-bundler-C5MyH5Ph.js:10:3323)
+    at get value (runtime-core.esm-bundler-C5MyH5Ph.js:10:15250)
+    at runtime-core.esm-bundler-C5MyH5Ph.js:10:15937
+    at Array.map (<anonymous>)
+    at u (runtime-core.esm-bundler-C5MyH5Ph.js:10:15911)
+    at En.u [as fn] (runtime-core.esm-bundler-C5MyH5Ph.js:10:16164)
+i.config.errorHandler @ index.DcHCUg7x.entry.js:4248Understand this warning
+content:1 The resource https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/images/MONOGRAMME_COULEUR_FOND_BLANC.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.Understand this warning
+content:1 The resource https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/images/LOGO_NOIR_COULEUR_1.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.

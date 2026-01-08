@@ -1,0 +1,462 @@
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣦⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡌⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠛⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣤⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠉⠛⣿⣿⣿⣿⣿⡆⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⣿⣄⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠉⢿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣤⣿⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣴⣿⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+
+index.DcHCUg7x.entry.js:4247 Hey! Interested in helping build this open-source data management platform?
+If so, join our growing team of contributors at: https://directus.chat
+index.DcHCUg7x.entry.js:4248 🐰 Starting Directus...
+index.DcHCUg7x.entry.js:4248 🕓 Application Loaded: 1216.261962890625 ms
+index.DcHCUg7x.entry.js:4248 ✨ Project Information
+index.DcHCUg7x.entry.js:4248 Environment: production
+/assets/50d80dbe-2b64-4907-a362-e4c01bec300f:1  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/assets/50d80dbe-2b64-4907-a362-e4c01bec300f 404 (Not Found)Understand this error
+LOGO_NOIR_COULEUR_1.png:1  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/images/LOGO_NOIR_COULEUR_1.png 404 (Not Found)Understand this error
+MONOGRAMME_COULEUR_FOND_BLANC.png:1  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/images/MONOGRAMME_COULEUR_FOND_BLANC.png 404 (Not Found)Understand this error
+12The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.Understand this warning
+50d80dbe-2b64-4907-a362-e4c01bec300f:1  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/assets/50d80dbe-2b64-4907-a362-e4c01bec300f 404 (Not Found)
+Image
+Nt @ runtime-dom.esm-bundler-DoRdk9oh.js:5
+Ro @ runtime-dom.esm-bundler-DoRdk9oh.js:5
+w @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+y @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+L @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+G @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+L @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+w @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+y @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+U @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+se @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+q @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+L @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+w @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+y @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+U @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+se @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+q @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+L @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+w @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+y @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+L @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+w @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+y @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+U @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+se @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+q @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+U @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+se @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+q @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+U @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+se @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+q @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+runIfDirty @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.then
+Zr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+us @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Mi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Qt.o.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+f.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ps @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+notify @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+set value @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ie @ vue-router.C46Bd_-h.entry.js:9
+(anonymous) @ vue-router.C46Bd_-h.entry.js:9
+Promise.then
+G @ vue-router.C46Bd_-h.entry.js:9
+k @ vue-router.C46Bd_-h.entry.js:9
+o @ index.DcHCUg7x.entry.js:1909
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+onClick @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+ye.onClick.l.<computed>.l.<computed> @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this error
+index-DSf8I6WA.js:3  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/versions?filter%5B_and%5D%5B0%5D%5Bcollection%5D%5B_eq%5D=team_members&filter%5B_and%5D%5B1%5D%5Bitem%5D%5B_eq%5D=1&sort=-date_created&fields%5B%5D=* 404 (Not Found)
+(anonymous) @ index-DSf8I6WA.js:3
+xhr @ index-DSf8I6WA.js:3
+Ou @ index-DSf8I6WA.js:5
+Promise.then
+_request @ index-DSf8I6WA.js:6
+request @ index-DSf8I6WA.js:5
+$n.<computed> @ index-DSf8I6WA.js:6
+(anonymous) @ index-DSf8I6WA.js:1
+_ @ index.DcHCUg7x.entry.js:58
+sn.immediate @ index.DcHCUg7x.entry.js:58
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qt.o.call @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+p @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+mo @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Qt @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+_n @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+uO @ index.DcHCUg7x.entry.js:58
+setup @ index.DcHCUg7x.entry.js:1973
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Rc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Vi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+se @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+q @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+runIfDirty @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.then
+Zr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+us @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Mi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Qt.o.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+f.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ps @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+notify @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+set value @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ie @ vue-router.C46Bd_-h.entry.js:9
+(anonymous) @ vue-router.C46Bd_-h.entry.js:9
+Promise.then
+G @ vue-router.C46Bd_-h.entry.js:9
+k @ vue-router.C46Bd_-h.entry.js:9
+o @ index.DcHCUg7x.entry.js:1909
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+onClick @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+ye.onClick.l.<computed>.l.<computed> @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this error
+index-DSf8I6WA.js:3  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/revisions?filter%5B_and%5D%5B0%5D%5Bcollection%5D%5B_eq%5D=team_members&filter%5B_and%5D%5B1%5D%5Bitem%5D%5B_eq%5D=1&filter%5B_and%5D%5B2%5D%5Bversion%5D%5B_null%5D=true&aggregate%5Bcount%5D=id 404 (Not Found)
+(anonymous) @ index-DSf8I6WA.js:3
+xhr @ index-DSf8I6WA.js:3
+Ou @ index-DSf8I6WA.js:5
+Promise.then
+_request @ index-DSf8I6WA.js:6
+request @ index-DSf8I6WA.js:5
+$n.<computed> @ index-DSf8I6WA.js:6
+(anonymous) @ index-DSf8I6WA.js:1
+v @ index.DcHCUg7x.entry.js:1973
+(anonymous) @ index.DcHCUg7x.entry.js:1973
+(anonymous) @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Wn.t.__weh.t.__weh @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Cn @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.then
+Zr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+us @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Mi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Qt.o.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+f.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ps @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+notify @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+set value @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ie @ vue-router.C46Bd_-h.entry.js:9
+(anonymous) @ vue-router.C46Bd_-h.entry.js:9
+Promise.then
+G @ vue-router.C46Bd_-h.entry.js:9
+k @ vue-router.C46Bd_-h.entry.js:9
+o @ index.DcHCUg7x.entry.js:1909
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+onClick @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+ye.onClick.l.<computed>.l.<computed> @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this error
+index-DSf8I6WA.js:3  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/comments?filter%5B_and%5D%5B0%5D%5Bcollection%5D%5B_eq%5D=team_members&filter%5B_and%5D%5B1%5D%5Bitem%5D%5B_eq%5D=1&aggregate%5Bcount%5D=id 404 (Not Found)
+(anonymous) @ index-DSf8I6WA.js:3
+xhr @ index-DSf8I6WA.js:3
+Ou @ index-DSf8I6WA.js:5
+Promise.then
+_request @ index-DSf8I6WA.js:6
+request @ index-DSf8I6WA.js:5
+$n.<computed> @ index-DSf8I6WA.js:6
+(anonymous) @ index-DSf8I6WA.js:1
+ee @ index.DcHCUg7x.entry.js:1973
+(anonymous) @ index.DcHCUg7x.entry.js:1973
+(anonymous) @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Wn.t.__weh.t.__weh @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Cn @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.then
+Zr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+us @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Mi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Qt.o.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+f.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ps @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+notify @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+set value @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ie @ vue-router.C46Bd_-h.entry.js:9
+(anonymous) @ vue-router.C46Bd_-h.entry.js:9
+Promise.then
+G @ vue-router.C46Bd_-h.entry.js:9
+k @ vue-router.C46Bd_-h.entry.js:9
+o @ index.DcHCUg7x.entry.js:1909
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+onClick @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+ye.onClick.l.<computed>.l.<computed> @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this error
+index.DcHCUg7x.entry.js:57 q {message: 'Request failed with status code 404', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+ii @ index.DcHCUg7x.entry.js:57
+_ @ index.DcHCUg7x.entry.js:58
+await in _
+sn.immediate @ index.DcHCUg7x.entry.js:58
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qt.o.call @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+p @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+mo @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Qt @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+_n @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+uO @ index.DcHCUg7x.entry.js:58
+setup @ index.DcHCUg7x.entry.js:1973
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Rc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Vi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+se @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+q @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+runIfDirty @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.then
+Zr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+us @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Mi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Qt.o.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+f.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ps @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+notify @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+set value @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ie @ vue-router.C46Bd_-h.entry.js:9
+(anonymous) @ vue-router.C46Bd_-h.entry.js:9
+Promise.then
+G @ vue-router.C46Bd_-h.entry.js:9
+k @ vue-router.C46Bd_-h.entry.js:9
+o @ index.DcHCUg7x.entry.js:1909
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+onClick @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+ye.onClick.l.<computed>.l.<computed> @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this warning
+index.DcHCUg7x.entry.js:57 q {message: 'Request failed with status code 404', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+ii @ index.DcHCUg7x.entry.js:57
+v @ index.DcHCUg7x.entry.js:1973
+await in v
+(anonymous) @ index.DcHCUg7x.entry.js:1973
+(anonymous) @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Wn.t.__weh.t.__weh @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Cn @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.then
+Zr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+us @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Mi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Qt.o.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+f.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ps @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+notify @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+set value @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ie @ vue-router.C46Bd_-h.entry.js:9
+(anonymous) @ vue-router.C46Bd_-h.entry.js:9
+Promise.then
+G @ vue-router.C46Bd_-h.entry.js:9
+k @ vue-router.C46Bd_-h.entry.js:9
+o @ index.DcHCUg7x.entry.js:1909
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+onClick @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+ye.onClick.l.<computed>.l.<computed> @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this warning
+index-DSf8I6WA.js:3  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/shares?filter%5B_and%5D%5B0%5D%5Bcollection%5D%5B_eq%5D=team_members&filter%5B_and%5D%5B1%5D%5Bitem%5D%5B_eq%5D=1&aggregate%5Bcount%5D=id 404 (Not Found)
+(anonymous) @ index-DSf8I6WA.js:3
+xhr @ index-DSf8I6WA.js:3
+Ou @ index-DSf8I6WA.js:5
+Promise.then
+_request @ index-DSf8I6WA.js:6
+request @ index-DSf8I6WA.js:5
+$n.<computed> @ index-DSf8I6WA.js:6
+(anonymous) @ index-DSf8I6WA.js:1
+Qe @ index.DcHCUg7x.entry.js:1973
+(anonymous) @ index.DcHCUg7x.entry.js:1973
+(anonymous) @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Wn.t.__weh.t.__weh @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Cn @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.then
+Zr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+us @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Mi @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+Qt.o.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+f.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ps @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+notify @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+set value @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ie @ vue-router.C46Bd_-h.entry.js:9
+(anonymous) @ vue-router.C46Bd_-h.entry.js:9
+Promise.then
+G @ vue-router.C46Bd_-h.entry.js:9
+k @ vue-router.C46Bd_-h.entry.js:9
+o @ index.DcHCUg7x.entry.js:1909
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+onClick @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+dc @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+ye.onClick.l.<computed>.l.<computed> @ index.DcHCUg7x.entry.js:3274
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this error
+/assets/fb14287a-2022-48c4-aec9-f22a9360a1b6?key=system-large-cover&v=2025-11-29T11%3A45%3A58.521Z:1  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/assets/fb14287a-2022-48c4-aec9-f22a9360a1b6?key=system-large-cover&v=2025-11-29T11%3A45%3A58.521Z 404 (Not Found)
+Image
+Nt @ runtime-dom.esm-bundler-DoRdk9oh.js:5
+Ro @ runtime-dom.esm-bundler-DoRdk9oh.js:5
+B @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+S @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+y @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+E @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+k @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+run @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+runIfDirty @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Qr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.then
+Zr @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Hs @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+U.R.scheduler @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+Ps @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+notify @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+trigger @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+set value @ runtime-core.esm-bundler-C5MyH5Ph.js:10
+(anonymous) @ index.DcHCUg7x.entry.js:3274
+(anonymous) @ index.DcHCUg7x.entry.js:28
+#u @ index.DcHCUg7x.entry.js:28
+(anonymous) @ index.DcHCUg7x.entry.js:28
+add @ index.DcHCUg7x.entry.js:28
+a @ index.DcHCUg7x.entry.js:3274
+(anonymous) @ index.DcHCUg7x.entry.js:3274Understand this error
+index-DSf8I6WA.js:3  GET https://653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev/assets/fb14287a-2022-48c4-aec9-f22a9360a1b6?key=system-large-cover&v=2025-11-29T11%3A45%3A58.521Z 404 (Not Found)
+(anonymous) @ index-DSf8I6WA.js:3
+xhr @ index-DSf8I6WA.js:3
+Ou @ index-DSf8I6WA.js:5
+Promise.then
+_request @ index-DSf8I6WA.js:6
+request @ index-DSf8I6WA.js:5
+$n.<computed> @ index-DSf8I6WA.js:6
+(anonymous) @ index-DSf8I6WA.js:1
+q @ index.DcHCUg7x.entry.js:213
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this error
+index.DcHCUg7x.entry.js:4247 [interface-file-image-error] https://vuejs.org/error-reference/#runtime-5
+(anonymous) @ index.DcHCUg7x.entry.js:4247
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Wn.t.__weh.t.__weh @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+St @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+(anonymous) @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.catch
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this warning
+index.DcHCUg7x.entry.js:4247 TypeError: Cannot read properties of undefined (reading '0')
+    at q (index.DcHCUg7x.entry.js:213:51897)
+(anonymous) @ index.DcHCUg7x.entry.js:4247
+zt @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Wn.t.__weh.t.__weh @ runtime-core.esm-bundler-C5MyH5Ph.js:16
+St @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+(anonymous) @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+Promise.catch
+Be @ runtime-core.esm-bundler-C5MyH5Ph.js:14
+s @ runtime-dom.esm-bundler-DoRdk9oh.js:5Understand this warning

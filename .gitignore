@@ -1,35 +1,41 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Replit
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-.breakpoints
-.config/
-.cache/
-.local/
+# testing
+/coverage
 
-# IDE
-.vscode/
-.idea/
+# next.js
+/.next/
+/out/
 
-# OS
+# production
+/build
+
+# misc
 .DS_Store
-Thumbs.db
+*.pem
 
-# Logs
-*.log
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Temporary files
-*.tmp
-*.bak
-attached_assets/
+# env files (can opt-in for committing if needed)
+.env*
 
-# Node / JS
-node_modules/
-**/node_modules/
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

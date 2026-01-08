@@ -1,0 +1,77 @@
+[13:49:43.224] Log Level: 2
+[13:49:43.262] SSH Resolver called for "ssh-remote+653ee67a-14f9-4617-a985-2d1694e1752e@653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev:22", attempt 1
+[13:49:43.267] remote.SSH.useLocalServer = false
+[13:49:43.267] remote.SSH.useExecServer = true
+[13:49:43.268] remote.SSH.bindHost = {}
+[13:49:43.268] remote.SSH.showLoginTerminal = false
+[13:49:43.268] remote.SSH.remotePlatform = {}
+[13:49:43.269] remote.SSH.path = undefined
+[13:49:43.269] remote.SSH.configFile = undefined
+[13:49:43.269] remote.SSH.useFlock = true
+[13:49:43.270] remote.SSH.lockfilesInTmp = false
+[13:49:43.270] remote.SSH.localServerDownload = auto
+[13:49:43.270] remote.SSH.remoteServerListenOnSocket = false
+[13:49:43.271] remote.SSH.defaultExtensions = []
+[13:49:43.271] remote.SSH.defaultExtensionsIfInstalledLocally = []
+[13:49:43.271] remote.SSH.loglevel = 2
+[13:49:43.272] remote.SSH.enableDynamicForwarding = true
+[13:49:43.272] remote.SSH.enableRemoteCommand = false
+[13:49:43.272] remote.SSH.serverPickPortsFromRange = {}
+[13:49:43.272] remote.SSH.serverInstallPath = {}
+[13:49:43.273] remote.SSH.permitPtyAllocation = false
+[13:49:43.273] remote.SSH.preferredLocalPortRange = undefined
+[13:49:43.273] remote.SSH.useCurlAndWgetConfigurationFiles = false
+[13:49:43.273] remote.SSH.experimental.chat = false
+[13:49:43.274] remote.SSH.experimental.enhancedSessionLogs = false
+[13:49:43.274] remote.SSH.httpProxy = {}
+[13:49:43.274] remote.SSH.httpsProxy = {}
+[13:49:43.287] VS Code version: 1.105.1
+[13:49:43.288] Remote-SSH version: remote-ssh@0.120.0
+[13:49:43.288] win32 x64
+[13:49:43.310] SSH Resolver called for host: 653ee67a-14f9-4617-a985-2d1694e1752e@653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev
+[13:49:43.310] Setting up SSH remote "653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev"
+[13:49:43.328] Using commit id "7d842fb85a0275a4a8e4d7e040d2625abbf7f084" and quality "stable" for server
+[13:49:43.328] Extensions to install: 
+[13:49:43.338] Install and start server if needed
+[13:50:07.975] Checking ssh with "C:\Program Files\Google\Chrome\Application\ssh.exe -V"
+[13:50:07.978] Got error from ssh: spawn C:\Program Files\Google\Chrome\Application\ssh.exe ENOENT
+[13:50:07.979] Checking ssh with "C:\WINDOWS\system32\ssh.exe -V"
+[13:50:07.981] Got error from ssh: spawn C:\WINDOWS\system32\ssh.exe ENOENT
+[13:50:07.982] Checking ssh with "C:\WINDOWS\ssh.exe -V"
+[13:50:07.983] Got error from ssh: spawn C:\WINDOWS\ssh.exe ENOENT
+[13:50:07.984] Checking ssh with "C:\WINDOWS\System32\Wbem\ssh.exe -V"
+[13:50:07.986] Got error from ssh: spawn C:\WINDOWS\System32\Wbem\ssh.exe ENOENT
+[13:50:07.986] Checking ssh with "C:\WINDOWS\System32\WindowsPowerShell\v1.0\ssh.exe -V"
+[13:50:07.988] Got error from ssh: spawn C:\WINDOWS\System32\WindowsPowerShell\v1.0\ssh.exe ENOENT
+[13:50:07.989] Checking ssh with "C:\WINDOWS\System32\OpenSSH\ssh.exe -V"
+[13:50:08.049] > OpenSSH_for_Windows_9.5p2, LibreSSL 3.8.2
+
+[13:50:08.061] Running script with connection command: "C:\WINDOWS\System32\OpenSSH\ssh.exe" -T -D 63480 -p 22 "653ee67a-14f9-4617-a985-2d1694e1752e@653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev" sh
+[13:50:08.065] Generated SSH command: 'type "C:\Users\thoma\AppData\Local\Temp\vscode-linux-multi-line-command-653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev-992995107.sh" | "C:\WINDOWS\System32\OpenSSH\ssh.exe" -T -D 63480 -p 22 "653ee67a-14f9-4617-a985-2d1694e1752e@653ee67a-14f9-4617-a985-2d1694e1752e-00-3kxwgj38dptas.janeway.replit.dev" sh'
+[13:50:08.066] Using connect timeout of 17 seconds
+[13:50:08.068] Terminal shell path: C:\WINDOWS\System32\cmd.exe
+[13:50:08.832] > 
+[13:50:08.833] Got some output, clearing connection timeout
+[13:50:08.873] > C:\\Users\\thoma/.ssh/config line 1: no argument after keyword "\377\376h"
+[13:50:08.879] > C:\\Users\\thoma/.ssh/config: terminating, 1 bad configuration options
+> Le processus a tenté d’écrire sur un canal inexistant.
+[13:50:10.168] "install" terminal command done
+[13:50:10.169] Install terminal quit with output: Le processus a tenté d’écrire sur un canal inexistant.
+[13:50:10.170] Received install output: Le processus a tenté d’écrire sur un canal inexistant.
+[13:50:10.171] WARN: $PLATFORM is undefined in installation script output.  Errors may be dropped.
+[13:50:10.172] Failed to parse remote port from server output
+[13:50:10.173] Resolver error: Error
+    at y.Create (c:\Users\thoma\.vscode\extensions\ms-vscode-remote.remote-ssh-0.120.0\out\extension.js:2:744751)
+    at t.handleInstallOutput (c:\Users\thoma\.vscode\extensions\ms-vscode-remote.remote-ssh-0.120.0\out\extension.js:2:742832)
+    at t.tryInstall (c:\Users\thoma\.vscode\extensions\ms-vscode-remote.remote-ssh-0.120.0\out\extension.js:2:865534)
+    at async c:\Users\thoma\.vscode\extensions\ms-vscode-remote.remote-ssh-0.120.0\out\extension.js:2:824246
+    at async t.withShowDetailsEvent (c:\Users\thoma\.vscode\extensions\ms-vscode-remote.remote-ssh-0.120.0\out\extension.js:2:827501)
+    at async A (c:\Users\thoma\.vscode\extensions\ms-vscode-remote.remote-ssh-0.120.0\out\extension.js:2:820760)
+    at async t.resolve (c:\Users\thoma\.vscode\extensions\ms-vscode-remote.remote-ssh-0.120.0\out\extension.js:2:824898)
+    at async c:\Users\thoma\.vscode\extensions\ms-vscode-remote.remote-ssh-0.120.0\out\extension.js:2:1113660
+[13:50:10.189] ------
+
+
+
+
+[13:50:10.190] No hints found in the recent session.

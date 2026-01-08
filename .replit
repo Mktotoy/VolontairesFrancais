@@ -10,7 +10,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm start"
+args = "npm run dev"
 waitForPort = 3000
 
 [workflows.workflow.metadata]
@@ -28,6 +28,8 @@ externalPort = 80
 [[ports]]
 localPort = 8055
 externalPort = 3001
+
+
 
 [agent]
 expertMode = true
