@@ -100,6 +100,9 @@ export default function Home() {
           <div className="contact-content">
             <h2 className="section-title">Nous contacter</h2>
             <p>Une question ? Une suggestion ? N'hésitez pas à nous écrire !</p>
+            <p>
+              <strong>volontairesfrancais@gmail.com</strong>
+            </p>
             <a
               href="mailto:volontairesfrancais@gmail.com"
               className="btn-primary contact-btn"
