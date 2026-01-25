@@ -1,6 +1,60 @@
 import Link from "next/link";
+import directus from '@/lib/directus';
+import { readItems } from '@directus/sdk';
+import { getAssetUrl } from '@/lib/assets';
 
-export default function Home() {
+type Post = {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt?: string | null;
+  content?: string | null;
+  published_at?: string | null;
+  status?: string | null;
+  category?: string | number | null;
+  featured_picture?: string | null;
+  seo?: any;
+};
+
+export const revalidate = 300; // revalidate every 5 minutes
+
+async function fetchLatestPosts(): Promise<Post[]> {
+  try {
+    const posts = await directus.request(
+      readItems('posts', {
+        fields: [
+          'id',
+          'title',
+          'slug',
+          'excerpt',
+          'content',
+          'published_at',
+          'status',
+          'category',
+          'featured_picture',
+        ],
+        filter: { status: { _eq: 'published' } },
+        sort: ['-published_at'],
+        limit: 3,
+      })
+    );
+    return (posts as Post[]) || [];
+  } catch (e) {
+    console.warn('Failed to fetch posts', e);
+    return [];
+  }
+}
+
+function formatDate(dateStr?: string | null) {
+  if (!dateStr) return '';
+  return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(dateStr));
+}
+
+export default async function Home() {
+  const posts = await fetchLatestPosts();
+  const featuredPost = posts.length > 0 ? posts[0] : null;
+  const recentPosts = posts.length > 1 ? posts.slice(1) : [];
+
   return (
     <>
       <section className="hero">
@@ -14,6 +68,135 @@ export default function Home() {
             </p>
             <Link href="/adhesion" className="btn-primary">
               Rejoignez-nous
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Article Section */}
+      {featuredPost && (
+        <section className="featured-news section-padding" style={{ padding: '4rem 0', backgroundColor: '#f8f9fa' }}>
+          <div className="container">
+            <h2 className="section-title">À la une</h2>
+            <div className="featured-card" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem',
+              backgroundColor: 'white',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+            }}>
+              {featuredPost.featured_picture && (
+                <div className="featured-image" style={{ position: 'relative', minHeight: '300px' }}>
+                  <img
+                    src={getAssetUrl(featuredPost.featured_picture) || ''}
+                    alt={featuredPost.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0
+                    }}
+                  />
+                </div>
+              )}
+              <div className="featured-content" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div className="date" style={{ color: '#666', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+                  {formatDate(featuredPost.published_at)}
+                </div>
+                <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem', color: '#1a1a1a' }}>
+                  <Link href={`/actu/${featuredPost.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {featuredPost.title}
+                  </Link>
+                </h3>
+                <div style={{ marginBottom: '1.5rem', color: '#4a4a4a', lineHeight: '1.6' }}
+                  dangerouslySetInnerHTML={{ __html: featuredPost.excerpt || (featuredPost.content ? `${featuredPost.content.slice(0, 150)}...` : '') }}
+                />
+                <Link href={`/actu/${featuredPost.slug}`} className="btn-text" style={{
+                  color: '#0056b3',
+                  fontWeight: 600,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginTop: 'auto'
+                }}>
+                  Lire l'article <i className="fas fa-arrow-right"></i>
+                </Link>
+              </div>
+            </div>
+
+            {/* Recent Posts Grid */}
+            {recentPosts.length > 0 && (
+              <div className="recent-news-grid" style={{
+                marginTop: '3rem',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                gap: '2rem'
+              }}>
+                {recentPosts.map(post => (
+                  <article key={post.id} className="news-card" style={{
+                    backgroundColor: 'white',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}>
+                    {post.featured_picture && (
+                      <div className="card-image" style={{ height: '200px', overflow: 'hidden' }}>
+                        <img
+                          src={getAssetUrl(post.featured_picture) || ''}
+                          alt={post.title}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      </div>
+                    )}
+                    <div className="card-content" style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <div style={{ fontSize: '0.85rem', color: '#888', marginBottom: '0.5rem' }}>
+                        {formatDate(post.published_at)}
+                      </div>
+                      <h4 style={{ fontSize: '1.2rem', marginBottom: '0.75rem' }}>
+                        <Link href={`/actu/${post.slug}`} style={{ textDecoration: 'none', color: '#1a1a1a' }}>
+                          {post.title}
+                        </Link>
+                      </h4>
+                      <Link href={`/actu/${post.slug}`} style={{ color: '#0056b3', fontSize: '0.9rem', fontWeight: 600, marginTop: 'auto' }}>
+                        Lire la suite
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+              <Link href="/actu" className="btn-secondary">
+                Toute l'actualité
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Actu Orientation Section */}
+      <section className="actu-orientation" style={{ padding: '4rem 0' }}>
+        <div className="container">
+          <div className="orientation-content" style={{
+            textAlign: 'center',
+            maxWidth: '800px',
+            margin: '0 auto'
+          }}>
+            <h2 className="section-title">Restez informés</h2>
+            <p style={{ fontSize: '1.1rem', marginBottom: '2rem', color: '#555' }}>
+              Découvrez nos derniers articles, interviews de volontaires et actualités de l'association.
+              La rubrique Actualités est votre source d'information privilégiée pour suivre la vie de notre communauté.
+            </p>
+            <Link href="/actu" className="btn-primary">
+              Voir les actualités
+              <i className="fas fa-newspaper" style={{ marginLeft: '8px' }}></i>
             </Link>
           </div>
         </div>
