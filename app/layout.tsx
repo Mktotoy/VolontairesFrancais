@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageAnimations from "@/components/PageAnimations";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./styles/main.css";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <head suppressHydrationWarning>
         <link
           rel="stylesheet"
@@ -28,6 +29,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <GoogleAnalytics />
         <Header />
         <main>{children}</main>
         <Footer />

@@ -55,6 +55,8 @@ function formatDate(dateStr?: string | null) {
 }
 
 
+import { marked } from 'marked';
+
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug: rawSlug } = await params;
   let slug = rawSlug;
@@ -70,6 +72,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const date = post.published_at;
   const image = getAssetUrl(post.featured_picture);
   const seo = post.seo || {};
+
+  const contentHtml = post.content ? await marked.parse(post.content, { breaks: true }) : '';
 
   return (
     <>
@@ -94,8 +98,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </div>
             )}
             <div className="article-content">
-              {post.content ? (
-                <div className="article-full" dangerouslySetInnerHTML={{ __html: post.content }} />
+              {contentHtml ? (
+                <div className="article-full" dangerouslySetInnerHTML={{ __html: contentHtml }} />
               ) : (
                 <p>Contenu à venir.</p>
               )}
