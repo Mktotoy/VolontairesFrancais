@@ -16,7 +16,7 @@ type Post = {
   seo?: any;
 };
 
-export const revalidate = 300; // revalidate every 5 minutes
+export const revalidate = 60; // revalidate every 1 minute
 
 async function fetchLatestPosts(): Promise<Post[]> {
   try {
@@ -33,7 +33,10 @@ async function fetchLatestPosts(): Promise<Post[]> {
           'category',
           'featured_picture',
         ],
-        filter: { status: { _eq: 'published' } },
+        filter: {
+          status: { _eq: 'published' },
+          featured: { _eq: true }
+        },
         sort: ['-published_at'],
         limit: 3,
       })
@@ -173,34 +176,14 @@ export default async function Home() {
             )}
 
             <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-              <Link href="/actu" className="btn-secondary">
+              <Link href="/actu" className="btn-primary">
                 Toute l'actualité
+                <i className="fas fa-arrow-right" style={{ marginLeft: '10px' }}></i>
               </Link>
             </div>
           </div>
         </section>
       )}
-
-      {/* Actu Orientation Section */}
-      <section className="actu-orientation" style={{ padding: '4rem 0' }}>
-        <div className="container">
-          <div className="orientation-content" style={{
-            textAlign: 'center',
-            maxWidth: '800px',
-            margin: '0 auto'
-          }}>
-            <h2 className="section-title">Restez informés</h2>
-            <p style={{ fontSize: '1.1rem', marginBottom: '2rem', color: '#555' }}>
-              Découvrez nos derniers articles, interviews de volontaires et actualités de l'association.
-              La rubrique Actualités est votre source d'information privilégiée pour suivre la vie de notre communauté.
-            </p>
-            <Link href="/actu" className="btn-primary">
-              Voir les actualités
-              <i className="fas fa-newspaper" style={{ marginLeft: '8px' }}></i>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       <section className="about">
         <div className="container">

@@ -16,7 +16,7 @@ type Post = {
   seo?: any;
 };
 
-export const revalidate = 300; // revalidate every 5 minutes
+export const revalidate = 60; // revalidate every 1 minute
 
 async function fetchPosts(): Promise<Post[]> {
   try {

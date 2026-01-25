@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@directus/sdk": "^20.2.0",
+    "marked": "^17.0.1",
     "next": "16.0.10",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "@types/marked": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
