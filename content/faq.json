@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "question": "« Volontaires Français », c’est quoi exactement ?",
+    "answer": "<p>« Volontaires Français » est une association loi 1901 créée le 28 octobre 2025, qui rassemble tous les volontaires ayant participé ou s’apprêtant à participer aux Jeux Olympiques et Paralympiques, été comme hiver. Notre mission est de faire vivre cette communauté unique, de partager nos expériences, de promouvoir les valeurs du bénévolat et de soutenir les futurs volontaires.</p>",
+    "category": "Général",
+    "sort": 1,
+    "slug": "volontaires-francais-c-est-quoi-exactement"
+  },
+  {
+    "id": 2,
+    "question": "Doit-on obligatoirement avoir été volontaire sur des JO pour rejoindre l’association ?",
+    "answer": "<p><b>Oui.</b> L’association « Volontaires Français » est spécifiquement destinée à rassembler les bénévoles ayant participé – ou participant prochainement – aux Jeux Olympiques et Paralympiques, quelle que soit l’édition. Que vous ayez été volontaire pour Paris 2024 (COJO), le Club France ou la Ville Hôte, vous êtes au bon endroit.</p>",
+    "category": "Adhésion",
+    "sort": 2,
+    "slug": "doit-on-obligatoirement-avoir-ete-volontaire-sur-des-jo-pour"
+  },
+  {
+    "id": 3,
+    "question": "Je n’ai pas la nationalité française mais je souhaiterais rejoindre l’association. Est-ce possible ?",
+    "answer": "<p>L’association « Volontaires Français » a pour vocation première d’identifier et rassembler les anciens volontaires français. Pour l’instant, l’adhésion est réservée aux volontaires de nationalité française. Suivez nos réseaux sociaux pour les infos publiques.</p>",
+    "category": "Adhésion",
+    "sort": 3,
+    "slug": "je-n-ai-pas-la-nationalite-francaise-mais-je-souhaiterais-re"
+  },
+  {
+    "id": 4,
+    "question": "Pourquoi devrais-je adhérer ?",
+    "answer": "<p>Pour trois raisons principales :</p><ul><li><strong>Rester connecté</strong> : retrouver la “famille” des volontaires et ne pas laisser la flamme s’éteindre.</li><li><strong>Se préparer</strong> : bénéficier de conseils, webinaires et retours d’expérience.</li><li><strong>Transmettre</strong> : valoriser ton expérience et aider la relève.</li></ul>",
+    "category": "Adhésion",
+    "sort": 4,
+    "slug": "pourquoi-devrais-je-adherer"
+  },
+  {
+    "id": 5,
+    "question": "Je n’ai pas pour projet de candidater pour de futurs jeux. Puis-je néanmoins rejoindre l’association ?",
+    "answer": "<p>Oui. L’association n’est pas réservée qu’aux futurs candidats. Un objectif clé est de rassembler les anciens volontaires et faire vivre la communauté. Si tu veux rester connecté, participer à nos événements ou transmettre ton expérience, tu es au bon endroit.</p>",
+    "category": "Adhésion",
+    "sort": 5,
+    "slug": "je-n-ai-pas-pour-projet-de-candidater-pour-de-futurs-jeux-pu"
+  },
+  {
+    "id": 6,
+    "question": "Je n’ai participé qu’aux Jeux de Paris 2024, suis-je concerné ?",
+    "answer": "<p>Absolument ! Tu es au cœur de l’association. Elle a été fondée par des volontaires de Paris 2024 pour rassembler celles et ceux qui ont participé.</p>",
+    "category": "Adhésion",
+    "sort": 6,
+    "slug": "je-n-ai-participe-qu-aux-jeux-de-paris-2024-suis-je-concerne"
+  },
+  {
+    "id": 7,
+    "question": "Je veux être volontaire pour les prochains Jeux (ex: Milano Cortina 2026). Pouvez-vous m’aider ?",
+    "answer": "<p>Oui. En adhérant, tu auras accès à un soutien et des conseils, des webinaires de préparation et aux partages d’expérience des anciens.</p>",
+    "category": "Futur volontaire",
+    "sort": 7,
+    "slug": "je-veux-etre-volontaire-pour-les-prochains-jeux-ex-milano-co"
+  },
+  {
+    "id": 8,
+    "question": "L’adhésion garantit-elle ma sélection comme volontaire ?",
+    "answer": "<p><strong>Non.</strong> La sélection des volontaires est la responsabilité de chaque Comité d’Organisation. Nous aidons à te préparer, mais nous ne gérons ni le recrutement ni les sélections.</p>",
+    "category": "Futur volontaire",
+    "sort": 8,
+    "slug": "l-adhesion-garantit-elle-ma-selection-comme-volontaire"
+  },
+  {
+    "id": 9,
+    "question": "Êtes-vous l’association “officielle” de Paris 2024 ou du CNOSF ?",
+    "answer": "<p>Nous sommes une association indépendante créée par des volontaires pour les volontaires. Nous collaborons avec le CNOSF et aspirons à intégrer la famille olympique, mais nous ne sommes pas une entité “officielle” du COJO ou du CNOSF.</p>",
+    "category": "Association",
+    "sort": 9,
+    "slug": "etes-vous-l-association-officielle-de-paris-2024-ou-du-cnosf"
+  },
+  {
+    "id": 10,
+    "question": "J’ai un problème avec mon uniforme / certificat de Paris 2024. Pouvez-vous m’aider ?",
+    "answer": "<p><strong>Non.</strong> Nous n’avons aucun accès à la logistique ou aux stocks du COJO. Nous nous tournons vers l’avenir pour construire la nouvelle communauté des volontaires.</p>",
+    "category": "Association",
+    "sort": 10,
+    "slug": "j-ai-un-probleme-avec-mon-uniforme-certificat-de-paris-2024-"
+  },
+  {
+    "id": 11,
+    "question": "L’adhésion est-elle gratuite ?",
+    "answer": "<p>Non. Pour financer nos actions (événements, site web, animations, etc.) et assurer le fonctionnement de l’association, une cotisation annuelle sera demandée lors de l’ouverture des adhésions.</p>",
+    "category": "Adhésion",
+    "sort": 11,
+    "slug": "l-adhesion-est-elle-gratuite"
+  }
+]

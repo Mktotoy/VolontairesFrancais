@@ -1,6 +1,5 @@
 import FaqItem from '@/components/FaqItem';
-import directus from '@/lib/directus';
-import { readItems } from '@directus/sdk';
+import { fetchFaqs } from '@/lib/data';
 
 type Faq = {
   id: number;
@@ -11,21 +10,6 @@ type Faq = {
 };
 
 export const revalidate = 300; // revalidate every 5 minutes
-
-async function fetchFaqs(): Promise<Faq[]> {
-  try {
-    const items = await directus.request(
-      readItems('faq', {
-        fields: ['id', 'question', 'answer', 'category', 'sort'],
-        sort: ['sort', 'question'],
-      })
-    );
-    return (items as Faq[]) || [];
-  } catch (e) {
-    console.warn('Failed to fetch FAQ', e);
-    return [];
-  }
-}
 
 function buildFaqSchema(faqs: Faq[]) {
   const mainEntity = faqs.map((f) => ({
@@ -43,6 +27,11 @@ function buildFaqSchema(faqs: Faq[]) {
     mainEntity,
   };
 }
+
+export const metadata = {
+  title: 'FAQ | Volontaires français',
+  description: 'Questions fréquentes sur l\'association Volontaires français et comment nous rejoindre.',
+};
 
 export default async function FaqPage() {
   const faqs = await fetchFaqs();

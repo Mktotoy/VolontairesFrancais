@@ -1,50 +1,18 @@
 import Link from 'next/link';
-import directus from '@/lib/directus';
-import { readItems } from '@directus/sdk';
+import { fetchPressArticles } from '@/lib/data';
 import { getAssetUrl } from '@/lib/assets';
 
-type PressArticle = {
-    id: number;
-    title: string;
-    source: string;
-    publication_date: string;
-    url: string;
-    image: string; // Asset ID
-    extract: string;
-};
-
 export const revalidate = 300; // revalidate every 5 minutes
-
-async function fetchPressArticles(): Promise<PressArticle[]> {
-    try {
-        const articles = await directus.request(
-            // @ts-ignore
-            readItems('press_articles', {
-                fields: [
-                    'id',
-                    'title',
-                    'source',
-                    'publication_date',
-                    'url',
-                    'image',
-                    'extract',
-                ],
-                filter: { status: { _eq: 'published' } },
-                sort: ['-publication_date'],
-            })
-        );
-        return (articles as unknown as PressArticle[]) || [];
-    } catch (e) {
-        console.warn('Failed to fetch press articles', e);
-        // Return empty array to handle case where collection doesn't exist yet
-        return [];
-    }
-}
 
 function formatDate(dateStr?: string | null) {
     if (!dateStr) return '';
     return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(dateStr));
 }
+
+export const metadata = {
+    title: 'On parle de nous | Volontaires français',
+    description: 'Retrouvez tous les articles de presse et reportages parlant de l\'association Volontaires français.',
+};
 
 export default async function PressPage() {
     const articles = await fetchPressArticles();

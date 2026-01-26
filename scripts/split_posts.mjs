@@ -1,0 +1,1 @@
+import fs from 'fs'; const posts = JSON.parse(fs.readFileSync('content/posts.json', 'utf-8')); posts.forEach(post => fs.writeFileSync(`content/posts/${post.slug}.json`, JSON.stringify(post, null, 2)));

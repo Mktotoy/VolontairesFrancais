@@ -1,51 +1,11 @@
 import Link from "next/link";
-import directus from '@/lib/directus';
-import { readItems } from '@directus/sdk';
+import { fetchLatestPosts } from '@/lib/data';
 import { getAssetUrl } from '@/lib/assets';
-
-type Post = {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt?: string | null;
-  content?: string | null;
-  published_at?: string | null;
-  status?: string | null;
-  category?: string | number | null;
-  featured_picture?: string | null;
-  seo?: any;
-};
 
 export const revalidate = 60; // revalidate every 1 minute
 
-async function fetchLatestPosts(): Promise<Post[]> {
-  try {
-    const posts = await directus.request(
-      readItems('posts', {
-        fields: [
-          'id',
-          'title',
-          'slug',
-          'excerpt',
-          'content',
-          'published_at',
-          'status',
-          'category',
-          'featured_picture',
-        ],
-        filter: {
-          status: { _eq: 'published' },
-          featured: { _eq: true }
-        },
-        sort: ['-published_at'],
-        limit: 3,
-      })
-    );
-    return (posts as Post[]) || [];
-  } catch (e) {
-    console.warn('Failed to fetch posts', e);
-    return [];
-  }
+async function getPosts() {
+  return await fetchLatestPosts(3);
 }
 
 function formatDate(dateStr?: string | null) {
@@ -53,13 +13,43 @@ function formatDate(dateStr?: string | null) {
   return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(dateStr));
 }
 
+export const metadata = {
+  title: 'Volontaires français | Accueil',
+  description: 'L\'association qui rassemble, soutient et valorise les volontaires français des Jeux Olympiques et Paralympiques.',
+  openGraph: {
+    title: 'Volontaires français | Accueil',
+    description: 'Rejoignez la communauté des volontaires français des JOP !',
+    type: 'website',
+    locale: 'fr_FR',
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Volontaires français',
+  url: 'https://volontairesfrancais.fr',
+  logo: 'https://volontairesfrancais.fr/assets/favicon.ico',
+  sameAs: [
+    'https://www.facebook.com/profile.php?id=61581761488412',
+    'https://www.instagram.com/volontaires.francais/',
+    'https://www.linkedin.com/company/association-volontaire-fran%C3%A7ais/',
+    'https://www.youtube.com/@VolontairesFran%C3%A7ais'
+  ],
+  description: 'Association internationale des volontaires des Jeux olympiques et paralympiques'
+};
+
 export default async function Home() {
-  const posts = await fetchLatestPosts();
+  const posts = await getPosts();
   const featuredPost = posts.length > 0 ? posts[0] : null;
   const recentPosts = posts.length > 1 ? posts.slice(1) : [];
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="hero">
         <div className="hero-overlay"></div>
         <div className="container">
