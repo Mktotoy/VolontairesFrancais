@@ -1,34 +1,8 @@
-import directus from '@/lib/directus';
-import { readItems } from '@directus/sdk';
+import { fetchTeam } from '@/lib/data';
 import { getAssetUrl } from '@/lib/assets';
-
-type TeamMember = {
-  id: number;
-  first_name: string;
-  last_name: string;
-  full_name?: string | null;
-  role_title?: string | null;
-  category?: string | null;
-  sort?: number | null;
-  image?: string | null; // directus_files id
-};
+import { TeamMember } from '@/lib/types';
 
 export const revalidate = 300; // revalidate every 5 minutes
-
-async function fetchTeam(): Promise<TeamMember[]> {
-  try {
-    const items = await directus.request(
-      readItems('team_members', {
-        fields: ['id', 'first_name', 'last_name', 'full_name', 'role_title', 'category', 'sort', 'image'],
-        sort: ['sort', 'last_name', 'first_name'],
-      })
-    );
-    return (items as TeamMember[]) || [];
-  } catch (e) {
-    console.warn('Failed to fetch team members', e);
-    return [];
-  }
-}
 
 function groupByCategory(members: TeamMember[]) {
   return members.reduce<Record<string, TeamMember[]>>((acc, member) => {
@@ -39,6 +13,18 @@ function groupByCategory(members: TeamMember[]) {
   }, {});
 }
 
+
+
+export const metadata = {
+  title: 'Notre Équipe | Volontaires français',
+  description: 'Découvrez le conseil d\'administration et les membres engagés de l\'association Volontaires français.',
+  openGraph: {
+    title: 'Notre Équipe | Volontaires français',
+    description: 'Rencontrez les bénévoles passionnés qui font vivre l\'association !',
+    type: 'website',
+    images: ['/assets/favicon.ico'], // Fallback image, ideally replace with a team photo
+  },
+};
 
 export default async function EquipePage() {
   const members = await fetchTeam();

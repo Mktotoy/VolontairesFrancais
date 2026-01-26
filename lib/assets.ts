@@ -10,9 +10,18 @@
 export function getAssetUrl(assetId?: string | null): string | null {
   if (!assetId) return null;
 
-  // Return absolute URL to point directly to Directus admin
-  // This bypasses the Next.js rewrite which might be failing due to DNS config
-  return `https://admin.volontairesfrancais.fr/assets/${assetId}`;
+  // If it's already a full URL or relative path, return it
+  if (assetId.startsWith('http') || assetId.startsWith('/')) {
+    return assetId;
+  }
+
+  // If it looks like a filename (contains a dot), assume it's in assets/posts/ but this is a fallback
+  if (assetId.includes('.')) {
+    return `/assets/posts/${assetId}`;
+  }
+
+  // Fallback or legacy ID handling - for now return null as we moved to local
+  return null;
 }
 
 /**

@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   title: "Volontaires français - Accueil",
   description: "Volontaires français - Association internationale des volontaires de Jeux olympiques et paralympiques",
   icons: {
-    icon: 'https://admin.volontairesfrancais.fr/assets/d8100f07-7f6d-4169-85fd-a89c840fb79c',
-    apple: 'https://admin.volontairesfrancais.fr/assets/d8100f07-7f6d-4169-85fd-a89c840fb79c',
+    icon: '/assets/favicon.ico',
+    apple: '/assets/favicon.ico',
   },
+  metadataBase: new URL('https://volontairesfrancais.fr'),
 };
 
 export default function RootLayout({

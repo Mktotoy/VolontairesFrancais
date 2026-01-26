@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "first_name": "Fabian",
+    "last_name": "Tosolini",
+    "full_name": "Fabian Tosolini",
+    "slug": "fabian-tosolini",
+    "role_title": "Président",
+    "category": "Bureau",
+    "sort": 1,
+    "image": "/assets/team/fb14287a-2022-48c4-aec9-f22a9360a1b6.jpg"
+  },
+  {
+    "id": 2,
+    "first_name": "Mathilde",
+    "last_name": "Gressier",
+    "full_name": "Mathilde Gressier",
+    "slug": "mathilde-gressier",
+    "role_title": "Vice-Présidente",
+    "category": "Bureau",
+    "sort": 2,
+    "image": "/assets/team/76bb2dc2-c298-494d-985e-bbb8e7de9d38.jpg"
+  },
+  {
+    "id": 3,
+    "first_name": "Julien",
+    "last_name": "Hugelé",
+    "full_name": "Julien Hugelé",
+    "slug": "julien-hugele",
+    "role_title": "Vice-Président",
+    "category": "Bureau",
+    "sort": 3,
+    "image": "/assets/team/aa9cdc11-b241-4421-9c95-df86e36a4c4d.jpg"
+  },
+  {
+    "id": 4,
+    "first_name": "Océane",
+    "last_name": "Le Guern",
+    "full_name": "Océane Le Guern",
+    "slug": "oceane-le-guern",
+    "role_title": "Secrétaire",
+    "category": "Bureau",
+    "sort": 4,
+    "image": "/assets/team/b7f8c914-f55d-4570-ac70-8282f05dfe06.jpg"
+  },
+  {
+    "id": 5,
+    "first_name": "Patrice",
+    "last_name": "Lasserre",
+    "full_name": "Patrice Lasserre",
+    "slug": "patrice-lasserre",
+    "role_title": "Secrétaire adjoint",
+    "category": "Bureau",
+    "sort": 5,
+    "image": "/assets/team/eba9bd74-a9cd-4f8c-8dea-6717322226ee.jpg"
+  },
+  {
+    "id": 6,
+    "first_name": "Philippe",
+    "last_name": "Frigout",
+    "full_name": "Philippe Frigout",
+    "slug": "philippe-frigout",
+    "role_title": "Trésorier",
+    "category": "Bureau",
+    "sort": 6,
+    "image": "/assets/team/f6e17497-75cc-4c17-bb88-dd182413e1ed.jpg"
+  },
+  {
+    "id": 7,
+    "first_name": "Alexa",
+    "last_name": "Dubreuil-Storer",
+    "full_name": "Alexa Dubreuil-Storer",
+    "slug": "alexa-dubreuil-storer",
+    "role_title": "Trésorière adjointe",
+    "category": "Bureau",
+    "sort": 7,
+    "image": "/assets/team/25d3adad-84e8-4249-8d24-58ad5d23b1d4.jpg"
+  },
+  {
+    "id": 8,
+    "first_name": "Enora",
+    "last_name": "Adam",
+    "full_name": "Enora Adam",
+    "slug": "enora-adam",
+    "role_title": "Membre du CA",
+    "category": "Membres du Conseil d'Administration",
+    "sort": 101,
+    "image": "/assets/team/7a890022-d9c4-4d6b-b639-3ee4500afaf4.jpg"
+  },
+  {
+    "id": 9,
+    "first_name": "Florence",
+    "last_name": "Casenove",
+    "full_name": "Florence Casenove",
+    "slug": "florence-casenove",
+    "role_title": "Membre du CA",
+    "category": "Membres du Conseil d'Administration",
+    "sort": 102,
+    "image": "/assets/team/67c3d416-8f10-45c7-8fb8-7bfa38b260f4.jpg"
+  },
+  {
+    "id": 10,
+    "first_name": "Emmanuelle",
+    "last_name": "Estrade",
+    "full_name": "Emmanuelle Estrade",
+    "slug": "emmanuelle-estrade",
+    "role_title": "Membre du CA",
+    "category": "Membres du Conseil d'Administration",
+    "sort": 103,
+    "image": "/assets/team/85ebb6e0-c4ec-44ee-951d-7658975ba754.jpg"
+  },
+  {
+    "id": 11,
+    "first_name": "Marie-Anne",
+    "last_name": "Ramond",
+    "full_name": "Marie-Anne Ramond",
+    "slug": "marie-anne-ramond",
+    "role_title": "Membre du CA",
+    "category": "Membres du Conseil d'Administration",
+    "sort": 104,
+    "image": "/assets/team/87c64b5c-ccab-4be6-acbe-0f8840b85af1.jpg"
+  },
+  {
+    "id": 12,
+    "first_name": "Sébastien",
+    "last_name": "Tomec",
+    "full_name": "Sébastien Tomec",
+    "slug": "sebastien-tomec",
+    "role_title": "Membre du CA",
+    "category": "Membres du Conseil d'Administration",
+    "sort": 105,
+    "image": "/assets/team/a459db80-aaa0-4ee6-ba93-5e8ae8c392f1.jpg"
+  }
+]

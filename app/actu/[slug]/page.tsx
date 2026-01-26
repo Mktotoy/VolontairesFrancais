@@ -1,53 +1,11 @@
-import directus from '@/lib/directus';
-import { readItems } from '@directus/sdk';
+import { fetchPost } from '@/lib/data';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAssetUrl } from '@/lib/assets';
 
-type Post = {
-  id: number;
-  title: string;
-  slug: string;
-  content?: string | null;
-  excerpt?: string | null;
-  published_at?: string | null;
-  status?: string | null;
-  category?: string | number | null;
-  featured_picture?: string | null;
-  seo?: any;
-};
-
 export const revalidate = 0; // always fetch fresh
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
-
-async function fetchPost(slug: string): Promise<Post | null> {
-  try {
-    const posts = await directus.request(
-      readItems('posts', {
-        fields: [
-          'id',
-          'title',
-          'slug',
-          'content',
-          'excerpt',
-          'published_at',
-          'status',
-          'category',
-          'featured_picture',
-          'seo',
-        ],
-        filter: { slug: { _eq: slug }, status: { _eq: 'published' } },
-        limit: 1,
-      })
-    );
-    if (!posts || !posts.length) return null;
-    return posts[0] as Post;
-  } catch (e) {
-    console.warn('Failed to fetch post', e);
-    return null;
-  }
-}
 
 function formatDate(dateStr?: string | null) {
   if (!dateStr) return '';
@@ -57,16 +15,52 @@ function formatDate(dateStr?: string | null) {
 
 import { marked } from 'marked';
 import ArticleBody from '@/components/ArticleBody';
+import Carousel from '@/components/Carousel';
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug: rawSlug } = await params;
+  let slug = rawSlug;
+  try {
+    slug = decodeURIComponent(rawSlug);
+  } catch {
+    // keep raw slug
+  }
+
+  const post = await fetchPost(slug);
+  if (!post) return {};
+
+  const title = post.seo?.title || post.title;
+  const description = post.seo?.meta_description || post.excerpt || post.content?.slice(0, 150);
+  const image = getAssetUrl(post.featured_picture || post.seo?.og_image);
+
+  return {
+    title: `${title} | Volontaires français`,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      images: image ? [image] : [],
+      type: 'article',
+      publishedTime: post.published_at,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: title,
+      description: description,
+      images: image ? [image] : [],
+    },
+  };
+}
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug: rawSlug } = await params;
   let slug = rawSlug;
   try {
     slug = decodeURIComponent(rawSlug);
   } catch {
-    // keep raw slug if decoding fails
+    // keep raw slug
   }
   const post = await fetchPost(slug);
+
   if (!post) {
     notFound();
   }
@@ -103,6 +97,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 <ArticleBody contentHtml={contentHtml} />
               ) : (
                 <p>Contenu à venir.</p>
+              )}
+
+              {post.gallery && post.gallery.length > 0 && (
+                <div className="article-gallery mt-8">
+                  <h3>Galerie photos</h3>
+                  <Carousel images={post.gallery} />
+                </div>
               )}
             </div>
           </article>

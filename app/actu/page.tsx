@@ -1,49 +1,8 @@
 import Link from 'next/link';
-import directus from '@/lib/directus';
-import { readItems } from '@directus/sdk';
+import { fetchPosts } from '@/lib/data';
 import { getAssetUrl } from '@/lib/assets';
 
-type Post = {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt?: string | null;
-  content?: string | null;
-  published_at?: string | null;
-  status?: string | null;
-  category?: string | number | null;
-  featured_picture?: string | null;
-  seo?: any;
-};
-
 export const revalidate = 60; // revalidate every 1 minute
-
-async function fetchPosts(): Promise<Post[]> {
-  try {
-    const posts = await directus.request(
-      readItems('posts', {
-        fields: [
-          'id',
-          'title',
-          'slug',
-          'excerpt',
-          'content',
-          'published_at',
-          'status',
-          'category',
-          'featured_picture',
-          'seo',
-        ],
-        filter: { status: { _eq: 'published' } },
-        sort: ['-published_at'],
-      })
-    );
-    return (posts as Post[]) || [];
-  } catch (e) {
-    console.warn('Failed to fetch posts', e);
-    return [];
-  }
-}
 
 function formatDate(dateStr?: string | null) {
   if (!dateStr) return '';
