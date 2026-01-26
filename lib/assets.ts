@@ -9,10 +9,10 @@
 
 export function getAssetUrl(assetId?: string | null): string | null {
   if (!assetId) return null;
-  
-  // Return relative URL - uses same protocol as page (HTTP or HTTPS)
-  // Proxied through frontend Next.js server via /assets/* route
-  return `/assets/${assetId}`;
+
+  // Return absolute URL to point directly to Directus admin
+  // This bypasses the Next.js rewrite which might be failing due to DNS config
+  return `https://admin.volontairesfrancais.fr/assets/${assetId}`;
 }
 
 /**
@@ -23,16 +23,16 @@ export function extractAssetId(
   fileData?: string | { id: string } | null
 ): string | null {
   if (!fileData) return null;
-  
+
   // If it's a string (direct ID)
   if (typeof fileData === 'string') {
     return fileData;
   }
-  
+
   // If it's an object with id property (expanded file)
   if (typeof fileData === 'object' && fileData.id) {
     return fileData.id;
   }
-  
+
   return null;
 }

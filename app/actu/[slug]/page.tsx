@@ -56,6 +56,7 @@ function formatDate(dateStr?: string | null) {
 
 
 import { marked } from 'marked';
+import ArticleBody from '@/components/ArticleBody';
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug: rawSlug } = await params;
@@ -99,7 +100,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             )}
             <div className="article-content">
               {contentHtml ? (
-                <div className="article-full" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+                <ArticleBody contentHtml={contentHtml} />
               ) : (
                 <p>Contenu à venir.</p>
               )}
