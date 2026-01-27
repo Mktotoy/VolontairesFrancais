@@ -1,12 +1,9 @@
 import Link from "next/link";
-import { fetchLatestPosts } from '@/lib/data';
+import { fetchLatestPosts, fetchPosts } from '@/lib/data';
 import { getAssetUrl } from '@/lib/assets';
 
 export const revalidate = 60; // revalidate every 1 minute
 
-async function getPosts() {
-  return await fetchLatestPosts(3);
-}
 
 function formatDate(dateStr?: string | null) {
   if (!dateStr) return '';
@@ -40,7 +37,7 @@ const jsonLd = {
 };
 
 export default async function Home() {
-  const posts = await getPosts();
+  const posts = await fetchLatestPosts(4); // Fetch 4 posts to have 1 featured + 3 recent
   const featuredPost = posts.length > 0 ? posts[0] : null;
   const recentPosts = posts.length > 1 ? posts.slice(1) : [];
 

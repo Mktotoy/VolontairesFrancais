@@ -37,6 +37,11 @@ export default function Footer() {
                                     Mentions légales
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/charte-graphique">
+                                    Charte Graphique
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="footer-section">

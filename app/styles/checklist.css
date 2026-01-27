@@ -1,0 +1,99 @@
+/* ... existing styles ... */
+
+/* Article Content Specifics */
+.article-content ul,
+.article-content ol {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+
+.article-content li {
+    margin-bottom: 12px;
+    /* Breathable list items */
+    position: relative;
+    padding-left: 5px;
+}
+
+/* Custom Checkbox Look for Task Lists (GitHub flavored style) */
+.article-content input[type="checkbox"] {
+    margin-right: 12px;
+    transform: scale(1.3);
+    accent-color: var(--color-green);
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.article-content li:has(input[type="checkbox"]) {
+    list-style: none;
+    /* Remove bullet for checkboxes */
+    margin-left: 0;
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    /* Align checkbox with top of text */
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* Checklist Grid Layout */
+.checklist-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+    .checklist-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.checklist-card {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    height: 100%;
+}
+
+.checklist-card h2 {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    font-size: 1.4rem !important;
+    color: var(--color-blue);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.checklist-card ul {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.checklist-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.checklist-warning h3 {
+    margin-top: 0;
+    color: #856404;
+}
+
+.article-content blockquote {
+    border-left: 5px solid var(--color-yellow);
+    background-color: white;
+    padding: 15px;
+    margin: 15px 0;
+    font-style: italic;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}

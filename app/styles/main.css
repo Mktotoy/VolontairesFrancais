@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import './checklist.css';
 
 @font-face {
     font-family: 'Walaweh';
@@ -105,6 +106,7 @@ img {
     display: flex;
     list-style: none;
     gap: 30px;
+    align-items: center;
 }
 
 .nav-link {
@@ -112,6 +114,10 @@ img {
     color: var(--color-dark);
     padding: 8px 0;
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    /* Adds space between text and emoji if needed, though they are in same string here it won't affect single text node much unless emoji was a span. But inline-flex helps vertical align. */
 }
 
 .nav-link::after {
