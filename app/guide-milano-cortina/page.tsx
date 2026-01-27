@@ -8,7 +8,7 @@ export const metadata = {
 
 
 export default async function GuidePage() {
-    const downloadUrl = "https://483982b4-b69f-41eb-8217-e6037c2697c9-00-1816fkz78n2lg.janeway.replit.dev:3000/docs/Guide%20des%20Volontaires%20fran%C3%A7ais.pdf";
+    const downloadUrl = "/docs/Guide%20des%20Volontaires%20fran%C3%A7ais.pdf";
     const guideArticles = await fetchGuideArticles();
 
     return (
