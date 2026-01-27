@@ -7,7 +7,7 @@ export default function MentionsLegalesPage() {
                 </div>
             </section>
 
-            <section className="content-section">
+            <section className="section-padding">
                 <div className="container">
                     <div className="legal-content">
                         <h2>1. Éditeur du site</h2>
@@ -138,6 +138,46 @@ export default function MentionsLegalesPage() {
                     </div>
                 </div>
             </section>
+
+            <style>{`
+                .legal-content {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    font-size: 1.1rem;
+                    line-height: 1.8;
+                }
+                .legal-content h2 {
+                    margin-top: 50px;
+                    margin-bottom: 25px;
+                    font-size: 2rem;
+                    color: var(--color-blue);
+                    border-bottom: 2px solid #eee;
+                    padding-bottom: 15px;
+                }
+                .legal-content h3 {
+                    margin-top: 30px;
+                    margin-bottom: 15px;
+                    font-size: 1.4rem;
+                    color: var(--color-dark);
+                }
+                .legal-content p {
+                    margin-bottom: 20px;
+                }
+                .legal-content ul {
+                    margin-bottom: 30px;
+                    padding-left: 20px;
+                }
+                .legal-content li {
+                    margin-bottom: 10px;
+                }
+                .legal-content a {
+                    color: var(--color-blue);
+                    text-decoration: underline;
+                }
+                .legal-content a:hover {
+                    color: var(--color-red);
+                }
+            `}</style>
         </>
     );
 }
