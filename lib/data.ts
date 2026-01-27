@@ -5,6 +5,7 @@ import { Post, Faq, TeamMember, PressArticle } from './types';
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
 const POSTS_DIR = path.join(CONTENT_DIR, 'posts');
+const GUIDE_DIR = path.join(CONTENT_DIR, 'guide');
 
 async function readJson<T>(filename: string): Promise<T[]> {
     try {
@@ -18,6 +19,31 @@ async function readJson<T>(filename: string): Promise<T[]> {
 }
 
 import matter from 'gray-matter';
+
+export async function fetchGuideArticles(): Promise<Post[]> {
+    try {
+        const files = await fs.readdir(GUIDE_DIR);
+        const articles = await Promise.all(
+            files.filter(f => f.endsWith('.md')).map(async (file) => {
+                const content = await fs.readFile(path.join(GUIDE_DIR, file), 'utf-8');
+                const { data, content: markdownBody } = matter(content);
+                return {
+                    ...data,
+                    content: markdownBody,
+                    slug: file.replace('.md', ''),
+                    // Ensure required fields for Post type
+                    id: data.id || Math.random(), // fallback
+                    published_at: data.published_at || new Date().toISOString(),
+                    featured: false
+                } as Post;
+            })
+        );
+        return articles;
+    } catch (e) {
+        console.warn('Failed to fetch guide articles', e);
+        return [];
+    }
+}
 
 export async function fetchPosts(): Promise<Post[]> {
     try {
@@ -49,8 +75,18 @@ export async function fetchLatestPosts(limit: number = 3): Promise<Post[]> {
 
 export async function fetchPost(slug: string): Promise<Post | null> {
     try {
-        const filePath = path.join(POSTS_DIR, `${slug}.md`);
-        const fileContent = await fs.readFile(filePath, 'utf-8');
+        // Try finding in posts first
+        let filePath = path.join(POSTS_DIR, `${slug}.md`);
+        let fileContent;
+
+        try {
+            fileContent = await fs.readFile(filePath, 'utf-8');
+        } catch {
+            // If not found, try guide directory
+            filePath = path.join(GUIDE_DIR, `${slug}.md`);
+            fileContent = await fs.readFile(filePath, 'utf-8');
+        }
+
         const { data, content } = matter(fileContent);
 
         const post = { ...data, content, slug } as Post;

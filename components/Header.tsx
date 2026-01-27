@@ -49,14 +49,9 @@ export default function Header() {
                                     Actu
                                 </Link>
                             </li>
-                            <li>
-                                <Link href="/guide-milano-cortina" className={`nav-link ${isActive('/guide-milano-cortina')}`}>
-                                    Guide Milano
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/on-parle-de-nous" className={`nav-link ${isActive('/on-parle-de-nous')}`}>
-                                    On parle de nous
+                            <li style={{ margin: '15px 0' }}>
+                                <Link href="/guide-milano-cortina" className={`nav-link ${isActive('/guide-milano-cortina')}`} onClick={() => setIsMenuOpen(false)}>
+                                    Milano Cortina ❄️
                                 </Link>
                             </li>
                             <li>

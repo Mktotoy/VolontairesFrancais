@@ -1,65 +1,113 @@
 import Link from 'next/link';
+import { fetchGuideArticles } from '@/lib/data';
 
 export const metadata = {
     title: 'Guide des Volontaires - Milano Cortina 2026 | Volontaires français',
     description: 'Bienvenue dans la communauté des Volontaires français pour Milano Cortina 2026.',
 };
 
-export default function GuidePage() {
-    const downloadUrl = "/docs/Guide des Volontaires français.pdf";
+
+export default async function GuidePage() {
+    const downloadUrl = "https://483982b4-b69f-41eb-8217-e6037c2697c9-00-1816fkz78n2lg.janeway.replit.dev:3000/docs/Guide%20des%20Volontaires%20fran%C3%A7ais.pdf";
+    const guideArticles = await fetchGuideArticles();
 
     return (
         <>
             <section className="page-header">
                 <div className="container">
-                    <h1 className="page-title">Guide des Volontaires</h1>
-                    <p className="page-subtitle">Milano Cortina 2026</p>
+                    <h1 className="page-title">Milano Cortina 2026</h1>
+                    <p className="page-subtitle">Le guide et les ressources pour les volontaires</p>
                 </div>
             </section>
 
-            <section className="section-padding" style={{ padding: '80px 0' }}>
+            <section className="section-padding">
                 <div className="container">
-                    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                        <div className="guide-hero" style={{ marginBottom: '40px', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-                            <img src="/images/guide-highlight.jpg" alt="Volontaires français Milano Cortina 2026" style={{ width: '100%', height: 'auto', display: 'block' }} />
-                        </div>
+                    {/* Intro Section - 2 Columns */}
+                    <div className="guide-intro-grid">
+                        <div className="guide-intro-content">
+                            <p style={{ marginBottom: '20px', fontSize: '1.2rem', color: 'var(--color-blue)' }}>
+                                <strong>Chère volontaire, cher volontaire,</strong>
+                            </p>
+                            <p style={{ marginBottom: '20px', lineHeight: '1.8' }}>
+                                C’est avec une immense joie, et une grande fierté, que nous t’accueillons au sein de la communauté des Volontaires français pour les Jeux Olympiques et Paralympiques d’hiver Milano Cortina 2026.
+                            </p>
+                            <p style={{ marginBottom: '30px', lineHeight: '1.8' }}>
+                                Ce guide a été pensé pour t’accompagner à chaque étape. Tu y trouveras de nombreuses informations pratiques pour t’aider à vivre cette expérience dans les meilleures conditions possibles.
+                            </p>
 
-                        <p style={{ marginBottom: '20px', fontSize: '1.2rem' }}><strong>Chère volontaire, cher volontaire,</strong></p>
-
-                        <p style={{ marginBottom: '20px', lineHeight: '1.8' }}>
-                            C’est avec une immense joie, et une grande fierté, que nous t’accueillons au sein de la communauté des Volontaires français pour les Jeux Olympiques et Paralympiques d’hiver Milano Cortina 2026.
-                        </p>
-
-                        <p style={{ marginBottom: '20px', lineHeight: '1.8' }}>
-                            En rejoignant cette aventure, tu deviens bien plus qu’un·e volontaire : tu fais partie d’une expérience humaine unique, portée par des valeurs fortes d’<strong>engagement</strong>, de <strong>partage</strong> et d’<strong>ouverture au monde</strong>. Ces Jeux seront faits de missions, bien sûr, mais aussi de rencontres, d’émotions et de souvenirs qui resteront gravés.
-                        </p>
-
-                        <p style={{ marginBottom: '20px', lineHeight: '1.8' }}>
-                            Ce guide, conçu par l’association Volontaires français, a été pensé pour t’accompagner à chaque étape de ta mobilisation. Tu y trouveras de nombreuses informations pratiques pour t’aider à vivre cette expérience dans les meilleures conditions possibles.
-                        </p>
-
-                        <p style={{ marginBottom: '20px', lineHeight: '1.8' }}>
-                            Et parce que l’aventure se vit encore plus intensément ensemble, nous te proposerons tout au long des Jeux des temps de rassemblement : repas conviviaux, moments d’échange entre volontaires et rencontres informelles, pour créer du lien bien au-delà des missions.
-                        </p>
-
-                        <p style={{ marginBottom: '20px', lineHeight: '1.8' }}>
-                            L’ensemble du bureau s’est pleinement investi dans la création de ce guide. Merci à toi pour ton engagement, ta motivation et ton énergie.
-                        </p>
-
-                        <p style={{ marginBottom: '40px', lineHeight: '1.8', fontWeight: 'bold', fontSize: '1.1rem' }}>
-                            Nous sommes fiers de t’accompagner dans cette aventure exceptionnelle.<br />
-                            L’équipe des Volontaires français
-                        </p>
-
-                        <div style={{ textAlign: 'center' }}>
-                            <a href={downloadUrl} className="btn-primary btn-large" download target="_blank" rel="noopener noreferrer">
-                                <i className="fas fa-download" style={{ marginRight: '10px' }}></i>
-                                Télécharger le guide
+                            <a href={downloadUrl} className="btn-primary" download target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+                                <i className="fas fa-file-pdf"></i>
+                                Télécharger le guide complet
                             </a>
                         </div>
+
+                        <div className="guide-intro-image">
+                            <img
+                                src="/images/guide-highlight.jpg"
+                                alt="Volontaires français Milano Cortina 2026"
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    borderRadius: '15px',
+                                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                                    display: 'block'
+                                }}
+                            />
+                        </div>
                     </div>
+
+                    {/* Guide Articles Grid - HIDDEN FOR NOW
+                    <div style={{ marginTop: '80px' }}>
+                        <h2 className="section-title text-center" style={{ marginBottom: '40px' }}>Les articles du guide</h2>
+                        <div className="guide-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
+                            {guideArticles.map((article) => (
+                                <Link href={`/guide-milano-cortina/${article.slug}`} key={article.slug} className="post-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <div className="post-content" style={{ padding: '25px' }}>
+                                        <h3 className="post-title" style={{ marginTop: 0, fontSize: '1.4rem' }}>{article.title}</h3>
+                                        <p className="post-excerpt" style={{ marginBottom: '20px', color: '#666' }}>{article.excerpt}</p>
+                                        <span style={{ color: 'var(--primary-color)', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
+                                            Lire l'article <i className="fas fa-arrow-right" style={{ marginLeft: '8px', fontSize: '0.9rem' }}></i>
+                                        </span>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                    */}
                 </div>
             </section>
+
+            <style>{`
+                .guide-intro-grid {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 40px;
+                    align-items: center;
+                }
+
+                @media (min-width: 968px) {
+                    .guide-intro-grid {
+                        grid-template-columns: 1fr 1fr;
+                        gap: 60px;
+                    }
+                    .guide-intro-content {
+                        order: 1;
+                    }
+                    .guide-intro-image {
+                        order: 2;
+                    }
+                }
+                
+                @media (max-width: 967px) {
+                    .guide-intro-image {
+                        margin-bottom: 30px;
+                        order: 1;
+                    }
+                    .guide-intro-content {
+                        order: 2;
+                    }
+                }
+            `}</style>
         </>
     );
 }
