@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description: "Volontaires français - Association internationale des volontaires de Jeux olympiques et paralympiques",
   icons: {
     icon: '/assets/favicon.ico',
+    shortcut: '/assets/favicon.ico',
     apple: '/assets/favicon.ico',
   },
   metadataBase: new URL('https://volontairesfrancais.fr'),
