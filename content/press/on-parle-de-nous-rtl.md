@@ -6,6 +6,7 @@ publication_date: "2025-12-11T11:18:00.000Z"
 url: "https://www.youtube.com/watch?v=wZTjevsrvGc"
 status: published
 image: null
+cta_label: "Voir la vidéo"
 ---
 
 Reportage de la radio RTL sur notre premier rassemblement "A vos marques" organisé le 6 décembre 2025.

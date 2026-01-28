@@ -41,4 +41,5 @@ export interface PressArticle {
     image?: string | null;
     extract: string;
     status?: string;
+    cta_label?: string;
 }

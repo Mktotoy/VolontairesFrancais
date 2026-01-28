@@ -72,7 +72,7 @@ export default async function PressPage() {
                                             rel="noopener noreferrer"
                                             style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
                                         >
-                                            Lire l’article <i className="fas fa-external-link-alt"></i>
+                                            {article.cta_label || 'Lire l’article'} <i className={`fas ${article.cta_label ? 'fa-play-circle' : 'fa-external-link-alt'}`}></i>
                                         </a>
                                     </div>
                                 </article>
