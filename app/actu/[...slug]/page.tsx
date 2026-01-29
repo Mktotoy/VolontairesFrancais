@@ -17,14 +17,9 @@ import { marked } from 'marked';
 import ArticleBody from '@/components/ArticleBody';
 import Carousel from '@/components/Carousel';
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug: rawSlug } = await params;
-  let slug = rawSlug;
-  try {
-    slug = decodeURIComponent(rawSlug);
-  } catch {
-    // keep raw slug
-  }
+  const slug = rawSlug.join('/'); // Reconstruct full slug path
 
   const post = await fetchPost(slug);
   if (!post) return {};
@@ -51,14 +46,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
   };
 }
-export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug: rawSlug } = await params;
-  let slug = rawSlug;
-  try {
-    slug = decodeURIComponent(rawSlug);
-  } catch {
-    // keep raw slug
-  }
+  const slug = rawSlug.join('/'); // Reconstruct full slug path
+
   const post = await fetchPost(slug);
 
   if (!post) {
