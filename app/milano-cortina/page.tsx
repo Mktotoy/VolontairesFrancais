@@ -56,6 +56,18 @@ export default async function GuidePage() {
                         </div>
                     </div>
 
+                    {/* Promo Section */}
+                    <div className="promo-section" style={{ marginTop: '60px', marginBottom: '80px', padding: '30px', background: 'linear-gradient(135deg, var(--color-blue) 0%, #1e3a8a 100%)', borderRadius: '15px', color: 'white', textAlign: 'center' }}>
+                        <h2 style={{ fontSize: '2rem', marginBottom: '15px' }}>🎉 Cérémonie d'Ouverture 2026</h2>
+                        <p style={{ fontSize: '1.2rem', marginBottom: '25px', maxWidth: '800px', margin: '0 auto 25px auto', lineHeight: '1.6' }}>
+                            Les Volontaires français vous proposent de vivre ensemble la cérémonie d’ouverture des Jeux Olympiques d’Hiver.
+                            Rejoignez-nous dans l'une des 11 villes participantes pour partager ce moment unique !
+                        </p>
+                        <Link href="/actu/rdv-ceremonie-ouverture-milano-cortina-2026" className="btn-primary" style={{ backgroundColor: '#FFD700', color: '#000', border: 'none', fontWeight: 'bold' }}>
+                            Découvrir les lieux
+                        </Link>
+                    </div>
+
                     {/* Guide Articles Grid - HIDDEN FOR NOW
                     <div style={{ marginTop: '80px' }}>
                         <h2 className="section-title text-center" style={{ marginBottom: '40px' }}>Les articles du guide</h2>

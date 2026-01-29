@@ -35,37 +35,37 @@ export default function Header() {
                     <nav className={`nav ${isMenuOpen ? 'active' : ''}`} id="nav">
                         <ul className="nav-list">
                             <li>
-                                <Link href="/" className={`nav-link ${isActive('/')}`}>
+                                <Link href="/" className={`nav-link ${isActive('/')}`} onClick={() => setIsMenuOpen(false)}>
                                     Accueil
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/equipe" className={`nav-link ${isActive('/equipe')}`}>
+                                <Link href="/equipe" className={`nav-link ${isActive('/equipe')}`} onClick={() => setIsMenuOpen(false)}>
                                     L'équipe
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/actu" className={`nav-link ${isActive('/actu')}`}>
+                                <Link href="/actu" className={`nav-link ${isActive('/actu')}`} onClick={() => setIsMenuOpen(false)}>
                                     Actu
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/on-parle-de-nous" className={`nav-link ${isActive('/on-parle-de-nous')}`}>
+                                <Link href="/on-parle-de-nous" className={`nav-link ${isActive('/on-parle-de-nous')}`} onClick={() => setIsMenuOpen(false)}>
                                     On parle de nous
                                 </Link>
                             </li>
                             <li style={{ margin: '15px 0' }}>
-                                <Link href="/guide-milano-cortina" className={`nav-link ${isActive('/guide-milano-cortina')}`} onClick={() => setIsMenuOpen(false)}>
+                                <Link href="/milano-cortina" className={`nav-link ${isActive('/milano-cortina')}`} onClick={() => setIsMenuOpen(false)}>
                                     Milano Cortina ❄️
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/faq" className={`nav-link ${isActive('/faq')}`}>
+                                <Link href="/faq" className={`nav-link ${isActive('/faq')}`} onClick={() => setIsMenuOpen(false)}>
                                     FAQ
                                 </Link>
                             </li>
                             <li className="nav-member-mobile">
-                                <Link href="/adhesion" target="_blank" className="nav-link">
+                                <Link href="/adhesion" target="_blank" className="nav-link" onClick={() => setIsMenuOpen(false)}>
                                     Adhérer
                                 </Link>
                             </li>

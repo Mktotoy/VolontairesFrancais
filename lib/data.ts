@@ -45,17 +45,63 @@ export async function fetchGuideArticles(): Promise<Post[]> {
     }
 }
 
-export async function fetchPosts(): Promise<Post[]> {
+export async function fetchPosts(options: { includeNested?: boolean } = { includeNested: false }): Promise<Post[]> {
     try {
-        const files = await fs.readdir(POSTS_DIR);
+        const entries = await fs.readdir(POSTS_DIR, { withFileTypes: true });
+
         const posts = await Promise.all(
-            files.filter(f => f.endsWith('.md')).map(async (file) => {
-                const content = await fs.readFile(path.join(POSTS_DIR, file), 'utf-8');
-                const { data } = matter(content);
-                return { ...data, slug: file.replace('.md', '') } as Post;
+            entries.map(async (entry) => {
+                try {
+                    // 1. Standard top-level post: "my-post.md" -> slug "my-post"
+                    if (entry.isFile() && entry.name.endsWith('.md')) {
+                        const content = await fs.readFile(path.join(POSTS_DIR, entry.name), 'utf-8');
+                        const { data } = matter(content);
+                        return [{ ...data, slug: entry.name.replace('.md', '') } as Post];
+                    }
+
+                    // 2. Directory: check for "index.md" and sub-pages
+                    if (entry.isDirectory()) {
+                        const dirPath = path.join(POSTS_DIR, entry.name);
+                        const dirEntries = await fs.readdir(dirPath, { withFileTypes: true });
+
+                        const dirPosts = await Promise.all(dirEntries.map(async (subEntry) => {
+                            if (subEntry.isFile() && subEntry.name.endsWith('.md')) {
+                                // If includeNested is false, ONLY allow index.md
+                                if (!options.includeNested && subEntry.name !== 'index.md') {
+                                    return null;
+                                }
+
+                                const subContent = await fs.readFile(path.join(dirPath, subEntry.name), 'utf-8');
+                                const { data } = matter(subContent);
+
+                                // Slug logic:
+                                // "index.md" -> slug "directory-name" (e.g. "rdv-2026")
+                                // "other.md" -> slug "directory-name/other" (e.g. "rdv-2026/nice")
+
+                                const slug = subEntry.name === 'index.md'
+                                    ? entry.name
+                                    : `${entry.name}/${subEntry.name.replace('.md', '')}`;
+
+                                return { ...data, slug } as Post;
+                            }
+                            return null;
+                        }));
+
+                        return dirPosts.filter(Boolean) as Post[];
+                    }
+
+                    return [];
+                } catch (e) {
+                    console.warn(`Error processing ${entry.name}`, e);
+                    return [];
+                }
             })
         );
-        return posts
+
+        // Flatten the array of arrays
+        const allPosts = posts.flat().filter((p): p is Post => p !== null);
+
+        return allPosts
             .filter(p => p.status === 'published')
             .sort((a, b) => {
                 const dateA = a.published_at ? new Date(a.published_at).getTime() : 0;
@@ -69,22 +115,40 @@ export async function fetchPosts(): Promise<Post[]> {
 }
 
 export async function fetchLatestPosts(limit: number = 3): Promise<Post[]> {
-    const posts = await fetchPosts();
+    const posts = await fetchPosts(); // Default: includeNested = false
     return posts.filter(p => p.featured === true).slice(0, limit);
 }
 
 export async function fetchPost(slug: string): Promise<Post | null> {
     try {
-        // Try finding in posts first
-        let filePath = path.join(POSTS_DIR, `${slug}.md`);
+        // Handle nested slugs by trying distinct paths
+        // 1. Exact match (e.g. "foo.md" or "folder/bar.md")
+        const exactPath = path.join(POSTS_DIR, `${slug}.md`);
+
+        // 2. Directory index match (e.g. "folder/index.md" for slug "folder")
+        const indexPath = path.join(POSTS_DIR, slug, 'index.md');
+
         let fileContent;
+        let filePath;
 
         try {
-            fileContent = await fs.readFile(filePath, 'utf-8');
+            fileContent = await fs.readFile(exactPath, 'utf-8');
+            filePath = exactPath;
         } catch {
-            // If not found, try guide directory
-            filePath = path.join(GUIDE_DIR, `${slug}.md`);
-            fileContent = await fs.readFile(filePath, 'utf-8');
+            try {
+                fileContent = await fs.readFile(indexPath, 'utf-8');
+                filePath = indexPath;
+            } catch {
+                // If not found in posts, try guide directory (legacy behavior)
+                // Note: Guide doesn't seem to use nested structure based on current usage, keeping simple
+                const guidePath = path.join(GUIDE_DIR, `${slug}.md`);
+                try {
+                    fileContent = await fs.readFile(guidePath, 'utf-8');
+                    filePath = guidePath;
+                } catch {
+                    return null;
+                }
+            }
         }
 
         const { data, content } = matter(fileContent);

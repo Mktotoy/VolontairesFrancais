@@ -22,6 +22,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/guide-milano-cortina',
+        destination: '/milano-cortina',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
