@@ -3,7 +3,7 @@ import { fetchPosts } from '@/lib/data';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await fetchPosts({ includeNested: true });
-    const baseUrl = 'https://volontaires-francais.fr'; // Replace with actual domain
+    const baseUrl = 'https://volontairesfrancais.fr';
 
     // Base routes
     const routes = [
