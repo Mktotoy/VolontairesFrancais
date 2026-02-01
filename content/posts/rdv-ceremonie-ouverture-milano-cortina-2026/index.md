@@ -53,7 +53,7 @@ Pour y participer, rien de plus simple : il vous suffit de contacter le volontai
     <h3>🦁 LYON</h3>
     <div class="event-card-content">
       <p>📅 6 Février</p>
-      <p>📍 <strong>Ninkasi Vaise Industrie</strong>, 8 rue de la navigation 69009 Lyon</p>
+      <p>📍 <em><a href="https://www.google.com/maps/search/?api=1&query=Ninkasi+Vaise+Industrie+8+rue+de+la+navigation+69009+Lyon" target="_blank">Ninkasi Vaise Industrie, 8 rue de la navigation 69009 Lyon</a></em></p>
       <p>📞 Contact : Jérôme Tschupp 06 88 04 62 72</p>
       <p>👉 <a href="/actu/rdv-ceremonie-ouverture-milano-cortina-2026/lyon">Détails & Infos</a></p>
     </div>
