@@ -16,6 +16,39 @@ export default async function ActuPage() {
 
   return (
     <>
+      <style>{`
+        .article-content {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .article-image {
+          width: 100%;
+        }
+        @media (min-width: 768px) {
+          .article-content {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 30px;
+          }
+          .article-image {
+            width: 40%;
+            flex-shrink: 0;
+            max-width: 400px;
+          }
+          .article-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+          }
+          .article-preview {
+            margin-bottom: 20px;
+          }
+          .btn-read-more {
+            align-self: flex-start;
+          }
+        }
+      `}</style>
       <section className="page-header">
         <div className="container">
           <h1 className="page-title">Actualités</h1>
@@ -46,17 +79,19 @@ export default async function ActuPage() {
                   <div className="article-content">
                     {image && (
                       <div className="article-image">
-                        <img src={image} alt={post.title} style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                        <img src={image} alt={post.title} style={{ width: '100%', maxHeight: '450px', objectFit: 'contain', borderRadius: '8px', marginBottom: '16px' }} />
                       </div>
                     )}
-                    {preview && <div className="article-preview" dangerouslySetInnerHTML={{ __html: preview }} />}
-                    <Link
-                      href={`/actu/${post.slug}`}
-                      className="btn-read-more"
-                      style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                    >
-                      Lire l’article <i className="fas fa-chevron-right"></i>
-                    </Link>
+                    <div className="article-text">
+                      {preview && <div className="article-preview" dangerouslySetInnerHTML={{ __html: preview }} />}
+                      <Link
+                        href={`/actu/${post.slug}`}
+                        className="btn-read-more"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginTop: 'auto' }}
+                      >
+                        Lire l’article <i className="fas fa-chevron-right"></i>
+                      </Link>
+                    </div>
                   </div>
                 </article>
               );

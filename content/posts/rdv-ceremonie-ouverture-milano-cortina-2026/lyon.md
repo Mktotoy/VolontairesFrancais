@@ -19,7 +19,7 @@ Les Volontaires français de **Lyon** vous proposent de vivre ensemble la céré
 
 ### 📅 Rendez-vous le 6 Février
 
-📍 **Lieu** : **Ninkasi Vaise Industrie**, 8 rue de la navigation 69009 Lyon
+📍 **Lieu** : <em><a href="https://www.google.com/maps/search/?api=1&query=Ninkasi+Vaise+Industrie+8+rue+de+la+navigation+69009+Lyon" target="_blank">Ninkasi Vaise Industrie, 8 rue de la navigation 69009 Lyon</a></em>
 
 📞 **Contact** : Jérôme Tschupp 06 88 04 62 72
 
