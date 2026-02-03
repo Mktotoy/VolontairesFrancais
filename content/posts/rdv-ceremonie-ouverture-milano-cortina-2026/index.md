@@ -103,7 +103,7 @@ Pour y participer, rien de plus simple : il vous suffit de contacter le volontai
     <div class="event-card-content">
       <p>📅 6 Février à 19h</p>
       <p>📍 <em><a href="https://www.google.com/maps/search/?api=1&query=CDOS+81+Maison+des+sports+Albi" target="_blank">CDOS 81, Maison des sports</a></em></p>
-      <p>📧 Contact : philippe.augel@wanadoo.fr</p>
+      <p>📧 Contact : philippe.auge1@wanadoo.fr</p>
       <p>👉 <a href="/actu/rdv-ceremonie-ouverture-milano-cortina-2026/albi">Détails & Infos</a></p>
     </div>
   </div>

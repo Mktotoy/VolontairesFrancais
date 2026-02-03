@@ -57,23 +57,25 @@ export default async function PressPage() {
                                     <div className="article-content">
                                         {image && (
                                             <div className="article-image">
-                                                <img src={image} alt={article.title} style={{ width: '100%', borderRadius: '8px', marginBottom: '16px', objectFit: 'cover', maxHeight: '300px' }} />
+                                                <img src={image} alt={article.title} style={{ maxWidth: '100%', borderRadius: '8px', marginBottom: '16px', objectFit: 'contain', maxHeight: '300px', width: 'auto' }} />
                                             </div>
                                         )}
-                                        {article.extract && (
-                                            <div className="article-preview">
-                                                <p>{article.extract}</p>
-                                            </div>
-                                        )}
-                                        <a
-                                            href={article.url}
-                                            className="btn-read-more"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                                        >
-                                            {article.cta_label || 'Lire l’article'} <i className={`fas ${article.cta_label ? 'fa-play-circle' : 'fa-external-link-alt'}`}></i>
-                                        </a>
+                                        <div className="article-text">
+                                            {article.extract && (
+                                                <div className="article-preview">
+                                                    <p>{article.extract}</p>
+                                                </div>
+                                            )}
+                                            <a
+                                                href={article.url}
+                                                className="btn-read-more"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                                            >
+                                                {article.cta_label || 'Lire l’article'} <i className={`fas ${article.cta_label ? 'fa-play-circle' : 'fa-external-link-alt'}`}></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </article>
                             );
