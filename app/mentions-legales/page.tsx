@@ -11,9 +11,13 @@ export default function MentionsLegalesPage() {
                 <div className="container">
                     <div className="legal-content">
                         <h2>1. Éditeur du site</h2>
-                        <p><strong>Association Volontaires français</strong></p>
-                        <p>Association loi 1901</p>
-                        <p>Année de création : 2025</p>
+                        <p><strong>Association <a href="https://www.journal-officiel.gouv.fr/pages/associations-detail-annonce/?q.id=id:202500442684" target="_blank" rel="noopener noreferrer">VOLONTAIRES FRANÇAIS</a></strong></p>
+                        <p>Associations loi du 1er juillet 1901</p>
+                        <p>Parue le : 4 novembre 2025</p>
+                        <p>Type d’annonce : Création</p>
+                        <p>Numéro RNA : W941020752</p>
+                        <p>N° de parution : 20250044</p>
+                        <p>N° d’annonce : 2684</p>
 
                         <h3>Siège social</h3>
                         <p>
@@ -52,13 +56,16 @@ export default function MentionsLegalesPage() {
                             l'association Volontaires français.
                         </p>
 
-                        <h2>4. Hébergement</h2>
+                        <h2>4. Hébergement et Développement</h2>
                         <p>
                             Ce site est hébergé par :<br />
                             <strong>Replit, Inc.</strong><br />
                             548 Market St., PMB 94476<br />
                             San Francisco, CA 94104-5401<br />
                             États-Unis
+                        </p>
+                        <p>
+                            Développement : <a href="https://revalo.fr/auteur/thomas-aonzo" target="_blank" rel="nofollow">Thomas Aonzo</a>
                         </p>
 
                         <h2>5. Propriété intellectuelle</h2>
