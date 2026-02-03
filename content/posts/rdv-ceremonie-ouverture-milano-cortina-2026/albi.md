@@ -21,7 +21,7 @@ Les Volontaires français de **Albi** vous proposent de vivre ensemble la céré
 
 📍 **Lieu** : <a href="https://www.google.com/maps/search/?api=1&query=CDOS+81+Maison+des+sports+Albi" target="_blank">CDOS 81, Maison des sports</a>
 
-📧 **Contact** : philippe.augel@wanadoo.fr
+📧 **Contact** : philippe.auge1@wanadoo.fr
 
 ---
 

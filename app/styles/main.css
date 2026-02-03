@@ -1791,6 +1791,36 @@ img {
     text-decoration: underline;
 }
 
+
 .event-card a:hover {
     color: var(--color-red);
+}
+
+@media (min-width: 900px) {
+    .article-content {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    .article-image {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+    
+    .article-image img {
+        margin-bottom: 0 !important;
+    }
+
+    .article-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .btn-read-more {
+        margin-left: 0;
+        align-self: flex-start;
+    }
 }
