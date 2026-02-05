@@ -43,7 +43,7 @@ Pour y participer, rien de plus simple : il vous suffit de contacter le volontai
     <h3>🌴 NICE</h3>
     <div class="event-card-content">
       <p>📅 6 Février</p>
-      <p>📍 <em>Lieu annoncé le 2 février</em></p>
+      <p>📍 Bistrot de l'Opéra, 3 Rue Saint-François de Paule, 06300 Nice</p>
       <p>📧 Contact : emilie.meschi@gmail.com</p>
       <p>👉 <a href="/actu/rdv-ceremonie-ouverture-milano-cortina-2026/nice">Détails & Infos</a></p>
     </div>
