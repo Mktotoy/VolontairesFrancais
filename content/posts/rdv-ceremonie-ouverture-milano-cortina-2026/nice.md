@@ -19,7 +19,7 @@ Les Volontaires français de **Nice** vous proposent de vivre ensemble la céré
 
 ### 📅 Rendez-vous le 6 Février
 
-📍 **Lieu** : _Lieu annoncé le 2 février_
+📍 **Lieu** : Bistrot de l'Opéra, 3 Rue Saint-François de Paule, 06300 Nice
 
 📧 **Contact** : emilie.meschi@gmail.com
 
