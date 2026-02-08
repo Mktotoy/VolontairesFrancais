@@ -23,7 +23,19 @@ export default async function GuidePage() {
             <section className="section-padding">
                 <div className="container">
                     {/* Intro Section - 2 Columns */}
-                    <div className="guide-intro-grid">
+
+                    {/* Gallery Promo Card - TOP OF PAGE */}
+                    <div className="promo-section" style={{ marginBottom: '60px', padding: '30px', background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', borderRadius: '15px', color: 'white', textAlign: 'center', boxShadow: '0 10px 25px rgba(37, 99, 235, 0.2)' }}>
+                        <h2 style={{ fontSize: '2rem', marginBottom: '15px' }}>📸 Galerie Photos Souvenirs</h2>
+                        <p style={{ fontSize: '1.2rem', marginBottom: '25px', maxWidth: '800px', margin: '0 auto 25px auto', lineHeight: '1.6' }}>
+                            Retrouvez les photos de nos membres sur le terrain à Milan, Cortina et Anterselva !
+                        </p>
+                        <Link href="/galerie-milano-cortina" className="btn-primary" style={{ backgroundColor: 'white', color: '#2563eb', border: 'none', fontWeight: 'bold' }}>
+                            Voir la galerie photos
+                        </Link>
+                    </div>
+
+                    <div className="guide-intro-grid" style={{ marginBottom: '80px' }}>
                         <div className="guide-intro-content">
                             <p style={{ marginBottom: '20px', fontSize: '1.2rem', color: 'var(--color-blue)' }}>
                                 <strong>Chère volontaire, cher volontaire,</strong>
