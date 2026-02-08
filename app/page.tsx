@@ -63,48 +63,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* HARDCODED PROMO CARD FOR OPENING CEREMONY - SOCIAL MEDIA TRAFFIC */}
-      <section style={{ padding: '2rem 0', background: '#fff' }}>
-        <div className="container">
-          <div style={{
-            background: 'linear-gradient(135deg, var(--color-blue) 0%, #1e3a8a 100%)',
-            borderRadius: '15px',
-            padding: '40px',
-            color: 'white',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.15)'
-          }}>
-            <h2 style={{ fontSize: '2.2rem', marginBottom: '15px', color: '#FFD700', textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
-              🎉 Cérémonie d'Ouverture 2026
-            </h2>
-            <p style={{ fontSize: '1.2rem', marginBottom: '25px', maxWidth: '800px', lineHeight: '1.6' }}>
-              Les Volontaires français vous proposent de vivre ensemble la cérémonie d’ouverture des Jeux Olympiques d’Hiver.
-              Retrouvez toutes les infos pratiques et rejoignez-nous dans l'une des 11 villes participantes !
-            </p>
-            <Link
-              href="/actu/rdv-ceremonie-ouverture-milano-cortina-2026"
-              className="btn-primary"
-              style={{
-                backgroundColor: '#FFD700',
-                color: '#000',
-                border: 'none',
-                fontWeight: 'bold',
-                fontSize: '1.1rem',
-                padding: '15px 40px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '10px'
-              }}
-            >
-              <i className="fas fa-calendar-alt"></i>
-              Découvrir les lieux de rendez-vous
-            </Link>
-          </div>
-        </div>
-      </section>
+
 
       {/* Featured Article Section */}
       {featuredPost && (
