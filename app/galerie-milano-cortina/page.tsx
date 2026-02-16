@@ -1,30 +1,35 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import fs from 'fs';
-import path from 'path';
 
-export const metadata = {
-    title: 'Galerie Photos - Milano Cortina 2026 | Volontaires français',
-    description: 'Découvrez les photos des volontaires français sur le terrain à Milan, Cortina et Anterselva.',
-};
-
-// Function to get images from a directory
-function getImages(dirName: string) {
-    const dirPath = path.join(process.cwd(), 'public', 'assets', 'milano-cortina-photos', dirName);
-    try {
-        const files = fs.readdirSync(dirPath);
-        return files.filter(file => /\.(jpg|jpeg|png|gif)$/i.test(file)).map(file => `/assets/milano-cortina-photos/${dirName}/${file}`);
-    } catch (error) {
-        console.warn(`Could not read directory ${dirName}:`, error);
-        return [];
-    }
+interface Folder {
+    name: string;
+    previewUrl: string | null;
 }
 
-import GalleryLightbox from '@/components/GalleryLightbox';
-
 export default function GalleryPage() {
-    const cortinaImages = getImages('cortina');
-    const milanImages = getImages('milan');
-    const anterselvaImages = getImages('anterselva');
+    const [folders, setFolders] = useState<Folder[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchFolders = async () => {
+        setLoading(true);
+        try {
+            const res = await fetch('/api/photos?mode=folders');
+            const data = await res.json();
+            if (Array.isArray(data)) {
+                setFolders(data);
+            }
+        } catch (error) {
+            console.error('Failed to fetch folders:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchFolders();
+    }, []);
 
     return (
         <>
@@ -43,46 +48,116 @@ export default function GalleryPage() {
                         </Link>
                         <p style={{ fontSize: '1.2rem', lineHeight: '1.8' }}>
                             Retrouvez ici les photos partagées par les membres de l'association présents sur les différents sites des Jeux Olympiques et Paralympiques de Milan-Cortina 2026.
-                            <br />
-                            <em style={{ fontSize: '0.9rem', color: '#666' }}>(Cliquez sur une photo pour l'agrandir)</em>
+                            Choisissez un événement pour voir les photos :
                         </p>
                     </div>
 
-                    {/* Cortina Section */}
-                    {cortinaImages.length > 0 && (
-                        <div style={{ marginBottom: '80px' }}>
-                            <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '2px solid var(--color-blue)', paddingBottom: '10px', display: 'inline-block' }}>
-                                🏔️ Cortina d'Ampezzo
-                            </h2>
-                            <GalleryLightbox images={cortinaImages} />
+                    {loading ? (
+                        <div style={{ textAlign: 'center', padding: '3rem' }}>
+                            <i className="fas fa-spinner fa-spin fa-2x"></i>
                         </div>
-                    )}
-
-                    {/* Milan Section */}
-                    {milanImages.length > 0 && (
-                        <div style={{ marginBottom: '80px' }}>
-                            <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '2px solid var(--color-blue)', paddingBottom: '10px', display: 'inline-block' }}>
-                                🏙️ Milano
-                            </h2>
-                            <GalleryLightbox images={milanImages} />
+                    ) : folders.length === 0 ? (
+                        <div className="empty-state" style={{ textAlign: 'center', padding: '3rem', background: '#f8f9fa', borderRadius: '15px', margin: '20px 0' }}>
+                            <i className="fas fa-folder-open fa-3x" style={{ color: '#dee2e6', marginBottom: '1rem' }}></i>
+                            <p>Aucun dossier d'événement trouvé dans le stockage.</p>
                         </div>
-                    )}
-
-                    {/* Anterselva Section */}
-                    {anterselvaImages.length > 0 && (
-                        <div style={{ marginBottom: '80px' }}>
-                            <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '2px solid var(--color-blue)', paddingBottom: '10px', display: 'inline-block' }}>
-                                🎯 Anterselva / Antholz
-                            </h2>
-                            <GalleryLightbox images={anterselvaImages} />
+                    ) : (
+                        <div className="event-grid">
+                            {folders.map((folder) => (
+                                <Link
+                                    key={folder.name}
+                                    href={`/galerie-milano-cortina/${folder.name}`}
+                                    className="event-card"
+                                >
+                                    <div className="event-preview">
+                                        {folder.previewUrl ? (
+                                            <img src={folder.previewUrl} alt={folder.name} loading="lazy" />
+                                        ) : (
+                                            <div className="event-icon">
+                                                <i className="fas fa-camera-retro"></i>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="event-info">
+                                        <h3>{folder.name.charAt(0).toUpperCase() + folder.name.slice(1)}</h3>
+                                    </div>
+                                    <div className="event-arrow">
+                                        <i className="fas fa-chevron-right"></i>
+                                    </div>
+                                </Link>
+                            ))}
                         </div>
-                    )}
-
-                    {cortinaImages.length === 0 && milanImages.length === 0 && anterselvaImages.length === 0 && (
-                        <p>Aucune photo pour le moment.</p>
                     )}
                 </div>
             </section>
+
+            <style jsx>{`
+                .event-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    gap: 30px;
+                    margin: 20px 0;
+                }
+                .event-card {
+                    display: flex;
+                    flex-direction: column;
+                    background: white;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+                    text-decoration: none;
+                    color: inherit;
+                    transition: all 0.3s ease;
+                    border: 1px solid #eee;
+                    overflow: hidden;
+                }
+                .event-card:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+                    border-color: var(--color-blue);
+                }
+                .event-preview {
+                    width: 100%;
+                    height: 200px;
+                    background: #f8f9fa;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    border-bottom: 1px solid #eee;
+                }
+                .event-preview img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                .event-icon {
+                    font-size: 2.5rem;
+                    color: #007bff;
+                }
+                .event-info {
+                    padding: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                .event-info h3 {
+                    margin: 0 0 5px 0;
+                    font-size: 1.25rem;
+                    color: #333;
+                }
+                .event-info p {
+                    margin: 0;
+                    font-size: 0.9rem;
+                    color: #666;
+                }
+                .event-arrow {
+                    color: #ccc;
+                    transition: color 0.3s;
+                }
+                .event-card:hover .event-arrow {
+                    color: #007bff;
+                }
+            `}</style>
         </>
     );
 }

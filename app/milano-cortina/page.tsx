@@ -25,7 +25,7 @@ export default async function GuidePage() {
                     {/* Intro Section - 2 Columns */}
 
                     {/* Gallery Promo Card - TOP OF PAGE */}
-                    <div className="promo-section" style={{ marginBottom: '60px', padding: '30px', background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', borderRadius: '15px', color: 'white', textAlign: 'center', boxShadow: '0 10px 25px rgba(37, 99, 235, 0.2)' }}>
+                    <div className="promo-section" style={{ margin: '40px 0 80px 0', padding: '30px', background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', borderRadius: '15px', color: 'white', textAlign: 'center', boxShadow: '0 10px 25px rgba(37, 99, 235, 0.2)' }}>
                         <h2 style={{ fontSize: '2rem', marginBottom: '15px' }}>📸 Galerie Photos Souvenirs</h2>
                         <p style={{ fontSize: '1.2rem', marginBottom: '25px', maxWidth: '800px', margin: '0 auto 25px auto', lineHeight: '1.6' }}>
                             Retrouvez les photos de nos membres sur le terrain à Milan, Cortina et Anterselva !
@@ -35,7 +35,24 @@ export default async function GuidePage() {
                         </Link>
                     </div>
 
-                    <div className="guide-intro-grid" style={{ marginBottom: '80px' }}>
+                    {/* YouTube Short Section */}
+                    <div className="video-section" style={{ marginBottom: '80px', textAlign: 'center' }}>
+                        <h2 style={{ fontSize: '1.8rem', marginBottom: '30px', color: 'var(--color-blue)' }}>Des nouvelles du terrain ! 🎥</h2>
+                        <div style={{ maxWidth: '350px', margin: '0 auto', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
+                            <div style={{ position: 'relative', paddingTop: '177.77%' }}>
+                                <iframe
+                                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                                    src="https://www.youtube.com/embed/NZGmdQsGZDk"
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="guide-intro-grid" style={{ marginBottom: '80px', marginTop: '40px' }}>
                         <div className="guide-intro-content">
                             <p style={{ marginBottom: '20px', fontSize: '1.2rem', color: 'var(--color-blue)' }}>
                                 <strong>Chère volontaire, cher volontaire,</strong>
