@@ -261,7 +261,15 @@ export default function Questionnaire() {
 
     const visibleQuestions = QUESTIONS.filter(q => !q.condition || q.condition(answers));
     const currentQuestion = visibleQuestions[currentIndex];
-    const progress = Math.round((currentIndex / (visibleQuestions.length - 1)) * 100);
+
+    // UI Logic
+    const percentage = Math.round(((currentIndex + 1) / visibleQuestions.length) * 100);
+    const getNPSColor = (num: number) => {
+        if (num <= 3) return '#eb2f50'; // Red
+        if (num <= 6) return '#fcb133'; // Yellow/Orange
+        if (num <= 8) return '#86c232'; // Light Green
+        return '#07a459'; // Green
+    };
 
     useEffect(() => {
         const savedAnswers = localStorage.getItem('retex_survey_v2_answers');
@@ -289,6 +297,37 @@ export default function Questionnaire() {
         }
     };
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
+
+    // CONFIGURATION: Remplacez cette URL par l'URL de votre application web Google Apps Script
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYDdn2KAYaWc-AwO6MYO6Tx7aFBvK-5BN4CuLiHdBQHLqhoE5e1PZ_PI1MGm97O8Fs/exec";
+
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const response = await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Apps Script requires no-cors if not handling preflight/headers specifically
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(answers)
+            });
+
+            // Note: with no-cors, we won't get a proper JSON response back but the data is sent
+            setIsSubmitted(true);
+            localStorage.removeItem('retex_survey_v2_answers');
+            localStorage.removeItem('retex_survey_v2_index');
+        } catch (error) {
+            console.error("Submission error:", error);
+            setSubmitError("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     const handleNext = useCallback(() => {
         if (currentIndex < visibleQuestions.length - 1) {
             setCurrentIndex(currentIndex + 1);
@@ -301,6 +340,13 @@ export default function Questionnaire() {
 
     const setValue = (val: any) => {
         setAnswers(prev => ({ ...prev, [currentQuestion.id]: val }));
+    };
+
+    const toggleMultiValue = (opt: string) => {
+        const selected = answers[currentQuestion.id] || [];
+        const isActive = selected.includes(opt);
+        if (isActive) setValue(selected.filter((s: string) => s !== opt));
+        else setValue([...selected, opt]);
     };
 
     const canGoNext = () => {
@@ -330,9 +376,9 @@ export default function Questionnaire() {
                     </div>
                     <div className="progress-wrap">
                         <div className="progress-bar">
-                            <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+                            <div className="progress-fill" style={{ width: `${percentage}%` }}></div>
                         </div>
-                        <span className="step-count">{currentIndex + 1} / {visibleQuestions.length}</span>
+                        <span className="step-count">{currentIndex + 1} / {visibleQuestions.length} ({percentage}%)</span>
                     </div>
                 </header>
 
@@ -364,10 +410,7 @@ export default function Questionnaire() {
                                         <button
                                             key={opt}
                                             className={`bubble-btn multi ${isActive ? 'active' : ''}`}
-                                            onClick={() => {
-                                                if (isActive) setValue(selected.filter((s: string) => s !== opt));
-                                                else setValue([...selected, opt]);
-                                            }}
+                                            onClick={() => toggleMultiValue(opt)}
                                         >
                                             {opt}
                                             {isActive && <i className="fas fa-check-circle ml-2"></i>}
@@ -384,6 +427,12 @@ export default function Questionnaire() {
                                         <button
                                             key={num}
                                             className={`nps-btn ${answers[currentQuestion.id] === num ? 'active' : ''}`}
+                                            style={{
+                                                '--hover-color': getNPSColor(num),
+                                                borderColor: answers[currentQuestion.id] === num ? getNPSColor(num) : 'rgba(255,255,255,0.1)',
+                                                backgroundColor: answers[currentQuestion.id] === num ? getNPSColor(num) : 'rgba(255,255,255,0.05)',
+                                                color: answers[currentQuestion.id] === num ? '#fff' : '#fff'
+                                            } as any}
                                             onClick={() => {
                                                 setValue(num);
                                                 setTimeout(handleNext, 400);
@@ -415,6 +464,27 @@ export default function Questionnaire() {
                         {currentQuestion.type === 'info' && (
                             <div className="info-decor">
                                 <i className={`fas ${currentQuestion.id === 'merci' ? 'fa-check-circle' : 'fa-star'} fa-4x`}></i>
+                                {currentQuestion.id === 'merci' && (
+                                    <div className="submit-status">
+                                        {isSubmitting && <p className="status-text loading"><i className="fas fa-spinner fa-spin"></i> Envoi en cours...</p>}
+                                        {isSubmitted && (
+                                            <div className="success-area">
+                                                <p className="status-text success"><i className="fas fa-check"></i> Vos réponses ont été enregistrées !</p>
+                                                <div className="finish-ctas">
+                                                    <Link href="/" className="cta-box">
+                                                        <i className="fas fa-search"></i>
+                                                        <span>Découvrir l'association</span>
+                                                    </Link>
+                                                    <Link href="/adhesion" className="cta-box highlight">
+                                                        <i className="fas fa-id-card"></i>
+                                                        <span>Adhérer à l'association</span>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        )}
+                                        {submitError && <p className="status-text error"><i className="fas fa-exclamation-triangle"></i> {submitError}</p>}
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>
@@ -427,13 +497,25 @@ export default function Questionnaire() {
                     </div>
 
                     <div className="nav-area">
-                        {currentIndex > 0 && (
+                        {currentIndex > 0 && !isSubmitted && (
                             <button onClick={handlePrev} className="nav-btn prev">Précédent</button>
                         )}
                         {currentIndex < visibleQuestions.length - 1 ? (
                             <button onClick={handleNext} disabled={!canGoNext()} className="nav-btn next">Suivant</button>
                         ) : (
-                            <Link href="/" className="nav-btn finish">Aller au site</Link>
+                            <>
+                                {!isSubmitted ? (
+                                    <button
+                                        onClick={handleSubmit}
+                                        disabled={isSubmitting}
+                                        className="nav-btn finish pulse"
+                                    >
+                                        {isSubmitting ? 'Envoi...' : 'Envoyer mes réponses'}
+                                    </button>
+                                ) : (
+                                    <Link href="/" className="nav-btn site-back">Retour au site principal</Link>
+                                )}
+                            </>
                         )}
                     </div>
                 </footer>
@@ -507,9 +589,35 @@ export default function Questionnaire() {
                     align-items: center;
                     justify-content: center;
                 }
-                .nps-btn:hover { background: rgba(255,255,255,0.1); border-color: white; }
-                .nps-btn.active { background: #fcb133; color: #333; border-color: #fcb133; transform: scale(1.1); box-shadow: 0 10px 20px rgba(252, 177, 51, 0.3); }
+                .nps-btn:hover { border-color: var(--hover-color) !important; background: rgba(255,255,255,0.1); }
+                .nps-btn.active { transform: scale(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
                 .nps-labels { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700; opacity: 0.7; color: white; text-transform: uppercase; letter-spacing: 0.5px; }
+
+                .progress-info { display: flex; justify-content: space-between; width: 100%; font-size: 0.8rem; font-weight: 700; color: white; margin-bottom: 4px; opacity: 0.8; }
+
+                .finish-ctas { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+                .cta-box {
+                    flex: 1;
+                    max-width: 200px;
+                    padding: 1.5rem 1rem;
+                    background: rgba(255,255,255,0.1);
+                    border: 2px solid rgba(255,255,255,0.1);
+                    border-radius: 12px;
+                    color: white;
+                    text-decoration: none;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.75rem;
+                    transition: all 0.2s;
+                    font-weight: 700;
+                    text-align: center;
+                }
+                .cta-box i { font-size: 1.5rem; }
+                .cta-box span { font-size: 0.9rem; }
+                .cta-box:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); border-color: white; }
+                .cta-box.highlight { background: #fcb133; color: #333; border-color: #fcb133; }
+                .cta-box.highlight:hover { background: #ffc25b; transform: translateY(-3px); }
 
                 .open-input {
                     width: 100%;
@@ -543,8 +651,22 @@ export default function Questionnaire() {
                     text-decoration: none;
                 }
                 .nav-btn.next, .nav-btn.finish { background: white; color: #067fcc; }
+                .nav-btn.site-back { background: #07a459; color: white; border-color: #07a459; }
                 .nav-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
                 .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+                .pulse { animation: ripple 2s infinite; }
+                @keyframes ripple {
+                    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+                    70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+                    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+                }
+
+                .submit-status { margin-top: 2rem; }
+                .status-text { font-size: 1.1rem; font-weight: 600; }
+                .status-text.loading { color: #fcb133; }
+                .status-text.success { color: #07a459; }
+                .status-text.error { color: #eb2f50; }
 
                 @media (max-width: 600px) {
                     .label-text { font-size: 1.8rem; }
