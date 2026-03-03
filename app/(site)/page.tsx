@@ -208,7 +208,7 @@ export default async function Home() {
           <p style={{ fontSize: '1.2rem', marginBottom: '2rem', maxWidth: '800px', margin: '0 auto 2rem' }}>
             Découvrez les photos de nos rassemblements, de Paris 2024 aux préparatifs de Milano Cortina 2026.
           </p>
-          <Link href="/galerie" className="btn-primary" style={{ backgroundColor: 'white', color: '#0056b3', border: 'none' }}>
+          <Link href="/galerie-milano-cortina" className="btn-primary" style={{ backgroundColor: 'white', color: '#0056b3', border: 'none' }}>
             Voir la Galerie Photo
             <i className="fas fa-camera" style={{ marginLeft: '10px' }}></i>
           </Link>
