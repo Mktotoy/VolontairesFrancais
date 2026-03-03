@@ -1,8 +1,4 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
-import PageAnimations from "@/components/PageAnimations";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./styles/main.css";
 
@@ -31,11 +27,7 @@ export default function RootLayout({
 
       <body>
         <GoogleAnalytics />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <ScrollToTop />
-        <PageAnimations />
+        {children}
       </body>
     </html>
   );

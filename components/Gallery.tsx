@@ -6,6 +6,7 @@ interface Photo {
     name: string;
     path: string;
     url: string;
+    relativeName: string;
 }
 
 export default function Gallery() {
@@ -60,17 +61,17 @@ export default function Gallery() {
         }
     };
 
-    const handleDelete = async (e: React.MouseEvent, filename: string) => {
+    const handleDelete = async (e: React.MouseEvent, relativeName: string) => {
         e.stopPropagation();
         if (!confirm('Voulez-vous vraiment supprimer cette photo ?')) return;
 
         try {
-            const res = await fetch(`/api/photos/${encodeURIComponent(filename)}`, {
+            const res = await fetch(`/api/photos/${encodeURIComponent(relativeName)}`, {
                 method: 'DELETE',
             });
             if (res.ok) {
                 await fetchPhotos();
-                if (currentPhoto?.name === filename) {
+                if (currentPhoto?.relativeName === relativeName) {
                     closeLightbox();
                 }
             }
@@ -136,7 +137,7 @@ export default function Gallery() {
                                 <i className="fas fa-search-plus"></i>
                                 <button
                                     className="delete-btn"
-                                    onClick={(e) => handleDelete(e, photo.name)}
+                                    onClick={(e) => handleDelete(e, photo.relativeName)}
                                     title="Supprimer"
                                     style={{
                                         position: 'absolute',

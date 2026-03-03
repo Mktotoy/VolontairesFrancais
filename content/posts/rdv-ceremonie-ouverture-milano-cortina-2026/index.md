@@ -12,7 +12,7 @@ seo:
   title: 'On se retrouve pour la Cérémonie d’Ouverture de Milano Cortina 2026 ! '
   meta_description: "Les Volontaires français vous proposent de vivre ensemble la cérémonie d’ouverture des Jeux Olympiques d’Hiver de Milano Cortina \U0001F3D4️✨"
   og_image: 072939a3-88ec-4ed5-babd-72cc5824478d.jpeg
-featured: true
+featured: false
 featured_picture: /assets/posts/ImagsCeermonies/CeremonieCouverture.jpeg
 gallery:
   - src: /assets/posts/ImagsCeermonies/CeremonieAixEnProvence.jpeg

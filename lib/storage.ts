@@ -8,13 +8,13 @@ export interface PhotoMetadata {
     name: string;
     path: string;
     url: string;
+    relativeName: string;
 }
 
 /**
  * List photos in the 'pictures/' folder, optionally filtered by a sub-folder.
  */
 export async function listPhotos(folder?: string): Promise<PhotoMetadata[]> {
-    const prefix = folder ? `${PREFIX}${folder}/` : PREFIX;
     const { ok, value, error } = await client.list();
 
     if (!ok) {
@@ -22,13 +22,24 @@ export async function listPhotos(folder?: string): Promise<PhotoMetadata[]> {
         return [];
     }
 
+    // Normalize input folder for comparison
+    const normalizedFolder = folder?.trim();
+
     // Filter by prefix and ensure it's not a "folder" placeholder (if any)
     return value
-        .filter((obj: StorageObject) => obj.name.startsWith(prefix) && !obj.name.endsWith('/'))
+        .filter((obj: StorageObject) => {
+            if (!obj.name.startsWith(PREFIX) || obj.name.endsWith('/')) return false;
+
+            if (!normalizedFolder) return true;
+
+            const relativePath = obj.name.replace(PREFIX, '');
+            const parts = relativePath.split('/');
+            if (parts.length < 2) return false;
+
+            // Compare the first part (folder name) trimmed
+            return parts[0].trim() === normalizedFolder;
+        })
         .map((obj: StorageObject) => {
-            // For the URL, we want the relative path from the domain root
-            // But we need to handle the fact that our API route expects a filename
-            // If it's in a subfolder, encodedName should probably include the subfolder path
             const relativePath = obj.name.replace(PREFIX, '');
             // Encode each segment but keep slashes as segments for [...slug]
             const urlPath = relativePath.split('/').map(segment => encodeURIComponent(segment)).join('/');
@@ -36,6 +47,7 @@ export async function listPhotos(folder?: string): Promise<PhotoMetadata[]> {
                 name: relativePath.split('/').pop() || relativePath,
                 path: obj.name,
                 url: `/api/photos/${urlPath}`,
+                relativeName: relativePath,
             };
         });
 }
@@ -57,7 +69,8 @@ export async function listFolders(): Promise<{ name: string; previewUrl: string 
             const relativePath = obj.name.replace(PREFIX, '');
             const parts = relativePath.split('/');
             if (parts.length > 1) {
-                const folderName = parts[0];
+                const rawFolderName = parts[0];
+                const folderName = rawFolderName.trim();
                 const fileName = parts[1];
 
                 if (!folderMap.has(folderName)) {
@@ -65,8 +78,9 @@ export async function listFolders(): Promise<{ name: string; previewUrl: string 
                 }
 
                 // If this is an image and we don't have a preview yet, use it
+                // We use the rawFolderName for the URL to ensure it matches the actual storage path
                 if (fileName && /\.(jpg|jpeg|png|gif|webp)$/i.test(fileName) && !folderMap.get(folderName)) {
-                    folderMap.set(folderName, `/api/photos/${encodeURIComponent(folderName)}/${encodeURIComponent(fileName)}`);
+                    folderMap.set(folderName, `/api/photos/${encodeURIComponent(rawFolderName)}/${encodeURIComponent(fileName)}`);
                 }
             }
         }

@@ -202,6 +202,19 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="gallery-cta section-padding" style={{ padding: '4rem 0', backgroundColor: '#0056b3', color: 'white' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <h2 className="section-title" style={{ color: 'white' }}>Revivez nos moments forts</h2>
+          <p style={{ fontSize: '1.2rem', marginBottom: '2rem', maxWidth: '800px', margin: '0 auto 2rem' }}>
+            Découvrez les photos de nos rassemblements, de Paris 2024 aux préparatifs de Milano Cortina 2026.
+          </p>
+          <Link href="/galerie" className="btn-primary" style={{ backgroundColor: 'white', color: '#0056b3', border: 'none' }}>
+            Voir la Galerie Photo
+            <i className="fas fa-camera" style={{ marginLeft: '10px' }}></i>
+          </Link>
+        </div>
+      </section>
+
       <section className="mission">
         <div className="container">
           <h2 className="section-title">Notre Mission</h2>
