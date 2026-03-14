@@ -29,14 +29,24 @@ const SECTIONS = [
     'Divers'
 ];
 
+const INTRO_MESSAGE = `Bonjour,
+Les Jeux d'hiver de Milano Cortina se sont achevés ce dimanche 15 mars. En tant que Français(e) engagé(e) sur le terrain, vous avez eu l’honneur de vivre l'événement de l'intérieur.
+Notre association Volontaires français lance une grande consultation auprès des 550 volontaires français mobilisés en Italie.
+
+Pourquoi cette démarche ?
+Dans quatre ans, la France accueillera les Jeux d'hiver (Alpes 2030). Les organisateurs vont bientôt concevoir le futur programme des volontaires. Pour s'assurer que les conditions d'accueil, d'hébergement et de mission soient optimales, nous avons besoin de nous appuyer sur votre réalité de terrain. Ce qui a fonctionné, ce qui a posé problème, et ce qu'il faut absolument éviter en France.
+
+Nous avons préparé ce questionnaire de retour d'expérience (RETEX) complet. Vos réponses nous permettront de construire un bilan concret que nous porterons auprès des futurs organisateurs.
+Cela vous prendra une dizaine de minutes.
+
+À la fin de ce questionnaire, si vous souhaitez prolonger l'aventure et garder le lien avec notre communauté des volontaires pour de futurs événements, vous trouverez les informations pour rejoindre notre association.
+
+Un grand merci par avance pour le temps que vous accorderez à cette enquête. Bon retour et bon repos !
+
+Sportivement,
+L'équipe de l'association Volontaires français`;
+
 const QUESTIONS: Question[] = [
-    {
-        id: 'intro',
-        type: 'info',
-        section: 'Profil',
-        label: 'RETEX – Questionnaire Volontaires V3',
-        description: 'Merci de prendre quelques minutes pour partager votre expérience en tant que volontaire aux Jeux de Milano Cortina 2026.',
-    },
     // 1) Qui sont les volontaires ? (Profil)
     {
         id: 'age',
@@ -58,12 +68,12 @@ const QUESTIONS: Question[] = [
         id: 'region',
         type: 'select',
         section: 'Profil',
-        label: 'Région géographique',
+        label: 'Zone géographique',
         options: [
             'Auvergne-Rhône-Alpes', 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire',
             'Corse', 'Grand Est', 'Hauts-de-France', 'Île-de-France', 'Normandie',
             'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Côte d’Azur',
-            'Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte', 'Expatriés français (précisez à l’étape suivante)'
+            'Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte', 'Expatriés français (précisez le pays)'
         ],
         required: true
     },
@@ -81,6 +91,14 @@ const QUESTIONS: Question[] = [
         section: 'Profil',
         label: 'Aviez-vous besoin d’un accompagnement particulier durant votre mission ?',
         options: ['Oui', 'Non'],
+        required: true
+    },
+    {
+        id: 'accompagnement_details',
+        type: 'text',
+        section: 'Profil',
+        label: 'Si oui, lequel :',
+        condition: (a) => a.accompagnement === 'Oui',
         required: true
     },
     {
@@ -123,6 +141,14 @@ const QUESTIONS: Question[] = [
         options: ['Oui', 'Non'],
         required: true
     },
+    {
+        id: 'adherent_vf',
+        type: 'select',
+        section: 'Profil',
+        label: 'Êtes-vous adhérent de l’association Volontaires français ?',
+        options: ['Oui', 'Non'],
+        required: true
+    },
     // 2) Quel rôle lors des Jeux ? (Rôle & Sites)
     {
         id: 'type_jeux',
@@ -136,8 +162,8 @@ const QUESTIONS: Question[] = [
         id: 'sites_zones',
         type: 'multi-select',
         section: 'Rôle & Sites',
-        label: 'Dans quelle(s) zone(s) étiez-vous affecté(e) ?',
-        options: ['MILAN', 'CORTINA D’AMPEZZO', 'VERONA', 'PREDAZZO', 'TESERO', 'LIVIGNO', 'BORMIO', 'ANTERSELVA'],
+        label: 'Quel était votre site d’affectation ?',
+        options: ['MILAN', 'CORTINA D’AMPEZZO', 'VERONA', 'VAL DI FIEMME', 'VALTELLINA', 'ANTERSELVA'],
         required: true
     },
     {
@@ -147,23 +173,14 @@ const QUESTIONS: Question[] = [
         label: 'Précisez votre site à MILAN',
         condition: (a) => a.sites_zones?.includes('MILAN'),
         options: [
-            'San Siro - Cérémonie d’ouverture',
-            'Milano Speed Skating Stadium - Patinage de vitesse',
-            'Milano Ice Hockey Arena Santa Giulia - Hockey sur glace (tournoi masculin et toutes les finales)',
-            'Milano Rho Hockey Arena - Hockey sur glace (premiers matchs masculins), para hockey sur glace',
-            'Ice Skating Arena - Patinage de vitesse sur piste courte / Patinage artistique',
-            'Piazza Duomo - Cérémonie de clôture des Jeux paralympiques',
-            'Village olympique', 'Chauffeur', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (une précision vous sera demandée juste après)'
+            'San Siro – Cérémonie d’ouverture',
+            'Milano Speed Skating Stadium – Patinage de vitesse',
+            'Milano Ice Hockey Arena Santa Giulia – Hockey sur glace (tournoi masculin et toutes les finales)',
+            'Milano Rho Hockey Arena – Hockey sur glace (premiers matchs masculins), para hockey sur glace',
+            'Ice Skating Arena – Patinage de vitesse sur piste courte / Patinage artistique',
+            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Autres (précisez) : __________'
         ],
-        required: true
-    },
-    {
-        id: 'milan_autres',
-        type: 'text',
-        section: 'Rôle & Sites',
-        label: 'Veuillez préciser (MILAN)',
-        condition: (a) => a.milan_venues?.some((v: string) => v.startsWith('Autres')),
         required: true
     },
     {
@@ -173,20 +190,12 @@ const QUESTIONS: Question[] = [
         label: 'Précisez votre site à CORTINA D’AMPEZZO',
         condition: (a) => a.sites_zones?.includes('CORTINA D’AMPEZZO'),
         options: [
-            'Tofane Alpine Skiing Centre - Ski alpin / Para ski alpin / Para snowboard',
-            'Cortina Sliding Centre - Bobsleigh / Skeleton / Luge',
-            'Cortina Curling Olympic Stadium - Curling / Curling fauteuil',
-            'Village olympique', 'Chauffeur', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (une précision vous sera demandée juste après)'
+            'Tofane Alpine Skiing Centre – Ski alpin / Para ski alpin / Para snowboard',
+            'Cortina Sliding Centre – Bobsleigh / Skeleton / Luge',
+            'Cortina Curling Olympic Stadium – Curling / Curling fauteuil',
+            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Autres (précisez) : __________'
         ],
-        required: true
-    },
-    {
-        id: 'cortina_autres',
-        type: 'text',
-        section: 'Rôle & Sites',
-        label: 'Veuillez préciser (CORTINA)',
-        condition: (a) => a.cortina_venues?.some((v: string) => v.startsWith('Autres')),
         required: true
     },
     {
@@ -195,92 +204,36 @@ const QUESTIONS: Question[] = [
         section: 'Rôle & Sites',
         label: 'Précisez votre site à VERONA',
         condition: (a) => a.sites_zones?.includes('VERONA'),
-        options: ['Arènes de Vérone - Cérémonie de clôture des Jeux Olympiques'],
+        options: ['Arènes de Vérone – Cérémonies clôture des Jeux Olympiques et ouverture des Jeux Paralympiques'],
         required: true
     },
     {
-        id: 'predazzo_venues',
+        id: 'fiemme_venues',
         type: 'multi-select',
         section: 'Rôle & Sites',
-        label: 'Précisez votre site à PREDAZZO',
-        condition: (a) => a.sites_zones?.includes('PREDAZZO'),
+        label: 'Précisez votre site à VAL DI FIEMME',
+        condition: (a) => a.sites_zones?.includes('VAL DI FIEMME'),
         options: [
-            'Predazzo Ski Jumping Stadium - Saut à ski / Combiné nordique',
-            'Village olympique', 'Chauffeur', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (une précision vous sera demandée juste après)'
+            'Predazzo Ski Jumping Stadium – Saut à ski / Combiné nordique',
+            'Tesero Cross-Country Skiing Stadium – Ski de fond / Combiné nordique / Para ski de fond / Para biathlon',
+            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Autres (précisez) : __________'
         ],
         required: true
     },
     {
-        id: 'predazzo_autres',
-        type: 'text',
-        section: 'Rôle & Sites',
-        label: 'Veuillez préciser (PREDAZZO)',
-        condition: (a) => a.predazzo_venues?.some((v: string) => v.startsWith('Autres')),
-        required: true
-    },
-    {
-        id: 'tesero_venues',
+        id: 'valtellina_venues',
         type: 'multi-select',
         section: 'Rôle & Sites',
-        label: 'Précisez votre site à TESERO',
-        condition: (a) => a.sites_zones?.includes('TESERO'),
+        label: 'Précisez votre site à VALTELLINA',
+        condition: (a) => a.sites_zones?.includes('VALTELLINA'),
         options: [
-            'Tesero Cross-Country Skiing Stadium - Ski de fond / Combiné nordique / Para ski de fond / Para biathlon',
-            'Chauffeur', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (une précision vous sera demandée juste après)'
+            'Livigno Aerials & Moguls – Ski freestyle',
+            'Livigno Snow Park – Snowboard / Ski acrobatique',
+            'Bormio Stelvio – Ski alpin / Ski alpinisme',
+            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Autres (précisez) : __________'
         ],
-        required: true
-    },
-    {
-        id: 'tesero_autres',
-        type: 'text',
-        section: 'Rôle & Sites',
-        label: 'Veuillez préciser (TESERO)',
-        condition: (a) => a.tesero_venues?.some((v: string) => v.startsWith('Autres')),
-        required: true
-    },
-    {
-        id: 'livigno_venues',
-        type: 'multi-select',
-        section: 'Rôle & Sites',
-        label: 'Précisez votre site à LIVIGNO',
-        condition: (a) => a.sites_zones?.includes('LIVIGNO'),
-        options: [
-            'Livigno Aerials & Moguls - Ski freestyle',
-            'Livigno Snow Park - Snowboard / Ski acrobatique',
-            'Village olympique', 'Chauffeur', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (une précision vous sera demandée juste après)'
-        ],
-        required: true
-    },
-    {
-        id: 'livigno_autres',
-        type: 'text',
-        section: 'Rôle & Sites',
-        label: 'Veuillez préciser (LIVIGNO)',
-        condition: (a) => a.livigno_venues?.some((v: string) => v.startsWith('Autres')),
-        required: true
-    },
-    {
-        id: 'bormio_venues',
-        type: 'multi-select',
-        section: 'Rôle & Sites',
-        label: 'Précisez votre site à BORMIO',
-        condition: (a) => a.sites_zones?.includes('BORMIO'),
-        options: [
-            'Bormio Stelvio - Ski alpin / Ski alpinisme',
-            'Village olympique', 'Chauffeur', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (une précision vous sera demandée juste après)'
-        ],
-        required: true
-    },
-    {
-        id: 'bormio_autres',
-        type: 'text',
-        section: 'Rôle & Sites',
-        label: 'Veuillez préciser (BORMIO)',
-        condition: (a) => a.bormio_venues?.some((v: string) => v.startsWith('Autres')),
         required: true
     },
     {
@@ -290,18 +243,18 @@ const QUESTIONS: Question[] = [
         label: 'Précisez votre site à ANTERSELVA',
         condition: (a) => a.sites_zones?.includes('ANTERSELVA'),
         options: [
-            'Südtirol Arena (Anterselva / Antholz) - Biathlon',
-            'Village olympique', 'Chauffeur', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (une précision vous sera demandée juste après)'
+            'Südtirol Arena (Anterselva / Antholz) – Biathlon',
+            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Autres (précisez) : __________'
         ],
         required: true
     },
     {
-        id: 'anterselva_autres',
+        id: 'venue_autres',
         type: 'text',
         section: 'Rôle & Sites',
-        label: 'Veuillez préciser (ANTERSELVA)',
-        condition: (a) => a.anterselva_venues?.some((v: string) => v.startsWith('Autres')),
+        label: 'Veuillez préciser votre site (Autres)',
+        condition: (a) => [a.milan_venues, a.cortina_venues, a.fiemme_venues, a.valtellina_venues, a.anterselva_venues].some(arr => arr?.some((v: string) => v.includes('Autres'))),
         required: true
     },
     {
@@ -309,7 +262,7 @@ const QUESTIONS: Question[] = [
         type: 'select',
         section: 'Rôle & Sites',
         label: 'Quelle était votre mission principale ?',
-        options: ['EVS', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Médias', 'Sports', 'Chauffeur', 'Fonction support', 'Autres (une précision vous sera demandée juste après)'],
+        options: ['EVS', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Médias', 'Sports', 'Chauffeur', 'Fonction support', 'Autres (précisez) : __________'],
         required: true
     },
     {
@@ -378,11 +331,19 @@ const QUESTIONS: Question[] = [
         min: 1, max: 10, step: 1, required: true
     },
     {
-        id: 'prix_logement',
+        id: 'prix_logement_nuit',
         type: 'select',
         section: 'Vie aux Jeux',
-        label: 'Fourchette de prix de votre logement pour la période de mission :',
-        options: ['1 - 500 €', '501 - 700 €', '701 - 1 000 €', '1 001 - 1 300 €', '1 301 - 1 500 €', '1 501 - 1 800 €', '1 801 - 2 000 €', '+ de 2 000 €', 'J’ai été logé(e) gratuitement'],
+        label: 'Fourchette de prix par nuit de votre logement pour la période de mission :',
+        options: ['1 - 50 €', '51 - 75 €', '76 - 100 €', '101 - 125 €', '126 - 150 €', '151 - 175 €', '176 - 200 €', '201 - 300 €', '+ 300 €', 'J’ai été logé gratuitement'],
+        required: true
+    },
+    {
+        id: 'prix_logement_global',
+        type: 'select',
+        section: 'Vie aux Jeux',
+        label: 'Fourchette de prix du coût global de votre logement pour la période de mission :',
+        options: ['1 – 500 €', '501 – 700 €', '701 – 1 000 €', '1 001 – 1 300 €', '1 301 – 1 500 €', '1 501 – 1 800 €', '1 801 – 2 000 €', '+ de 2 000 €', 'J’ai été logé(e) gratuitement'],
         required: true
     },
     {
@@ -402,26 +363,10 @@ const QUESTIONS: Question[] = [
         required: true
     },
     {
-        id: 'connaissance_cluster',
-        type: 'select',
-        section: 'Vie aux Jeux',
-        label: 'Savez-vous à quel cluster votre site était rattaché ?',
-        options: ['Oui', 'Non'],
-        required: true
-    },
-    {
-        id: 'echange_cluster',
-        type: 'select',
-        section: 'Vie aux Jeux',
-        label: 'Avez-vous pu échanger/participer avec d’autres sites dans votre cluster ?',
-        options: ['Oui', 'Non'],
-        required: true
-    },
-    {
         id: 'temps_transport',
         type: 'select',
         section: 'Vie aux Jeux',
-        label: 'Temps moyen journalier pour rejoindre votre site :',
+        label: 'Temps moyen journalier pour rejoindre votre site (trajet aller) :',
         options: ['1 à 30 min', '31 à 45 min', '46 à 60 min', '61 à 75 min', '76 à 90 min', '+ de 90 min'],
         required: true
     },
@@ -430,7 +375,7 @@ const QUESTIONS: Question[] = [
         type: 'range',
         section: 'Vie aux Jeux',
         label: 'Ce temps de transport était :',
-        description: '1 = Pas du tout acceptable | 10 = Très acceptable',
+        description: '1 = Pas du tout acceptable | 5 = Neutre | 10 = Très acceptable',
         min: 1, max: 10, step: 1, required: true
     },
     {
@@ -438,7 +383,7 @@ const QUESTIONS: Question[] = [
         type: 'range',
         section: 'Vie aux Jeux',
         label: 'Comment jugez-vous l’offre de transport proposée par Milano Cortina ?',
-        description: '1 = Pas du tout satisfait(e) | 10 = Très satisfait(e)',
+        description: '1 = Pas du tout satisfait(e) | 5 = Neutre | 10 = Très satisfait(e)',
         min: 1, max: 10, step: 1, required: true
     },
     {
@@ -446,15 +391,7 @@ const QUESTIONS: Question[] = [
         type: 'range',
         section: 'Vie aux Jeux',
         label: 'Les facilités de transport offertes par un comité d’organisation sont, pour vous :',
-        description: '1 = Pas du tout importantes | 10 = Très importantes',
-        min: 1, max: 10, step: 1, required: true
-    },
-    {
-        id: 'satisfaction_repas',
-        type: 'range',
-        section: 'Vie aux Jeux',
-        label: 'Comment jugez-vous les repas proposés ?',
-        description: '1 = Pas du tout satisfait(e) | 10 = Très satisfait(e)',
+        description: '1 = Pas du tout importantes | 5 = Neutre | 10 = Très importantes',
         min: 1, max: 10, step: 1, required: true
     },
     {
@@ -462,15 +399,15 @@ const QUESTIONS: Question[] = [
         type: 'range',
         section: 'Vie aux Jeux',
         label: 'La qualité des repas proposés est, pour vous :',
-        description: '1 = Pas du tout importante | 10 = Très importante',
+        description: '1 = Pas du tout importante | 5 = Neutre | 10 = Très importante',
         min: 1, max: 10, step: 1, required: true
     },
     {
         id: 'satisfaction_evenements',
         type: 'range',
         section: 'Vie aux Jeux',
-        label: 'Comment jugez-vous les événements à destination des volontaires ?',
-        description: '1 = Pas du tout satisfait(e) | 10 = Très satisfait(e)',
+        label: 'Comment jugez-vous les événements à destination des volontaires mis en place par le COJO ?',
+        description: '1 = Pas du tout satisfait(e) | 5 = Neutre | 10 = Très satisfait(e)',
         min: 1, max: 10, step: 1, required: true
     },
     {
@@ -478,7 +415,7 @@ const QUESTIONS: Question[] = [
         type: 'range',
         section: 'Vie aux Jeux',
         label: 'Les événements volontaires sont, pour vous :',
-        description: '1 = Pas du tout importants | 10 = Très importants',
+        description: '1 = Pas du tout importants | 5 = Neutre | 10 = Très importants',
         min: 1, max: 10, step: 1, required: true
     },
     {
@@ -493,7 +430,7 @@ const QUESTIONS: Question[] = [
         id: 'periode_agenda',
         type: 'select',
         section: 'Vie aux Jeux',
-        label: 'À quelle période avez-vous reçu votre agenda ?',
+        label: 'À quelle période avez-vous reçu votre planning ?',
         options: ['Avant décembre 2025', 'Décembre 2025', '1er au 15 janvier 2026', '16 au 31 janvier 2026', 'Février 2026', 'Je ne me souviens plus'],
         required: true
     },
@@ -509,7 +446,7 @@ const QUESTIONS: Question[] = [
         id: 'difficulte_agenda_logement',
         type: 'range',
         section: 'Vie aux Jeux',
-        label: 'La date d’obtention de votre agenda vous a-t-elle posé des difficultés pour trouver un logement ?',
+        label: 'La date d’obtention de votre planning vous a-t-elle posé des difficultés pour trouver un logement ?',
         description: '1 = Pas du tout | 10 = Oui, tout à fait',
         min: 1, max: 10, step: 1, required: true
     },
@@ -611,37 +548,43 @@ const QUESTIONS: Question[] = [
         required: true
     },
     {
-        id: 'commentaires_libres',
+        id: 'point_fort',
         type: 'text',
         section: 'Opérationnel',
-        label: 'Autres commentaires',
-        placeholder: 'Pleine expression libre...',
+        label: 'Selon vous, quel a été le point fort de l’organisation locale ?',
+        required: false
+    },
+    {
+        id: 'conseil_alpes2030',
+        type: 'text',
+        section: 'Opérationnel',
+        label: 'Si vous deviez donner un conseil aux futurs organisateurs des Alpes 2030 concernant la gestion des volontaires, quel serait-il ?',
         required: false
     },
     // 5) Et demain ?
     {
         id: 'candidat_la2028',
-        type: 'range',
+        type: 'select',
         section: 'Futur',
         label: 'Serez-vous candidat(e) pour être volontaire aux Jeux d’été de Los Angeles 2028 ?',
-        description: '1 = Pas du tout | 10 = Oui, tout à fait',
-        min: 1, max: 10, step: 1, required: true
+        options: ['Oui', 'Non', 'Je réfléchis encore'],
+        required: true
     },
     {
         id: 'candidat_alpes2030',
-        type: 'range',
+        type: 'select',
         section: 'Futur',
         label: 'Serez-vous candidat(e) pour être volontaire aux Jeux d’hiver des Alpes françaises 2030 ?',
-        description: '1 = Pas du tout | 10 = Oui, tout à fait',
-        min: 1, max: 10, step: 1, required: true
+        options: ['Oui', 'Non', 'Je réfléchis encore'],
+        required: true
     },
     {
         id: 'candidat_brisbane2032',
-        type: 'range',
+        type: 'select',
         section: 'Futur',
         label: 'Serez-vous candidat(e) pour être volontaire aux Jeux d’été de Brisbane 2032 ?',
-        description: '1 = Pas du tout | 10 = Oui, tout à fait',
-        min: 1, max: 10, step: 1, required: true
+        options: ['Oui', 'Non', 'Je réfléchis encore'],
+        required: true
     },
     {
         id: 'autres_elements',
@@ -656,7 +599,7 @@ const QUESTIONS: Question[] = [
         id: 'connaissance_association',
         type: 'select',
         section: 'Divers',
-        label: 'Connaissiez-vous l’association Volontaires Français ?',
+        label: 'Connaissez-vous l’association Volontaires français, qui regroupe et accompagne les Français missionnés et réservistes sur les différentes olympiades ?',
         options: ['Oui', 'Non'],
         required: true
     },
@@ -672,16 +615,24 @@ const QUESTIONS: Question[] = [
         id: 'email',
         type: 'email',
         section: 'Divers',
-        label: 'Votre adresse e-mail',
+        label: 'Si oui, merci d’indiquer votre adresse e-mail :',
         condition: (a) => a.recevoir_resultats === 'Oui',
+        required: true
+    },
+    {
+        id: 'rejoindre_association',
+        type: 'select',
+        section: 'Divers',
+        label: 'Je souhaite également recevoir des informations pour rejoindre l\'association Volontaires Français.',
+        options: ['Oui', 'Non'],
         required: true
     },
     {
         id: 'merci',
         type: 'info',
         section: 'Divers',
-        label: 'Presque fini !',
-        description: 'Cliquez sur envoyer pour transmettre vos réponses.',
+        label: 'Un grand merci !',
+        description: 'Cliquez sur envoyer pour transmettre vos réponses. Bon retour et bon repos !',
     }
 ];
 
@@ -689,6 +640,7 @@ export default function Questionnaire() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<string, any>>({});
     const [isLoaded, setIsLoaded] = useState(false);
+    const [showIntro, setShowIntro] = useState(true);
 
     const visibleQuestions = QUESTIONS.filter(q => !q.condition || q.condition(answers));
     const currentQuestion = visibleQuestions[currentIndex];
@@ -703,28 +655,32 @@ export default function Questionnaire() {
     };
 
     useEffect(() => {
-        const savedAnswers = localStorage.getItem('retex_survey_v2_answers');
+        const savedAnswers = localStorage.getItem('retex_survey_v4_answers');
         if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
 
-        const savedIndex = localStorage.getItem('retex_survey_v2_index');
-        if (savedIndex) setCurrentIndex(parseInt(savedIndex, 10));
+        const savedIndex = localStorage.getItem('retex_survey_v4_index');
+        if (savedIndex) {
+            setCurrentIndex(parseInt(savedIndex, 10));
+            setShowIntro(false);
+        }
 
         setIsLoaded(true);
     }, []);
 
     useEffect(() => {
         if (isLoaded) {
-            localStorage.setItem('retex_survey_v2_answers', JSON.stringify(answers));
-            localStorage.setItem('retex_survey_v2_index', currentIndex.toString());
+            localStorage.setItem('retex_survey_v4_answers', JSON.stringify(answers));
+            localStorage.setItem('retex_survey_v4_index', currentIndex.toString());
         }
     }, [answers, currentIndex, isLoaded]);
 
     const resetSurvey = () => {
         if (confirm("Voulez-vous recommencer l'enquête à zéro ?")) {
-            localStorage.removeItem('retex_survey_v2_answers');
-            localStorage.removeItem('retex_survey_v2_index');
+            localStorage.removeItem('retex_survey_v4_answers');
+            localStorage.removeItem('retex_survey_v4_index');
             setAnswers({});
             setCurrentIndex(0);
+            setShowIntro(true);
         }
     };
 
@@ -740,17 +696,30 @@ export default function Questionnaire() {
         setSubmitError(null);
 
         try {
-            const response = await fetch(APPS_SCRIPT_URL, {
+            const response = await fetch('/api/enquete/submit', {
                 method: 'POST',
-                mode: 'no-cors', // Apps Script requires no-cors if not handling preflight/headers specifically
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(answers)
+                body: JSON.stringify({ ...answers, version: 'V4' })
             });
 
-            // Note: with no-cors, we won't get a proper JSON response back but the data is sent
+            if (!response.ok) throw new Error('Failed to submit to database');
+
+            // Also keep sending to Google Apps Script as backup if preferred, 
+            // but the primary storage is now the DB.
+            try {
+                await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ...answers, version: 'V4' })
+                });
+            } catch (e) {
+                console.warn("GAS submission backup failed:", e);
+            }
+
             setIsSubmitted(true);
-            localStorage.removeItem('retex_survey_v2_answers');
-            localStorage.removeItem('retex_survey_v2_index');
+            localStorage.removeItem('retex_survey_v4_answers');
+            localStorage.removeItem('retex_survey_v4_index');
         } catch (error) {
             console.error("Submission error:", error);
             setSubmitError("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
@@ -790,6 +759,78 @@ export default function Questionnaire() {
     };
 
     if (!isLoaded) return null;
+
+    if (showIntro) {
+        return (
+            <div className="survey-immersive intro-page">
+                <div className="survey-content intro-content">
+                    <header className="survey-header">
+                        <div className="logo-area">
+                            <img src="/assets/favicon.ico" alt="Logo" className="logo" />
+                            <span className="logo-name">Volontaires français</span>
+                        </div>
+                    </header>
+
+                    <main className="survey-question">
+                        <div className="section-badge">Introduction</div>
+                        <h1 className="label-text">RETEX Milano Cortina 2026</h1>
+                        <div className="intro-text">
+                            {INTRO_MESSAGE.split('\n\n').map((para, i) => (
+                                <p key={i}>{para}</p>
+                            ))}
+                        </div>
+                        
+                        <div className="intro-actions">
+                            <button onClick={() => setShowIntro(false)} className="nav-btn next start-btn pulse">
+                                Commencer le questionnaire
+                            </button>
+                        </div>
+                    </main>
+                </div>
+
+                <style jsx>{`
+                    .intro-page {
+                        background: rgba(0,0,0,0.2);
+                        backdrop-filter: blur(10px);
+                    }
+                    .intro-content {
+                        justify-content: center;
+                        text-align: center;
+                    }
+                    .intro-text {
+                        text-align: left;
+                        font-size: 1.1rem;
+                        line-height: 1.6;
+                        opacity: 0.9;
+                        max-width: 800px;
+                        margin: 0 auto 2rem;
+                        background: rgba(255,255,255,0.05);
+                        padding: 2rem;
+                        border-radius: 15px;
+                        border: 1px solid rgba(255,255,255,0.1);
+                    }
+                    .intro-text p {
+                        margin-bottom: 1.2rem;
+                    }
+                    .intro-actions {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 1rem;
+                    }
+                    .start-btn {
+                        padding: 1.2rem 2.5rem !important;
+                        font-size: 1.1rem !important;
+                    }
+                    @media (max-width: 600px) {
+                        .intro-text {
+                            font-size: 1rem;
+                            padding: 1.2rem;
+                        }
+                    }
+                `}</style>
+            </div>
+        );
+    }
 
     return (
         <div className="survey-immersive">
