@@ -188,12 +188,13 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
         type_jeux: resp.answers.type_jeux,
         sites_zones: Array.isArray(resp.answers.sites_zones) ? resp.answers.sites_zones.join(', ') : resp.answers.sites_zones,
         venues: [
-          resp.answers.milan_venues,
-          resp.answers.cortina_venues,
-          resp.answers.fiemme_venues,
-          resp.answers.valtellina_venues,
-          resp.answers.anterselva_venues
-        ].filter(Boolean).flat().join(', '),
+          resp.answers.milan_venues ? `MILAN: ${Array.isArray(resp.answers.milan_venues) ? resp.answers.milan_venues.join('; ') : resp.answers.milan_venues}` : null,
+          resp.answers.cortina_venues ? `CORTINA: ${Array.isArray(resp.answers.cortina_venues) ? resp.answers.cortina_venues.join('; ') : resp.answers.cortina_venues}` : null,
+          resp.answers.verona_venues ? `VERONA: ${Array.isArray(resp.answers.verona_venues) ? resp.answers.verona_venues.join('; ') : resp.answers.verona_venues}` : null,
+          resp.answers.fiemme_venues ? `VAL DI FIEMME: ${Array.isArray(resp.answers.fiemme_venues) ? resp.answers.fiemme_venues.join('; ') : resp.answers.fiemme_venues}` : null,
+          resp.answers.valtellina_venues ? `VALTELLINA: ${Array.isArray(resp.answers.valtellina_venues) ? resp.answers.valtellina_venues.join('; ') : resp.answers.valtellina_venues}` : null,
+          resp.answers.anterselva_venues ? `ANTERSELVA: ${Array.isArray(resp.answers.anterselva_venues) ? resp.answers.anterselva_venues.join('; ') : resp.answers.anterselva_venues}` : null
+        ].filter(Boolean).join(' | '),
         mission_principale: resp.answers.mission_principale,
         redéployé: resp.answers.redéployé,
         responsable_equipe: resp.answers.responsable_equipe,
