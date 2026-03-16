@@ -636,11 +636,10 @@ const QUESTIONS: Question[] = [
     }
 ];
 
-export default function Questionnaire() {
+export default function Questionnaire({ onBack }: { onBack?: () => void }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<string, any>>({});
     const [isLoaded, setIsLoaded] = useState(false);
-    const [showIntro, setShowIntro] = useState(true);
 
     const visibleQuestions = QUESTIONS.filter(q => !q.condition || q.condition(answers));
     const currentQuestion = visibleQuestions[currentIndex];
@@ -654,14 +653,17 @@ export default function Questionnaire() {
         return '#07a459'; // Green
     };
 
+    const [hasProgress, setHasProgress] = useState(false);
+    const [startTime] = useState(Date.now());
+
     useEffect(() => {
         const savedAnswers = localStorage.getItem('retex_survey_v4_answers');
-        if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
-
         const savedIndex = localStorage.getItem('retex_survey_v4_index');
-        if (savedIndex) {
+        
+        if (savedAnswers && savedIndex) {
+            setAnswers(JSON.parse(savedAnswers));
             setCurrentIndex(parseInt(savedIndex, 10));
-            setShowIntro(false);
+            setHasProgress(true);
         }
 
         setIsLoaded(true);
@@ -680,7 +682,6 @@ export default function Questionnaire() {
             localStorage.removeItem('retex_survey_v4_index');
             setAnswers({});
             setCurrentIndex(0);
-            setShowIntro(true);
         }
     };
 
@@ -695,23 +696,37 @@ export default function Questionnaire() {
         setIsSubmitting(true);
         setSubmitError(null);
 
+        // Tracking metadata
+        const metadata = {
+            user_agent: navigator.userAgent,
+            screen_res: `${window.screen.width}x${window.screen.height}`,
+            window_size: `${window.innerWidth}x${window.innerHeight}`,
+            duration_seconds: Math.floor((Date.now() - startTime) / 1000),
+            submit_time: new Date().toISOString()
+        };
+
+        const finalData = {
+            email: answers.email || null,
+            answers: { ...answers, _metadata: metadata },
+            version: 'V4'
+        };
+
         try {
             const response = await fetch('/api/enquete/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...answers, version: 'V4' })
+                body: JSON.stringify(finalData)
             });
 
             if (!response.ok) throw new Error('Failed to submit to database');
 
-            // Also keep sending to Google Apps Script as backup if preferred, 
-            // but the primary storage is now the DB.
+            // Also keep sending to Google Apps Script as backup
             try {
                 await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ ...answers, version: 'V4' })
+                    body: JSON.stringify(finalData)
                 });
             } catch (e) {
                 console.warn("GAS submission backup failed:", e);
@@ -760,86 +775,21 @@ export default function Questionnaire() {
 
     if (!isLoaded) return null;
 
-    if (showIntro) {
-        return (
-            <div className="survey-immersive intro-page">
-                <div className="survey-content intro-content">
-                    <header className="survey-header">
-                        <div className="logo-area">
-                            <img src="/assets/favicon.ico" alt="Logo" className="logo" />
-                            <span className="logo-name">Volontaires français</span>
-                        </div>
-                    </header>
-
-                    <main className="survey-question">
-                        <div className="section-badge">Introduction</div>
-                        <h1 className="label-text">RETEX Milano Cortina 2026</h1>
-                        <div className="intro-text">
-                            {INTRO_MESSAGE.split('\n\n').map((para, i) => (
-                                <p key={i}>{para}</p>
-                            ))}
-                        </div>
-                        
-                        <div className="intro-actions">
-                            <button onClick={() => setShowIntro(false)} className="nav-btn next start-btn pulse">
-                                Commencer le questionnaire
-                            </button>
-                        </div>
-                    </main>
-                </div>
-
-                <style jsx>{`
-                    .intro-page {
-                        background: rgba(0,0,0,0.2);
-                        backdrop-filter: blur(10px);
-                    }
-                    .intro-content {
-                        justify-content: center;
-                        text-align: center;
-                    }
-                    .intro-text {
-                        text-align: left;
-                        font-size: 1.1rem;
-                        line-height: 1.6;
-                        opacity: 0.9;
-                        max-width: 800px;
-                        margin: 0 auto 2rem;
-                        background: rgba(255,255,255,0.05);
-                        padding: 2rem;
-                        border-radius: 15px;
-                        border: 1px solid rgba(255,255,255,0.1);
-                    }
-                    .intro-text p {
-                        margin-bottom: 1.2rem;
-                    }
-                    .intro-actions {
-                        display: flex;
-                        justify-content: center;
-                        margin-top: 1rem;
-                    }
-                    .start-btn {
-                        padding: 1.2rem 2.5rem !important;
-                        font-size: 1.1rem !important;
-                    }
-                    @media (max-width: 600px) {
-                        .intro-text {
-                            font-size: 1rem;
-                            padding: 1.2rem;
-                        }
-                    }
-                `}</style>
-            </div>
-        );
-    }
 
     return (
         <div className="survey-immersive">
             <div className="survey-content">
                 <header className="survey-header">
                     <div className="header-top">
-                        <Link href="/" className="site-link">
-                            <i className="fas fa-chevron-left"></i> Retour
-                        </Link>
+                        {onBack ? (
+                            <button onClick={onBack} className="site-link" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                                <i className="fas fa-chevron-left"></i> Retour
+                            </button>
+                        ) : (
+                            <Link href="/" className="site-link">
+                                <i className="fas fa-chevron-left"></i> Retour
+                            </Link>
+                        )}
 
                         <div className="section-stepper">
                             {SECTIONS.map((s, idx) => {
@@ -854,11 +804,10 @@ export default function Questionnaire() {
                             })}
                         </div>
 
-                        {currentIndex > 0 && (
-                            <button onClick={resetSurvey} className="reset-link">
-                                <i className="fas fa-redo"></i>
-                            </button>
-                        )}
+                        <button onClick={resetSurvey} className="reset-link" title="Recommencer à zéro">
+                            <i className="fas fa-redo-alt"></i>
+                            <span className="reset-hover-text">Reset</span>
+                        </button>
                     </div>
 
                     <div className="progress-wrap">
@@ -1012,12 +961,14 @@ export default function Questionnaire() {
             <style jsx global>{`
                 .survey-immersive {
                     width: 100vw;
+                    height: 100vh;
                     height: 100dvh;
                     display: flex;
                     flex-direction: column;
                     color: white;
                     font-family: Arial, sans-serif;
                     overflow: hidden;
+                    background: linear-gradient(135deg, #067fcc 0%, #fcb133 100%);
                 }
                 .survey-content {
                     flex: 1;
@@ -1068,6 +1019,19 @@ export default function Questionnaire() {
                     padding: 5px;
                 }
                 .reset-link:hover { color: #eb2f50; }
+                .reset-hover-text {
+                    font-size: 0.7rem;
+                    font-weight: bold;
+                    margin-left: 5px;
+                    opacity: 0;
+                    transform: translateX(-5px);
+                    transition: all 0.2s;
+                    pointer-events: none;
+                }
+                .reset-link:hover .reset-hover-text {
+                    opacity: 0.7;
+                    transform: translateX(0);
+                }
 
                 /* Section Stepper */
                 .section-stepper {
