@@ -926,8 +926,24 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                                     ))}
                                 </div>
                                 <div className="nps-labels">
-                                    <span>{currentQuestion.description?.split('|')[0] || 'Pas du tout'}</span>
-                                    <span>{currentQuestion.description?.split('|')[1] || 'Tout à fait'}</span>
+                                    {(() => {
+                                        const parts = (currentQuestion.description || '').split('|').map(s => s.trim());
+                                        if (parts.length >= 3) {
+                                            return (
+                                                <>
+                                                    <span>{parts[0]}</span>
+                                                    <span style={{ textAlign: 'center' }}>{parts[1]}</span>
+                                                    <span style={{ textAlign: 'right' }}>{parts[2]}</span>
+                                                </>
+                                            );
+                                        }
+                                        return (
+                                            <>
+                                                <span>{parts[0] || 'Pas du tout'}</span>
+                                                <span>{parts[1] || 'Tout à fait'}</span>
+                                            </>
+                                        );
+                                    })()}
                                 </div>
                             </div>
                         )}
