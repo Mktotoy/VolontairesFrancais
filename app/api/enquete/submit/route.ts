@@ -8,7 +8,7 @@ const pool = new Pool({
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
-    const { email, version, ...answers } = data;
+    const { email, version, answers } = data;
 
     const query = `
       INSERT INTO survey_responses (email, answers, version)
