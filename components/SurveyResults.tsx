@@ -122,53 +122,142 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
 
   const exportToExcel = async () => {
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('Responses');
+    const worksheet = workbook.addWorksheet('RETEX Milano Cortina 2026');
 
-    // Define columns
-    const columns = [
-      { header: 'ID', key: 'id', width: 10 },
-      { header: 'Date', key: 'date', width: 20 },
-      { header: 'Email', key: 'email', width: 30 },
-      { header: 'Version', key: 'version', width: 10 },
+    // Add a Title Row
+    worksheet.mergeCells('A1:X1');
+    const titleRow = worksheet.getRow(1);
+    titleRow.values = ['RAPPORT DES RÉSULTATS - RETEX MILANO CORTINA 2026'];
+    titleRow.font = { name: 'Arial Black', size: 16, color: { argb: 'FFFFFFFF' }, bold: true };
+    titleRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF067FCC' } };
+    titleRow.alignment = { vertical: 'middle', horizontal: 'center' };
+    titleRow.height = 40;
+
+    // Define column mapping and order
+    const colMapping = [
+      { header: 'Email', key: 'email', width: 35 },
+      { header: 'Date Soumission', key: 'date', width: 22 },
+      { header: 'Âge', key: 'age', width: 15 },
+      { header: 'Genre', key: 'genre', width: 15 },
+      { header: 'Région', key: 'region', width: 25 },
+      { header: 'Paris 2024', key: 'paris2024', width: 12 },
+      { header: 'Type Jeux', key: 'type_jeux', width: 15 },
+      { header: 'Site (Zone)', key: 'sites_zones', width: 25 },
+      { header: 'Site Précis (Sous-sites)', key: 'venues', width: 45 },
+      { header: 'Mission Principale', key: 'mission_principale', width: 35 },
+      { header: 'Redéployé', key: 'redéployé', width: 12 },
+      { header: 'Responsable', key: 'responsable_equipe', width: 12 },
+      { header: 'Satisfaction Globale', key: 'satisfaction_globale', width: 18 },
+      { header: 'Intégration', key: 'satisfaction_integration', width: 15 },
+      { header: 'Gestion Orga', key: 'satisfaction_gestion', width: 15 },
+      { header: 'Prix Logement/nuit', key: 'prix_logement_nuit', width: 20 },
+      { header: 'Logement Global', key: 'prix_logement_global', width: 25 },
+      { header: 'Difficulté Logement', key: 'difficulte_logement', width: 18 },
+      { header: 'Transport (temps)', key: 'temps_transport', width: 20 },
+      { header: 'Transport (acceptability)', key: 'transport_acceptable', width: 20 },
+      { header: 'LA 2028', key: 'candidat_la2028', width: 15 },
+      { header: 'Alpes 2030', key: 'candidat_alpes2030', width: 15 },
+      { header: 'Brisbane 2032', key: 'candidat_brisbane2032', width: 15 },
+      { header: 'Rejoindre VF', key: 'rejoindre_association', width: 15 },
+      { header: 'Navigateur', key: 'user_agent', width: 40 },
+      { header: 'Résolution', key: 'screen_res', width: 15 },
+      { header: 'Durée (s)', key: 'duration', width: 12 },
     ];
 
-    // Collect all unique keys from answers to create columns
-    const answerKeys = new Set<string>();
-    data.forEach(resp => {
-      Object.keys(resp.answers).forEach(key => answerKeys.add(key));
-    });
+    // Set headers at row 2
+    const headerRow = worksheet.getRow(2);
+    headerRow.values = colMapping.map(c => c.header);
+    headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 11 };
+    headerRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF333333' } };
+    headerRow.alignment = { vertical: 'middle', horizontal: 'center' };
+    headerRow.height = 25;
 
-    answerKeys.forEach(key => {
-      columns.push({ header: key, key: key, width: 25 });
-    });
+    // Apply column metadata
+    worksheet.columns = colMapping.map(c => ({ key: c.key, width: c.width }));
 
-    worksheet.columns = columns;
-
-    // Add rows
-    data.forEach(resp => {
-      worksheet.addRow({
-        id: resp.id,
-        date: new Date(resp.created_at).toLocaleString(),
+    // Add data rows
+    data.forEach((resp, index) => {
+      const tracking = (resp.answers as any)._metadata || {};
+      const rowData: any = {
         email: resp.email || 'Anonyme',
-        version: resp.version,
-        ...resp.answers
+        date: new Date(resp.created_at).toLocaleString(),
+        age: resp.answers.age,
+        genre: resp.answers.genre,
+        region: resp.answers.region,
+        paris2024: resp.answers.paris2024,
+        type_jeux: resp.answers.type_jeux,
+        sites_zones: Array.isArray(resp.answers.sites_zones) ? resp.answers.sites_zones.join(', ') : resp.answers.sites_zones,
+        venues: [
+          resp.answers.milan_venues,
+          resp.answers.cortina_venues,
+          resp.answers.fiemme_venues,
+          resp.answers.valtellina_venues,
+          resp.answers.anterselva_venues
+        ].filter(Boolean).flat().join(', '),
+        mission_principale: resp.answers.mission_principale,
+        redéployé: resp.answers.redéployé,
+        responsable_equipe: resp.answers.responsable_equipe,
+        satisfaction_globale: resp.answers.satisfaction_globale,
+        satisfaction_integration: resp.answers.satisfaction_integration,
+        satisfaction_gestion: resp.answers.satisfaction_gestion,
+        prix_logement_nuit: resp.answers.prix_logement_nuit,
+        prix_logement_global: resp.answers.prix_logement_global,
+        difficulte_logement: resp.answers.difficulte_logement,
+        temps_transport: resp.answers.temps_transport,
+        transport_acceptable: resp.answers.transport_acceptable,
+        candidat_la2028: resp.answers.candidat_la2028,
+        candidat_alpes2030: resp.answers.candidat_alpes2030,
+        candidat_brisbane2032: resp.answers.candidat_brisbane2032,
+        rejoindre_association: resp.answers.rejoindre_association,
+        user_agent: tracking.user_agent,
+        screen_res: tracking.screen_res,
+        duration: tracking.duration_seconds
+      };
+
+      const row = worksheet.addRow(rowData);
+      
+      // zebra stripes
+      if (index % 2 === 0) {
+        row.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF9FAFB' } };
+      }
+
+      // Center numeric columns
+      [3, 6, 11, 12, 13, 14, 15, 18, 20, 21, 22, 23, 24].forEach(colIdx => {
+        row.getCell(colIdx).alignment = { horizontal: 'center' };
       });
+
+      // Satisfaction highlighting
+      const scoreCell = row.getCell(13); // Satisfaction Globale
+      const score = Number(resp.answers.satisfaction_globale);
+      if (score >= 8) scoreCell.font = { color: { argb: 'FF07A459' }, bold: true };
+      else if (score < 5) scoreCell.font = { color: { argb: 'FFEB2F50' }, bold: true };
     });
 
-    // Style the header
-    worksheet.getRow(1).font = { bold: true };
-    worksheet.getRow(1).fill = {
-      type: 'pattern',
-      pattern: 'solid',
-      fgColor: { argb: 'FFE9ECEF' }
-    };
+    // Freeze panes: Header row and Email column
+    worksheet.views = [
+      { state: 'frozen', xSplit: 1, ySplit: 2 }
+    ];
+
+    // Add Borders
+    worksheet.eachRow((row, rowNumber) => {
+      if (rowNumber > 1) {
+        row.eachCell((cell) => {
+          cell.border = {
+            top: { style: 'thin', color: { argb: 'FFEEEEEE' } },
+            left: { style: 'thin', color: { argb: 'FFEEEEEE' } },
+            bottom: { style: 'thin', color: { argb: 'FFEEEEEE' } },
+            right: { style: 'thin', color: { argb: 'FFEEEEEE' } }
+          };
+        });
+      }
+    });
 
     const buffer = await workbook.xlsx.writeBuffer();
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     const url = window.URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     anchor.href = url;
-    anchor.download = `Survey_Results_${new Date().toISOString().split('T')[0]}.xlsx`;
+    anchor.download = `RETEX_Milano_2026_Export_${new Date().toISOString().split('T')[0]}.xlsx`;
     anchor.click();
     window.URL.revokeObjectURL(url);
   };

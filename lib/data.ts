@@ -155,7 +155,7 @@ export async function fetchPost(slug: string): Promise<Post | null> {
 
         const post = { ...data, content, slug } as Post;
 
-        if (post.status !== 'published') return null;
+        if (post.status !== 'published' && post.status !== 'hidden') return null;
         return post;
     } catch {
         return null;
