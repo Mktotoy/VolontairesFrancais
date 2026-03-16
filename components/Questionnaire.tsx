@@ -179,8 +179,17 @@ const QUESTIONS: Question[] = [
             'Milano Rho Hockey Arena – Hockey sur glace (premiers matchs masculins), para hockey sur glace',
             'Ice Skating Arena – Patinage de vitesse sur piste courte / Patinage artistique',
             'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (précisez) : __________'
+            'Autres'
         ],
+        required: true
+    },
+    {
+        id: 'milan_venues_autres',
+        type: 'text',
+        section: 'Rôle & Sites',
+        label: 'Précisez votre site à MILAN (Autres)',
+        placeholder: 'Décrivez votre site à Milan...',
+        condition: (a) => a.sites_zones?.includes('MILAN') && a.milan_venues?.includes('Autres'),
         required: true
     },
     {
@@ -194,8 +203,17 @@ const QUESTIONS: Question[] = [
             'Cortina Sliding Centre – Bobsleigh / Skeleton / Luge',
             'Cortina Curling Olympic Stadium – Curling / Curling fauteuil',
             'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (précisez) : __________'
+            'Autres'
         ],
+        required: true
+    },
+    {
+        id: 'cortina_venues_autres',
+        type: 'text',
+        section: 'Rôle & Sites',
+        label: 'Précisez votre site à CORTINA D’AMPEZZO (Autres)',
+        placeholder: 'Décrivez votre site à Cortina...',
+        condition: (a) => a.sites_zones?.includes('CORTINA D’AMPEZZO') && a.cortina_venues?.includes('Autres'),
         required: true
     },
     {
@@ -204,7 +222,16 @@ const QUESTIONS: Question[] = [
         section: 'Rôle & Sites',
         label: 'Précisez votre site à VERONA',
         condition: (a) => a.sites_zones?.includes('VERONA'),
-        options: ['Arènes de Vérone – Cérémonies clôture des Jeux Olympiques et ouverture des Jeux Paralympiques'],
+        options: ['Arènes de Vérone – Cérémonies clôture des Jeux Olympiques et ouverture des Jeux Paralympiques', 'Autres'],
+        required: true
+    },
+    {
+        id: 'verona_venues_autres',
+        type: 'text',
+        section: 'Rôle & Sites',
+        label: 'Précisez votre site à VERONA (Autres)',
+        placeholder: 'Décrivez votre site à Verona...',
+        condition: (a) => a.sites_zones?.includes('VERONA') && a.verona_venues?.includes('Autres'),
         required: true
     },
     {
@@ -217,8 +244,17 @@ const QUESTIONS: Question[] = [
             'Predazzo Ski Jumping Stadium – Saut à ski / Combiné nordique',
             'Tesero Cross-Country Skiing Stadium – Ski de fond / Combiné nordique / Para ski de fond / Para biathlon',
             'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (précisez) : __________'
+            'Autres'
         ],
+        required: true
+    },
+    {
+        id: 'fiemme_venues_autres',
+        type: 'text',
+        section: 'Rôle & Sites',
+        label: 'Précisez votre site à VAL DI FIEMME (Autres)',
+        placeholder: 'Décrivez votre site à Val di Fiemme...',
+        condition: (a) => a.sites_zones?.includes('VAL DI FIEMME') && a.fiemme_venues?.includes('Autres'),
         required: true
     },
     {
@@ -232,8 +268,17 @@ const QUESTIONS: Question[] = [
             'Livigno Snow Park – Snowboard / Ski acrobatique',
             'Bormio Stelvio – Ski alpin / Ski alpinisme',
             'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (précisez) : __________'
+            'Autres'
         ],
+        required: true
+    },
+    {
+        id: 'valtellina_venues_autres',
+        type: 'text',
+        section: 'Rôle & Sites',
+        label: 'Précisez votre site à VALTELLINA (Autres)',
+        placeholder: 'Décrivez votre site à Valtellina...',
+        condition: (a) => a.sites_zones?.includes('VALTELLINA') && a.valtellina_venues?.includes('Autres'),
         required: true
     },
     {
@@ -245,16 +290,17 @@ const QUESTIONS: Question[] = [
         options: [
             'Südtirol Arena (Anterselva / Antholz) – Biathlon',
             'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
-            'Autres (précisez) : __________'
+            'Autres'
         ],
         required: true
     },
     {
-        id: 'venue_autres',
+        id: 'anterselva_venues_autres',
         type: 'text',
         section: 'Rôle & Sites',
-        label: 'Veuillez préciser votre site (Autres)',
-        condition: (a) => [a.milan_venues, a.cortina_venues, a.fiemme_venues, a.valtellina_venues, a.anterselva_venues].some(arr => arr?.some((v: string) => v.includes('Autres'))),
+        label: 'Précisez votre site à ANTERSELVA (Autres)',
+        placeholder: 'Décrivez votre site à Anterselva...',
+        condition: (a) => a.sites_zones?.includes('ANTERSELVA') && a.anterselva_venues?.includes('Autres'),
         required: true
     },
     {
@@ -262,7 +308,7 @@ const QUESTIONS: Question[] = [
         type: 'select',
         section: 'Rôle & Sites',
         label: 'Quelle était votre mission principale ?',
-        options: ['EVS', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Médias', 'Sports', 'Chauffeur', 'Fonction support', 'Autres (précisez) : __________'],
+        options: ['EVS', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Médias', 'Sports', 'Chauffeur', 'Fonction support', 'Autres'],
         required: true
     },
     {

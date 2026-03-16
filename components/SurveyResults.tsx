@@ -187,14 +187,22 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
         paris2024: resp.answers.paris2024,
         type_jeux: resp.answers.type_jeux,
         sites_zones: Array.isArray(resp.answers.sites_zones) ? resp.answers.sites_zones.join(', ') : resp.answers.sites_zones,
-        venues: [
-          resp.answers.milan_venues ? `MILAN: ${Array.isArray(resp.answers.milan_venues) ? resp.answers.milan_venues.join('; ') : resp.answers.milan_venues}` : null,
-          resp.answers.cortina_venues ? `CORTINA: ${Array.isArray(resp.answers.cortina_venues) ? resp.answers.cortina_venues.join('; ') : resp.answers.cortina_venues}` : null,
-          resp.answers.verona_venues ? `VERONA: ${Array.isArray(resp.answers.verona_venues) ? resp.answers.verona_venues.join('; ') : resp.answers.verona_venues}` : null,
-          resp.answers.fiemme_venues ? `VAL DI FIEMME: ${Array.isArray(resp.answers.fiemme_venues) ? resp.answers.fiemme_venues.join('; ') : resp.answers.fiemme_venues}` : null,
-          resp.answers.valtellina_venues ? `VALTELLINA: ${Array.isArray(resp.answers.valtellina_venues) ? resp.answers.valtellina_venues.join('; ') : resp.answers.valtellina_venues}` : null,
-          resp.answers.anterselva_venues ? `ANTERSELVA: ${Array.isArray(resp.answers.anterselva_venues) ? resp.answers.anterselva_venues.join('; ') : resp.answers.anterselva_venues}` : null
-        ].filter(Boolean).join(' | '),
+        venues: (() => {
+          const formatVenues = (venues: any, autresText: string | undefined, siteName: string) => {
+            if (!venues) return null;
+            const list: string[] = Array.isArray(venues) ? venues : [venues];
+            const withAutres = list.map(v => v === 'Autres' && autresText ? `Autres (${autresText})` : v);
+            return `${siteName}: ${withAutres.join('; ')}`;
+          };
+          return [
+            formatVenues(resp.answers.milan_venues, resp.answers.milan_venues_autres, 'MILAN'),
+            formatVenues(resp.answers.cortina_venues, resp.answers.cortina_venues_autres, 'CORTINA'),
+            formatVenues(resp.answers.verona_venues, resp.answers.verona_venues_autres, 'VERONA'),
+            formatVenues(resp.answers.fiemme_venues, resp.answers.fiemme_venues_autres, 'VAL DI FIEMME'),
+            formatVenues(resp.answers.valtellina_venues, resp.answers.valtellina_venues_autres, 'VALTELLINA'),
+            formatVenues(resp.answers.anterselva_venues, resp.answers.anterselva_venues_autres, 'ANTERSELVA'),
+          ].filter(Boolean).join(' | ');
+        })(),
         mission_principale: resp.answers.mission_principale,
         redéployé: resp.answers.redéployé,
         responsable_equipe: resp.answers.responsable_equipe,
