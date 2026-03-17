@@ -86,6 +86,14 @@ const QUESTIONS: Question[] = [
         required: true
     },
     {
+        id: 'situation_handicap',
+        type: 'select',
+        section: 'Profil',
+        label: 'Êtes-vous en situation de handicap ?',
+        options: ['Oui', 'Non', 'Je ne souhaite pas répondre'],
+        required: true
+    },
+    {
         id: 'accompagnement',
         type: 'select',
         section: 'Profil',
