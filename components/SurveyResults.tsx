@@ -17,6 +17,11 @@ const SurveyMap = dynamic(() => import('./SurveyMap'), {
   loading: () => <div className="map-loading">Chargement de la carte...</div>
 });
 
+const OriginMap = dynamic(() => import('./OriginMap'), { 
+  ssr: false,
+  loading: () => <div className="map-loading">Chargement de la carte...</div>
+});
+
 interface SurveyResponse {
   id: number;
   email: string | null;
@@ -429,13 +434,25 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
 
         {view === 'map' && (
           <div className="map-view-container">
-            <div className="table-card">
-              <div className="table-header">
-                <h3>Répartition Géographique</h3>
-                <p>Visualisation des volontaires par site et sous-site</p>
+            <div className="maps-grid">
+              <div className="table-card">
+                <div className="table-header">
+                  <h3>Lieux d'origine (Régions)</h3>
+                  <p>Provenance géographique des volontaires français</p>
+                </div>
+                <div className="map-wrapper-results">
+                  <OriginMap data={data} />
+                </div>
               </div>
-              <div className="map-wrapper-results">
-                <SurveyMap data={data} />
+
+              <div className="table-card">
+                <div className="table-header">
+                  <h3>Lieux de mission (Italie)</h3>
+                  <p>Visualisation des volontaires par site et sous-site d'affectation</p>
+                </div>
+                <div className="map-wrapper-results">
+                  <SurveyMap data={data} />
+                </div>
               </div>
             </div>
           </div>
@@ -747,6 +764,23 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
         }
         .map-view-container {
           animation: fadeIn 0.5s ease-out;
+        }
+        @media (min-width: 1024px) {
+          .maps-grid {
+            display: flex;
+            gap: 2rem;
+          }
+          .maps-grid > * {
+            flex: 1;
+            min-width: 0;
+          }
+        }
+        @media (max-width: 1023px) {
+          .maps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+          }
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
