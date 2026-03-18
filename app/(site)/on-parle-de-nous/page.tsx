@@ -1,8 +1,25 @@
 import Link from 'next/link';
 import { fetchPressArticles } from '@/lib/data';
 import { getAssetUrl } from '@/lib/assets';
+import * as cheerio from 'cheerio';
+import fs from 'fs';
+import path from 'path';
 
 export const revalidate = 300; // revalidate every 5 minutes
+
+async function getOgImage(url: string): Promise<string | null> {
+    if (!url) return null;
+    try {
+        const response = await fetch(url, { next: { revalidate: 3600 } });
+        if (!response.ok) return null;
+        const html = await response.text();
+        const $ = cheerio.load(html);
+        return $('meta[property="og:image"]').attr('content') || $('meta[name="twitter:image"]').attr('content') || null;
+    } catch (e) {
+        console.warn(`Failed to fetch og:image for ${url}`);
+        return null;
+    }
+}
 
 function formatDate(dateStr?: string | null) {
     if (!dateStr) return '';
@@ -15,8 +32,27 @@ export const metadata = {
 };
 
 export default async function PressPage() {
-    const articles = await fetchPressArticles();
-    const hasArticles = articles.length > 0;
+    const rawArticles = await fetchPressArticles();
+    const hasArticles = rawArticles.length > 0;
+
+    const articles = await Promise.all(
+        rawArticles.map(async (article) => {
+            let image = getAssetUrl(article.image);
+
+            if (image && image.startsWith('/')) {
+                const filePath = path.join(process.cwd(), 'public', image);
+                if (!fs.existsSync(filePath)) {
+                    image = null;
+                }
+            }
+
+            if (!image && article.url) {
+                const ogImage = await getOgImage(article.url);
+                if (ogImage) image = ogImage;
+            }
+            return { ...article, resolvedImage: image };
+        })
+    );
 
     return (
         <>
@@ -33,7 +69,7 @@ export default async function PressPage() {
                     {hasArticles &&
                         articles.map((article) => {
                             const date = article.publication_date;
-                            const image = getAssetUrl(article.image);
+                            const image = article.resolvedImage;
 
                             return (
                                 <article className="news-article" key={article.id}>
