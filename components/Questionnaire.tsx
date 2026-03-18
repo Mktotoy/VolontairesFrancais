@@ -674,20 +674,20 @@ const QUESTIONS: Question[] = [
         required: true
     },
     {
-        id: 'email',
-        type: 'email',
-        section: 'Divers',
-        label: 'Si oui, merci d’indiquer votre adresse e-mail :',
-        condition: (a) => a.recevoir_resultats === 'Oui',
-        required: true
-    },
-    {
         id: 'rejoindre_association',
         type: 'select',
         section: 'Divers',
         label: 'Je souhaite également recevoir des informations pour rejoindre l\'association Volontaires Français.',
         options: ['Oui', 'Non'],
         required: true
+    },
+    {
+        id: 'email',
+        type: 'email',
+        section: 'Divers',
+        label: 'Merci d’indiquer votre adresse e-mail (facultatif) :',
+        condition: (a) => a.recevoir_resultats === 'Oui' || a.rejoindre_association === 'Oui',
+        required: false
     },
     {
         id: 'merci',
@@ -828,8 +828,17 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
 
     const canGoNext = () => {
         if (!currentQuestion || currentQuestion.type === 'info') return true;
-        if (!currentQuestion.required) return true;
+        
         const answer = answers[currentQuestion.id];
+        
+        // Check email format if answer is provided
+        if (currentQuestion.type === 'email' && answer) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(answer)) return false;
+        }
+
+        if (!currentQuestion.required) return true;
+        
         if (currentQuestion.type === 'multi-select') return Array.isArray(answer) && answer.length > 0;
         if (currentQuestion.type === 'range') return typeof answer === 'number';
         return !!answer;
@@ -955,15 +964,22 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                         )}
 
                         {(currentQuestion.type === 'text' || currentQuestion.type === 'email') && (
-                            <input
-                                type={currentQuestion.type}
-                                value={answers[currentQuestion.id] || ''}
-                                onChange={(e) => setValue(e.target.value)}
-                                placeholder={currentQuestion.placeholder || '...'}
-                                className="open-input"
-                                autoFocus
-                                onKeyDown={(e) => e.key === 'Enter' && canGoNext() && handleNext()}
-                            />
+                            <div className="input-group">
+                                <input
+                                    type={currentQuestion.type}
+                                    value={answers[currentQuestion.id] || ''}
+                                    onChange={(e) => setValue(e.target.value)}
+                                    placeholder={currentQuestion.placeholder || '...'}
+                                    className="open-input"
+                                    autoFocus
+                                    onKeyDown={(e) => e.key === 'Enter' && canGoNext() && handleNext()}
+                                />
+                                {currentQuestion.type === 'email' && answers[currentQuestion.id] && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(answers[currentQuestion.id])) && (
+                                    <p className="validation-error">
+                                        <i className="fas fa-exclamation-circle"></i> Veuillez entrer une adresse e-mail valide.
+                                    </p>
+                                )}
+                            </div>
                         )}
 
                         {currentQuestion.type === 'info' && (
@@ -1005,7 +1021,9 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                             <button onClick={handlePrev} className="nav-btn prev">Précédent</button>
                         )}
                         {currentIndex < visibleQuestions.length - 1 ? (
-                            <button onClick={handleNext} disabled={!canGoNext()} className="nav-btn next">Suivant</button>
+                            <button onClick={handleNext} disabled={!canGoNext()} className="nav-btn next">
+                                {!currentQuestion?.required && !answers[currentQuestion?.id] && currentQuestion?.type !== 'info' ? 'Passer cette étape' : 'Suivant'}
+                            </button>
                         ) : (
                             <>
                                 {!isSubmitted ? (
@@ -1247,6 +1265,16 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                 }
                 .open-input::placeholder { color: rgba(255,255,255,0.2); }
                 .open-input:focus { border-color: #fcb133; }
+                
+                .validation-error {
+                    color: #eb2f50;
+                    font-size: 0.95rem;
+                    margin-top: 10px;
+                    font-weight: 700;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                }
 
                 .survey-footer { 
                     height: 100px; 
