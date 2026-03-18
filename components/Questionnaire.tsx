@@ -121,7 +121,7 @@ const QUESTIONS: Question[] = [
         id: 'autres_jo',
         type: 'select',
         section: 'Profil',
-        label: 'Aviez-vous participé à d’autres Jeux olympiques comme volontaire ?',
+        label: 'Aviez-vous participé à d’autres Jeux olympiques ou paralympiques d\'été comme volontaire ?',
         options: ['Oui', 'Non'],
         required: true
     },
@@ -129,7 +129,7 @@ const QUESTIONS: Question[] = [
         id: 'autres_hiver',
         type: 'select',
         section: 'Profil',
-        label: 'Aviez-vous déjà participé à d’autres Jeux d’hiver comme volontaire ?',
+        label: 'Aviez-vous déjà participé à d’autres Jeux olympiques ou paralympiques d’hiver comme volontaire ?',
         options: ['Oui', 'Non'],
         required: true
     },
@@ -562,6 +562,14 @@ const QUESTIONS: Question[] = [
         required: true
     },
     {
+        id: 'eco_responsable',
+        type: 'range',
+        section: 'Opérationnel',
+        label: 'Lors de vos missions, avez-vous contribué à rendre les Jeux plus éco-responsables ?',
+        description: '1 = Non pas du tout | 5 = Neutre | 10 = Oui tout à fait',
+        min: 1, max: 10, step: 1, required: true
+    },
+    {
         id: 'intensite_mission',
         type: 'select',
         section: 'Opérationnel',
@@ -835,15 +843,9 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
             <div className="survey-content">
                 <header className="survey-header">
                     <div className="header-top">
-                        {onBack ? (
-                            <button onClick={onBack} className="site-link" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-                                <i className="fas fa-chevron-left"></i> Retour
-                            </button>
-                        ) : (
-                            <Link href="/" className="site-link">
-                                <i className="fas fa-chevron-left"></i> Retour
-                            </Link>
-                        )}
+                        <button onClick={resetSurvey} className="site-link" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                            <i className="fas fa-redo-alt"></i> Recommencer
+                        </button>
 
                         <div className="section-stepper">
                             {SECTIONS.map((s, idx) => {
@@ -858,10 +860,6 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                             })}
                         </div>
 
-                        <button onClick={resetSurvey} className="reset-link" title="Recommencer à zéro">
-                            <i className="fas fa-redo-alt"></i>
-                            <span className="reset-hover-text">Reset</span>
-                        </button>
                     </div>
 
                     <div className="progress-wrap">
@@ -999,8 +997,7 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
 
                 <footer className="survey-footer">
                     <div className="logo-area">
-                        <img src="/assets/favicon.ico" alt="Logo" className="logo" />
-                        <span className="logo-name">Volontaires français</span>
+                        <img src="/assets/logos-typos/LOGO_NOIR_COULEUR_1.png" alt="Logo Volontaires français" className="logo" style={{ height: '48px', objectFit: 'contain' }} />
                     </div>
 
                     <div className="nav-area">

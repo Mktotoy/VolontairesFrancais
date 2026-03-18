@@ -1,7 +1,7 @@
 ---
 id: 10
 title: >-
-  RETEX Milano Cortina 2026 : Votre voix compte pour préparer l'avenir
+  Milano Cortina 2026 : Votre voix compte pour préparer l'avenir
 slug: retex-milano-2026
 excerpt: >-
   Les Jeux d'hiver de Milano Cortina sont terminés. Partagez votre expérience de terrain 
@@ -17,7 +17,7 @@ seo:
     Enquête RETEX Milano Cortina 2026 | Volontaires français
 featured: false
 ---
-Bonjour, les Jeux d'hiver de Milano Cortina se sont achevés ce dimanche 15 mars. En tant que Français(e) engagé(e) sur le terrain, vous avez eu l’honneur de vivre l'événement de l'intérieur.
+Les Jeux d'hiver de Milano Cortina se sont achevés ce dimanche 15 mars. En tant que Français(e) engagé(e) sur le terrain, vous avez eu l’honneur de vivre l'événement de l'intérieur.
 
 Notre association **Volontaires français** lance une grande consultation auprès des 550 volontaires français mobilisés en Italie.
 
@@ -38,4 +38,8 @@ Sportivement,
 ### Participer à l'enquête
 Cliquez sur le lien ci-dessous pour démarrer le questionnaire (vos réponses sont enregistrées automatiquement si vous devez vous arrêter) :
 
-[👉 **Démarrer le questionnaire de retour d'expérience**](/enquete/retex)
+<div class="article-cta">
+  <a href="/enquete/retex" class="btn-primary">
+    👉 Démarrer le questionnaire de retour d'expérience
+  </a>
+</div>
