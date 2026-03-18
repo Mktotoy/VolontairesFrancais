@@ -71,6 +71,8 @@ export async function listFolders(): Promise<{ name: string; previewUrl: string 
             if (parts.length > 1) {
                 const rawFolderName = parts[0];
                 const folderName = rawFolderName.trim();
+                // Skip suspicious folder names (path traversal attempts)
+                if (folderName.includes('..') || folderName.includes('/') || folderName.includes('\\')) return;
                 const fileName = parts[1];
 
                 if (!folderMap.has(folderName)) {

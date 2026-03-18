@@ -23,13 +23,29 @@ export async function POST(request: NextRequest) {
     try {
         const formData = await request.formData();
         const file = formData.get('file') as File;
+        const folder = (formData.get('folder') as string || '').trim();
 
         if (!file) {
             return NextResponse.json({ error: 'No file provided' }, { status: 400 });
         }
 
+        // Sanitize filename: strip path traversal sequences, keep only safe characters
+        const rawName = file.name.replace(/\.\.[/\\]/g, '').replace(/[/\\]/g, '');
+        const safeName = rawName.replace(/[^a-zA-Z0-9.\-_()\s]/g, '_');
+
+        if (!safeName || safeName.startsWith('.')) {
+            return NextResponse.json({ error: 'Invalid filename' }, { status: 400 });
+        }
+
+        // Sanitize folder name
+        const safeFolder = folder
+            ? folder.replace(/\.\./g, '').replace(/[/\\]/g, '').trim()
+            : '';
+
+        const storageName = safeFolder ? `${safeFolder}/${safeName}` : safeName;
+
         const buffer = Buffer.from(await file.arrayBuffer());
-        const result = await uploadPhoto(file.name, buffer);
+        const result = await uploadPhoto(storageName, buffer);
 
         return NextResponse.json(result);
     } catch (error) {
