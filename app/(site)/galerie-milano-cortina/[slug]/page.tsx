@@ -13,7 +13,7 @@ interface Photo {
 
 export default function EventGalleryPage() {
     const params = useParams();
-    const slug = params.slug as string;
+    const slug = decodeURIComponent(params.slug as string).trim();
     const [photos, setPhotos] = useState<Photo[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
