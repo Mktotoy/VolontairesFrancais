@@ -66,7 +66,8 @@ export default function Gallery() {
         if (!confirm('Voulez-vous vraiment supprimer cette photo ?')) return;
 
         try {
-            const res = await fetch(`/api/photos/${encodeURIComponent(relativeName)}`, {
+            const encodedPath = relativeName.split('/').map(encodeURIComponent).join('/');
+            const res = await fetch(`/api/photos/${encodedPath}`, {
                 method: 'DELETE',
             });
             if (res.ok) {
