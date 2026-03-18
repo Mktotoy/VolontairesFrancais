@@ -206,7 +206,7 @@ export default async function Home() {
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 className="section-title" style={{ color: 'white' }}>Revivez nos moments forts</h2>
           <p style={{ fontSize: '1.2rem', marginBottom: '2rem', maxWidth: '800px', margin: '0 auto 2rem' }}>
-            Découvrez les photos de nos rassemblements, de Paris 2024 aux préparatifs de Milano Cortina 2026.
+            Revivez la magie de Milano Cortina 2026 à travers les yeux de nos volontaires… Parcourez l'album photo de nos adhérents mobilisés sur le terrain !
           </p>
           <Link href="/galerie-milano-cortina" className="btn-primary" style={{ backgroundColor: 'white', color: '#0056b3', border: 'none' }}>
             Voir la Galerie Photo
