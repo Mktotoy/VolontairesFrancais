@@ -9,8 +9,10 @@ import ExcelJS from 'exceljs';
 import dynamic from 'next/dynamic';
 import { 
   Download, Table, BarChart3, PieChart as PieIcon, RefreshCw, ChevronRight, 
-  ChevronLeft, Search, ArrowUpDown, ArrowUp, ArrowDown, Map as MapIcon
+  ChevronLeft, Search, ArrowUpDown, ArrowUp, ArrowDown, Map as MapIcon,
+  HelpCircle
 } from 'lucide-react';
+import { QUESTIONS, SECTIONS } from './Questionnaire';
 
 const SurveyMap = dynamic(() => import('./SurveyMap'), { 
   ssr: false,
@@ -44,23 +46,32 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
 
   const stats = useMemo(() => {
     const counts: Record<string, Record<string, number>> = {};
+    const averages: Record<string, { sum: number, count: number }> = {};
     
     data.forEach(resp => {
       Object.entries(resp.answers).forEach(([key, val]) => {
+        // Categorical counts
         if (!counts[key]) counts[key] = {};
         if (Array.isArray(val)) {
           val.forEach(v => {
             const strVal = String(v);
             counts[key][strVal] = (counts[key][strVal] || 0) + 1;
           });
-        } else {
+        } else if (val !== null && val !== undefined) {
           const strVal = String(val);
           counts[key][strVal] = (counts[key][strVal] || 0) + 1;
+        }
+
+        // Numeric averages (only for values that are numbers and in a reasonable range, or defined as range)
+        if (typeof val === 'number' || (typeof val === 'string' && val !== '' && !isNaN(Number(val)))) {
+          if (!averages[key]) averages[key] = { sum: 0, count: 0 };
+          averages[key].sum += Number(val);
+          averages[key].count += 1;
         }
       });
     });
 
-    return counts;
+    return { counts, averages };
   }, [data]);
 
   // Filter and Sort Data
@@ -281,24 +292,67 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
     return sortOrder === 'asc' ? <ArrowUp size={14} /> : <ArrowDown size={14} />;
   };
 
-  const renderChart = (key: string, label: string) => {
-    const rawData = stats[key] || {};
+  const renderChart = (key: string, label: string, isRange: boolean = false) => {
+    const rawData = stats.counts[key] || {};
+    const avgData = stats.averages[key];
+    
     const chartData = Object.entries(rawData)
       .map(([name, value]) => ({ name, value: Number(value) }))
-      .sort((a, b) => b.value - a.value);
+      .sort((a, b) => {
+        // Sort numeric scales naturally
+        if (!isNaN(Number(a.name)) && !isNaN(Number(b.name))) {
+          return Number(a.name) - Number(b.name);
+        }
+        return b.value - a.value;
+      });
     
     if (chartData.length === 0) return null;
 
-    const isYesNo = chartData.every(d => ['Oui', 'Non', 'Je réfléchis encore'].includes(d.name));
+    const isYesNo = chartData.every(d => ['Oui', 'Non', 'Je réfléchis encore', 'Je ne souhaite pas répondre'].includes(d.name));
+    const averageVal = (isRange || key.startsWith('satisfaction') || key.includes('importance')) && avgData && avgData.count > 0 
+      ? Number((avgData.sum / avgData.count).toFixed(1)) 
+      : null;
+
+    const getScoreColor = (score: number) => {
+      if (score >= 8) return '#07a459'; // Green
+      if (score >= 6) return '#86c232'; // Light Green
+      if (score >= 4) return '#fcb133'; // Orange
+      return '#eb2f50'; // Red
+    };
 
     return (
       <div className="chart-item" key={key}>
-        <div className="chart-info">
-          <h3>{label}</h3>
-          <span className="total-responses">{Object.values(rawData).reduce((a: number, b: number) => a + b, 0)} réponses</span>
+        <div className="chart-info-flex">
+          <div className="chart-info">
+            <h3>{label}</h3>
+            <span className="total-responses">{Object.values(rawData).reduce((a: number, b: number) => a + b, 0)} réponses</span>
+          </div>
+          {averageVal !== null && (
+            <div className="average-visual" style={{ borderColor: getScoreColor(averageVal) }}>
+              <div className="avg-circle-bg">
+                <svg viewBox="0 0 36 36" className="circular-chart" width="48" height="48" fill="none">
+                  <path className="circle-bg"
+                    fill="none"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                  <path className="circle"
+                    fill="none"
+                    strokeDasharray={`${averageVal * 10}, 100`}
+                    style={{ stroke: getScoreColor(averageVal) }}
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg>
+                <div className="avg-text">
+                  <span className="avg-val">{averageVal.toString()}</span>
+                  <span className="avg-unit">/10</span>
+                </div>
+              </div>
+              <span className="avg-label-bottom">Moyenne</span>
+            </div>
+          )}
         </div>
         <div className="chart-wrapper">
-          {chartData.length <= 3 || isYesNo ? (
+          {chartData.length <= 4 || isYesNo || isRange ? (
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
@@ -372,60 +426,30 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
         {view === 'stats' && (
           <div className="stats-layout">
             <div className="stats-grid-container">
-              <section className="stats-section">
-                <div className="section-title">
-                  <div className="section-icon">1</div>
-                  <h2>Profil des Volontaires</h2>
-                </div>
-                <div className="charts-grid">
-                  {renderChart('age', 'Catégories d’âge')}
-                  {renderChart('genre', 'Genre')}
-                  {renderChart('region', 'Zones géographiques')}
-                  {renderChart('paris2024', 'Anciens Paris 2024')}
-                  {renderChart('adherent_vf', 'Adhérents VF')}
-                  {renderChart('accompagnement', 'Besoin accompagnement')}
-                </div>
-              </section>
+              {SECTIONS.filter(s => s !== 'Divers').map((section, sectionIdx) => (
+                <section className="stats-section" key={section}>
+                  <div className="section-title">
+                    <div className="section-icon">{sectionIdx + 1}</div>
+                    <h2>{section === 'Profil' ? 'Profil des Volontaires' : section === 'Rôle & Sites' ? 'Missions & Sites' : section === 'Vie aux Jeux' ? 'Satisfaction & Vie aux Jeux' : section === 'Opérationnel' ? 'Opérationnel' : section === 'Futur' ? 'Futur & Alpes 2030' : section}</h2>
+                  </div>
+                  <div className="charts-grid">
+                    {QUESTIONS.filter(q => q.section === section && q.type !== 'text' && q.type !== 'email' && q.type !== 'info').map(q => 
+                      renderChart(q.id, q.label, q.type === 'range')
+                    )}
+                  </div>
+                </section>
+              ))}
 
               <section className="stats-section">
                 <div className="section-title">
-                  <div className="section-icon">2</div>
-                  <h2>Missions & Sites</h2>
+                  <div className="section-icon">{SECTIONS.length}</div>
+                  <h2>Divers</h2>
                 </div>
                 <div className="charts-grid">
-                  {renderChart('sites_zones', 'Zones d’affectation')}
-                  {renderChart('mission_principale', 'Missions principales')}
-                  {renderChart('redéployé', 'Redéploiement')}
-                  {renderChart('responsable_equipe', 'Responsables équipe')}
-                  {renderChart('type_jeux', 'Type de Jeux')}
-                </div>
-              </section>
-
-              <section className="stats-section">
-                <div className="section-title">
-                  <div className="section-icon">3</div>
-                  <h2>Satisfaction & Vie aux Jeux</h2>
-                </div>
-                <div className="charts-grid">
-                  {renderChart('satisfaction_globale', 'Satisfaction Globale (/10)')}
-                  {renderChart('satisfaction_integration', 'Intégration (/10)')}
-                  {renderChart('satisfaction_gestion', 'Gestion par l’organisation (/10)')}
-                  {renderChart('prix_logement_nuit', 'Prix/nuit logement')}
-                  {renderChart('temps_transport', 'Temps de transport')}
-                  {renderChart('satisfaction_transport', 'Satisfaction transports (/10)')}
-                </div>
-              </section>
-
-              <section className="stats-section">
-                <div className="section-title">
-                  <div className="section-icon">4</div>
-                  <h2>Futur & Alpes 2030</h2>
-                </div>
-                <div className="charts-grid">
-                  {renderChart('candidat_la2028', 'Candidat LA 2028')}
-                  {renderChart('candidat_alpes2030', 'Candidat Alpes 2030')}
-                  {renderChart('candidat_brisbane2032', 'Candidat Brisbane 2032')}
-                  {renderChart('rejoindre_association', 'Souhaitent rejoindre VF')}
+                  {QUESTIONS.filter(q => q.section === 'Divers' && q.type !== 'text' && q.type !== 'email' && q.type !== 'info').map(q => 
+                    renderChart(q.id, q.label, q.type === 'range')
+                  )}
+                  {/* Manually add custom charts not in Questionnaire but in data if any */}
                 </div>
               </section>
             </div>
@@ -493,38 +517,11 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
                       <th className="cursor-pointer" onClick={() => handleSort('created_at')}>
                         <div className="th-content">Date <SortIcon colKey="created_at" /></div>
                       </th>
-                      <th className="cursor-pointer" onClick={() => handleSort('age')}>
-                        <div className="th-content">Âge <SortIcon colKey="age" /></div>
-                      </th>
-                      <th>Genre</th>
-                      <th>Région</th>
-                      <th>Paris 2024</th>
-                      <th>Type Jeux</th>
-                      <th className="cursor-pointer" onClick={() => handleSort('sites_zones')}>
-                        <div className="th-content">Zone <SortIcon colKey="sites_zones" /></div>
-                      </th>
-                      <th>Site Précis (Sous-sites)</th>
-                      <th className="cursor-pointer" onClick={() => handleSort('mission_principale')}>
-                        <div className="th-content">Mission <SortIcon colKey="mission_principale" /></div>
-                      </th>
-                      <th>Redéployé</th>
-                      <th>Responsable</th>
-                      <th className="cursor-pointer" onClick={() => handleSort('satisfaction_globale')}>
-                        <div className="th-content">Satisfaction <SortIcon colKey="satisfaction_globale" /></div>
-                      </th>
-                      <th>Intégration</th>
-                      <th>Gestion</th>
-                      <th>Logement €/nuit</th>
-                      <th>Logement Global</th>
-                      <th>Difficulté Logement</th>
-                      <th>Transport (temps)</th>
-                      <th>Transport (accept.)</th>
-                      <th>LA 2028</th>
-                      <th className="cursor-pointer" onClick={() => handleSort('candidat_alpes2030')}>
-                        <div className="th-content">Alpes 2030 <SortIcon colKey="candidat_alpes2030" /></div>
-                      </th>
-                      <th>Brisbane 2032</th>
-                      <th>Rejoindre VF</th>
+                      {QUESTIONS.filter(q => q.type !== 'info').map(q => (
+                        <th key={q.id} className="cursor-pointer" onClick={() => handleSort(q.id)}>
+                          <div className="th-content">{q.label} <SortIcon colKey={q.id} /></div>
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
@@ -532,49 +529,29 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
                       <tr key={resp.id}>
                         <td className="sticky-col bold-email">{resp.email || 'Anonyme'}</td>
                         <td className="nowrap">{new Date(resp.created_at).toLocaleDateString()}</td>
-                        <td>{resp.answers.age}</td>
-                        <td>{resp.answers.genre}</td>
-                        <td>{resp.answers.region}</td>
-                        <td className="centered-cell">{resp.answers.paris2024 === 'Oui' ? '✅' : '❌'}</td>
-                        <td>{resp.answers.type_jeux}</td>
-                        <td className="tag-cell">
-                          {Array.isArray(resp.answers.sites_zones) 
-                            ? resp.answers.sites_zones.map((z: string) => <span key={z} className="tag zone">{z}</span>)
-                            : <span className="tag zone">{resp.answers.sites_zones}</span>
+                        {QUESTIONS.filter(q => q.type !== 'info').map(q => {
+                          const val = resp.answers[q.id];
+                          if (q.type === 'range') {
+                            return (
+                              <td key={q.id} className="score-cell">
+                                <span className="score-badge" style={{ background: (val >= 8 ? '#07a459' : val >= 5 ? '#fcb133' : '#eb2f50') }}>
+                                  {val}/10
+                                </span>
+                              </td>
+                            );
                           }
-                        </td>
-                        <td className="venue-cell">
-                          {[
-                            resp.answers.milan_venues,
-                            resp.answers.cortina_venues,
-                            resp.answers.fiemme_venues,
-                            resp.answers.valtellina_venues,
-                            resp.answers.anterselva_venues
-                          ].filter(Boolean).flat().join(', ')}
-                        </td>
-                        <td>{resp.answers.mission_principale}</td>
-                        <td className="centered-cell">{resp.answers.redéployé === 'Oui' ? '🔄' : '-'}</td>
-                        <td className="centered-cell">{resp.answers.responsable_equipe === 'Oui' ? '👑' : '-'}</td>
-                        <td className="score-cell">
-                          <span className="score-badge" style={{ background: (resp.answers.satisfaction_globale >= 8 ? '#07a459' : resp.answers.satisfaction_globale >= 5 ? '#fcb133' : '#eb2f50') }}>
-                            {resp.answers.satisfaction_globale}/10
-                          </span>
-                        </td>
-                        <td>{resp.answers.satisfaction_integration}/10</td>
-                        <td>{resp.answers.satisfaction_gestion}/10</td>
-                        <td>{resp.answers.prix_logement_nuit}</td>
-                        <td>{resp.answers.prix_logement_global}</td>
-                        <td>{resp.answers.difficulte_logement}/10</td>
-                        <td>{resp.answers.temps_transport}</td>
-                        <td>{resp.answers.transport_acceptable}/10</td>
-                        <td>{resp.answers.candidat_la2028}</td>
-                        <td className="futur-cell">
-                          <span className={`status ${resp.answers.candidat_alpes2030 === 'Oui' ? 'yes' : resp.answers.candidat_alpes2030 === 'Non' ? 'no' : 'maybe'}`}>
-                            {resp.answers.candidat_alpes2030}
-                          </span>
-                        </td>
-                        <td>{resp.answers.candidat_brisbane2032}</td>
-                        <td className="centered-cell">{resp.answers.rejoindre_association === 'Oui' ? '🤝' : 'Non'}</td>
+                          if (q.id === 'email') return <td key={q.id}>{val || '-'}</td>;
+                          if (Array.isArray(val)) {
+                            return (
+                              <td key={q.id} className="tag-cell">
+                                {val.map((v: string) => <span key={v} className="tag zone">{v}</span>)}
+                              </td>
+                            );
+                          }
+                          if (val === 'Oui') return <td key={q.id} className="centered-cell">✅</td>;
+                          if (val === 'Non') return <td key={q.id} className="centered-cell">❌</td>;
+                          return <td key={q.id} className={q.type === 'text' ? 'venue-cell' : ''}>{val || '-'}</td>;
+                        })}
                       </tr>
                     ))}
                   </tbody>
@@ -746,8 +723,86 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
           box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
+        .chart-info-flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
         .chart-info h3 { margin: 0; font-size: 1.1rem; font-weight: 700; color: #fcb133; opacity: 0.9; }
         .total-responses { font-size: 0.85rem; opacity: 0.3; font-weight: 600; margin-top: 4px; display: block; }
+        
+        .average-visual {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          background: rgba(255,255,255,0.05);
+          padding: 12px;
+          border-radius: 18px;
+          border: 1px solid rgba(255,255,255,0.1);
+          width: 80px;
+          height: 90px;
+          flex-shrink: 0;
+          justify-content: center;
+          margin-left: 1rem;
+          overflow: hidden;
+          max-width: 80px;
+        }
+        .avg-circle-bg {
+          position: relative;
+          width: 48px;
+          height: 48px;
+          flex-shrink: 0;
+        }
+        .circular-chart {
+          display: block;
+          margin: 0 auto;
+          width: 48px;
+          height: 48px;
+        }
+        .circle-bg {
+          fill: none;
+          stroke: rgba(255,255,255,0.1);
+          stroke-width: 3.5;
+        }
+        .circle {
+          fill: none;
+          stroke-width: 3.5;
+          stroke-linecap: round;
+          transition: stroke-dasharray 0.3s ease;
+        }
+        .avg-text {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+          z-index: 5;
+        }
+        .avg-val {
+          font-size: 1.1rem;
+          font-weight: 900;
+          color: #fff;
+          text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .avg-unit {
+          font-size: 0.45rem;
+          opacity: 0.6;
+          font-weight: 800;
+          margin-top: -2px;
+        }
+        .avg-label-bottom {
+          font-size: 0.55rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          font-weight: 900;
+          opacity: 0.5;
+        }
 
         .map-loading {
           height: 450px;
