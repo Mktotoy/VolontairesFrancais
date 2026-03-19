@@ -60,6 +60,8 @@ export default function ResultsPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Mot de passe"
               autoFocus
+              suppressHydrationWarning
+              autoComplete="current-password"
             />
             <button type="submit" disabled={loading}>
               {loading ? 'Vérification...' : 'Accéder aux résultats'}

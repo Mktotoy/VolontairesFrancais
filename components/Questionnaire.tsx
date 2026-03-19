@@ -3,9 +3,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 
-type QuestionType = 'select' | 'multi-select' | 'range' | 'text' | 'email' | 'info';
+export type QuestionType = 'select' | 'multi-select' | 'range' | 'text' | 'email' | 'info';
 
-interface Question {
+export interface Question {
     id: string;
     type: QuestionType;
     label: string;
@@ -20,7 +20,7 @@ interface Question {
     placeholder?: string;
 }
 
-const SECTIONS = [
+export const SECTIONS = [
     'Profil',
     'Rôle & Sites',
     'Vie aux Jeux',
@@ -46,7 +46,7 @@ Un grand merci par avance pour le temps que vous accorderez à cette enquête. B
 Sportivement,
 L'équipe de l'association Volontaires français`;
 
-const QUESTIONS: Question[] = [
+export const QUESTIONS: Question[] = [
     // 1) Qui sont les volontaires ? (Profil)
     {
         id: 'age',
