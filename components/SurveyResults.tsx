@@ -140,8 +140,37 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('RETEX Milano Cortina 2026');
 
-    // Add a Title Row
-    worksheet.mergeCells('A1:X1');
+    // Build dynamic column mapping from all QUESTIONS (exclude 'info' type)
+    const dataQuestions = QUESTIONS.filter(q => q.type !== 'info');
+
+    // Fixed columns first
+    const fixedCols = [
+      { header: 'ID', key: '_id', width: 8 },
+      { header: 'Email', key: '_email', width: 35 },
+      { header: 'Date Soumission', key: '_date', width: 22 },
+      { header: 'Version', key: '_version', width: 10 },
+    ];
+
+    // One column per question
+    const questionCols = dataQuestions.map(q => ({
+      header: q.label,
+      key: q.id,
+      width: q.type === 'text' ? 50 : q.type === 'multi-select' ? 40 : 25,
+    }));
+
+    // Tracking/metadata cols
+    const metaCols = [
+      { header: 'Navigateur', key: '_user_agent', width: 40 },
+      { header: 'Résolution écran', key: '_screen_res', width: 16 },
+      { header: 'Durée (s)', key: '_duration', width: 12 },
+    ];
+
+    const allCols = [...fixedCols, ...questionCols, ...metaCols];
+
+    // Title row spanning all columns
+    const totalCols = allCols.length;
+    const lastColLetter = worksheet.getColumn(totalCols).letter || 'Z';
+    worksheet.mergeCells(`A1:${lastColLetter}1`);
     const titleRow = worksheet.getRow(1);
     titleRow.values = ['RAPPORT DES RÉSULTATS - RETEX MILANO CORTINA 2026'];
     titleRow.font = { name: 'Arial Black', size: 16, color: { argb: 'FFFFFFFF' }, bold: true };
@@ -149,132 +178,127 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
     titleRow.alignment = { vertical: 'middle', horizontal: 'center' };
     titleRow.height = 40;
 
-    // Define column mapping and order
-    const colMapping = [
-      { header: 'Email', key: 'email', width: 35 },
-      { header: 'Date Soumission', key: 'date', width: 22 },
-      { header: 'Âge', key: 'age', width: 15 },
-      { header: 'Genre', key: 'genre', width: 15 },
-      { header: 'Région', key: 'region', width: 25 },
-      { header: 'Paris 2024', key: 'paris2024', width: 12 },
-      { header: 'Type Jeux', key: 'type_jeux', width: 15 },
-      { header: 'Site (Zone)', key: 'sites_zones', width: 25 },
-      { header: 'Site Précis (Sous-sites)', key: 'venues', width: 45 },
-      { header: 'Mission Principale', key: 'mission_principale', width: 35 },
-      { header: 'Redéployé', key: 'redéployé', width: 12 },
-      { header: 'Responsable', key: 'responsable_equipe', width: 12 },
-      { header: 'Satisfaction Globale', key: 'satisfaction_globale', width: 18 },
-      { header: 'Intégration', key: 'satisfaction_integration', width: 15 },
-      { header: 'Gestion Orga', key: 'satisfaction_gestion', width: 15 },
-      { header: 'Prix Logement/nuit', key: 'prix_logement_nuit', width: 20 },
-      { header: 'Logement Global', key: 'prix_logement_global', width: 25 },
-      { header: 'Difficulté Logement', key: 'difficulte_logement', width: 18 },
-      { header: 'Transport (temps)', key: 'temps_transport', width: 20 },
-      { header: 'Transport (acceptability)', key: 'transport_acceptable', width: 20 },
-      { header: 'LA 2028', key: 'candidat_la2028', width: 15 },
-      { header: 'Alpes 2030', key: 'candidat_alpes2030', width: 15 },
-      { header: 'Brisbane 2032', key: 'candidat_brisbane2032', width: 15 },
-      { header: 'Rejoindre VF', key: 'rejoindre_association', width: 15 },
-      { header: 'Navigateur', key: 'user_agent', width: 40 },
-      { header: 'Résolution', key: 'screen_res', width: 15 },
-      { header: 'Durée (s)', key: 'duration', width: 12 },
-    ];
+    // Apply column metadata (widths)
+    worksheet.columns = allCols.map(c => ({ key: c.key, width: c.width }));
 
-    // Set headers at row 2
+    // Header row at row 2
     const headerRow = worksheet.getRow(2);
-    headerRow.values = colMapping.map(c => c.header);
-    headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 11 };
-    headerRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF333333' } };
-    headerRow.alignment = { vertical: 'middle', horizontal: 'center' };
-    headerRow.height = 25;
+    headerRow.values = allCols.map(c => c.header);
+    headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 10 };
+    headerRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1A1A2E' } };
+    headerRow.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
+    headerRow.height = 45;
 
-    // Apply column metadata
-    worksheet.columns = colMapping.map(c => ({ key: c.key, width: c.width }));
+    // Section color header groups
+    const sectionColors: Record<string, string> = {
+      'Profil': 'FF1B4F72',
+      'Rôle & Sites': 'FF154360',
+      'Vie aux Jeux': 'FF1A5276',
+      'Opérationnel': 'FF0E6655',
+      'Futur': 'FF6E2F7C',
+      'Divers': 'FF784212',
+    };
+
+    // Color the question header cells by section
+    dataQuestions.forEach((q, idx) => {
+      const colIdx = fixedCols.length + idx + 1; // 1-based
+      const cell = headerRow.getCell(colIdx);
+      const color = sectionColors[q.section] || 'FF333333';
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: color } };
+    });
 
     // Add data rows
     data.forEach((resp, index) => {
       const tracking = (resp.answers as any)._metadata || {};
-      const rowData: any = {
-        email: resp.email || 'Anonyme',
-        date: new Date(resp.created_at).toLocaleString(),
-        age: resp.answers.age,
-        genre: resp.answers.genre,
-        region: resp.answers.region,
-        paris2024: resp.answers.paris2024,
-        type_jeux: resp.answers.type_jeux,
-        sites_zones: Array.isArray(resp.answers.sites_zones) ? resp.answers.sites_zones.join(', ') : resp.answers.sites_zones,
-        venues: (() => {
-          const formatVenues = (venues: any, autresText: string | undefined, siteName: string) => {
-            if (!venues) return null;
-            const list: string[] = Array.isArray(venues) ? venues : [venues];
-            const withAutres = list.map(v => v === 'Autres' && autresText ? `Autres (${autresText})` : v);
-            return `${siteName}: ${withAutres.join('; ')}`;
-          };
-          return [
-            formatVenues(resp.answers.milan_venues, resp.answers.milan_venues_autres, 'MILAN'),
-            formatVenues(resp.answers.cortina_venues, resp.answers.cortina_venues_autres, 'CORTINA'),
-            formatVenues(resp.answers.verona_venues, resp.answers.verona_venues_autres, 'VERONA'),
-            formatVenues(resp.answers.fiemme_venues, resp.answers.fiemme_venues_autres, 'VAL DI FIEMME'),
-            formatVenues(resp.answers.valtellina_venues, resp.answers.valtellina_venues_autres, 'VALTELLINA'),
-            formatVenues(resp.answers.anterselva_venues, resp.answers.anterselva_venues_autres, 'ANTERSELVA'),
-          ].filter(Boolean).join(' | ');
-        })(),
-        mission_principale: resp.answers.mission_principale,
-        redéployé: resp.answers.redéployé,
-        responsable_equipe: resp.answers.responsable_equipe,
-        satisfaction_globale: resp.answers.satisfaction_globale,
-        satisfaction_integration: resp.answers.satisfaction_integration,
-        satisfaction_gestion: resp.answers.satisfaction_gestion,
-        prix_logement_nuit: resp.answers.prix_logement_nuit,
-        prix_logement_global: resp.answers.prix_logement_global,
-        difficulte_logement: resp.answers.difficulte_logement,
-        temps_transport: resp.answers.temps_transport,
-        transport_acceptable: resp.answers.transport_acceptable,
-        candidat_la2028: resp.answers.candidat_la2028,
-        candidat_alpes2030: resp.answers.candidat_alpes2030,
-        candidat_brisbane2032: resp.answers.candidat_brisbane2032,
-        rejoindre_association: resp.answers.rejoindre_association,
-        user_agent: tracking.user_agent,
-        screen_res: tracking.screen_res,
-        duration: tracking.duration_seconds
+      const rowValues: any = {
+        _id: resp.id,
+        _email: resp.email || 'Anonyme',
+        _date: new Date(resp.created_at).toLocaleString('fr-FR'),
+        _version: resp.version || 'V4',
+        _user_agent: tracking.user_agent || '',
+        _screen_res: tracking.screen_res || '',
+        _duration: tracking.duration_seconds || '',
       };
 
-      const row = worksheet.addRow(rowData);
-      
-      // zebra stripes
-      if (index % 2 === 0) {
-        row.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF9FAFB' } };
-      }
-
-      // Center numeric columns
-      [3, 6, 11, 12, 13, 14, 15, 18, 20, 21, 22, 23, 24].forEach(colIdx => {
-        row.getCell(colIdx).alignment = { horizontal: 'center' };
+      // Fill in all question answers
+      dataQuestions.forEach(q => {
+        const val = resp.answers[q.id];
+        if (val === null || val === undefined) {
+          rowValues[q.id] = '';
+        } else if (Array.isArray(val)) {
+          rowValues[q.id] = val.join(', ');
+        } else {
+          rowValues[q.id] = val;
+        }
       });
 
-      // Satisfaction highlighting
-      const scoreCell = row.getCell(13); // Satisfaction Globale
-      const score = Number(resp.answers.satisfaction_globale);
-      if (score >= 8) scoreCell.font = { color: { argb: 'FF07A459' }, bold: true };
-      else if (score < 5) scoreCell.font = { color: { argb: 'FFEB2F50' }, bold: true };
+      const row = worksheet.addRow(rowValues);
+
+      // Zebra stripes
+      if (index % 2 === 0) {
+        row.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF5F8FF' } };
+      }
+
+      // Wrap text for text columns and center others
+      allCols.forEach((col, colIdx) => {
+        const cell = row.getCell(colIdx + 1);
+        const q = dataQuestions.find(dq => dq.id === col.key);
+        if (q?.type === 'text') {
+          cell.alignment = { wrapText: true, vertical: 'top' };
+        } else {
+          cell.alignment = { horizontal: 'center', vertical: 'middle' };
+        }
+
+        // Highlight satisfaction scores
+        if (q?.type === 'range') {
+          const score = Number(cell.value);
+          if (!isNaN(score)) {
+            if (score >= 8) cell.font = { color: { argb: 'FF07A459' }, bold: true };
+            else if (score < 5) cell.font = { color: { argb: 'FFEB2F50' }, bold: true };
+            else cell.font = { color: { argb: 'FFFCB133' } };
+          }
+        }
+      });
     });
 
-    // Freeze panes: Header row and Email column
-    worksheet.views = [
-      { state: 'frozen', xSplit: 1, ySplit: 2 }
-    ];
+    // Freeze panes: Header rows and first col
+    worksheet.views = [{ state: 'frozen', xSplit: 2, ySplit: 2 }];
 
-    // Add Borders
+    // Add borders
     worksheet.eachRow((row, rowNumber) => {
       if (rowNumber > 1) {
         row.eachCell((cell) => {
           cell.border = {
-            top: { style: 'thin', color: { argb: 'FFEEEEEE' } },
-            left: { style: 'thin', color: { argb: 'FFEEEEEE' } },
-            bottom: { style: 'thin', color: { argb: 'FFEEEEEE' } },
-            right: { style: 'thin', color: { argb: 'FFEEEEEE' } }
+            top: { style: 'thin', color: { argb: 'FFDDDDDD' } },
+            left: { style: 'thin', color: { argb: 'FFDDDDDD' } },
+            bottom: { style: 'thin', color: { argb: 'FFDDDDDD' } },
+            right: { style: 'thin', color: { argb: 'FFDDDDDD' } }
           };
         });
       }
+    });
+
+    // Add a second sheet: Résumé par section
+    const summarySheet = workbook.addWorksheet('Résumé Questions');
+    summarySheet.columns = [
+      { header: 'Section', key: 'section', width: 20 },
+      { header: 'Question', key: 'question', width: 60 },
+      { header: 'Type', key: 'type', width: 15 },
+      { header: 'Nb réponses', key: 'count', width: 12 },
+    ];
+    const summaryHeader = summarySheet.getRow(1);
+    summaryHeader.font = { bold: true, color: { argb: 'FFFFFFFF' } };
+    summaryHeader.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF067FCC' } };
+    summaryHeader.height = 25;
+
+    dataQuestions.forEach(q => {
+      const answers = data.map(r => r.answers[q.id]).filter(v => v !== null && v !== undefined && v !== '');
+      summarySheet.addRow({
+        section: q.section,
+        question: q.label,
+        type: q.type,
+        count: answers.length,
+      });
     });
 
     const buffer = await workbook.xlsx.writeBuffer();
@@ -282,7 +306,7 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
     const url = window.URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     anchor.href = url;
-    anchor.download = `RETEX_Milano_2026_Export_${new Date().toISOString().split('T')[0]}.xlsx`;
+    anchor.download = `RETEX_Milano_2026_Complet_${new Date().toISOString().split('T')[0]}.xlsx`;
     anchor.click();
     window.URL.revokeObjectURL(url);
   };
@@ -290,6 +314,31 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
   const SortIcon = ({ colKey }: { colKey: string }) => {
     if (sortKey !== colKey) return <ArrowUpDown size={14} opacity={0.3} />;
     return sortOrder === 'asc' ? <ArrowUp size={14} /> : <ArrowDown size={14} />;
+  };
+
+  const renderTextAnswers = (key: string, label: string) => {
+    const answers = data
+      .map(r => r.answers[key])
+      .filter(v => v && String(v).trim() !== '');
+    
+    if (answers.length === 0) return null;
+
+    return (
+      <div className="text-answers-item" key={key}>
+        <div className="chart-info">
+          <h3>{label}</h3>
+          <span className="total-responses">{answers.length} réponses</span>
+        </div>
+        <div className="text-answers-list">
+          {answers.map((ans, i) => (
+            <div key={i} className="text-answer-entry">
+              <span className="text-answer-num">{i + 1}</span>
+              <p className="text-answer-text">{String(ans)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   };
 
   const renderChart = (key: string, label: string, isRange: boolean = false) => {
@@ -426,32 +475,37 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
         {view === 'stats' && (
           <div className="stats-layout">
             <div className="stats-grid-container">
-              {SECTIONS.filter(s => s !== 'Divers').map((section, sectionIdx) => (
-                <section className="stats-section" key={section}>
-                  <div className="section-title">
-                    <div className="section-icon">{sectionIdx + 1}</div>
-                    <h2>{section === 'Profil' ? 'Profil des Volontaires' : section === 'Rôle & Sites' ? 'Missions & Sites' : section === 'Vie aux Jeux' ? 'Satisfaction & Vie aux Jeux' : section === 'Opérationnel' ? 'Opérationnel' : section === 'Futur' ? 'Futur & Alpes 2030' : section}</h2>
-                  </div>
-                  <div className="charts-grid">
-                    {QUESTIONS.filter(q => q.section === section && q.type !== 'text' && q.type !== 'email' && q.type !== 'info').map(q => 
-                      renderChart(q.id, q.label, q.type === 'range')
+              {SECTIONS.map((section, sectionIdx) => {
+                const sectionLabel = section === 'Profil' ? 'Profil des Volontaires' 
+                  : section === 'Rôle & Sites' ? 'Missions & Sites' 
+                  : section === 'Vie aux Jeux' ? 'Satisfaction & Vie aux Jeux' 
+                  : section === 'Opérationnel' ? 'Opérationnel' 
+                  : section === 'Futur' ? 'Futur & Alpes 2030' 
+                  : section;
+                const chartQuestions = QUESTIONS.filter(q => q.section === section && q.type !== 'text' && q.type !== 'email' && q.type !== 'info');
+                const textQuestions = QUESTIONS.filter(q => q.section === section && q.type === 'text');
+                return (
+                  <section className="stats-section" key={section}>
+                    <div className="section-title">
+                      <div className="section-icon">{sectionIdx + 1}</div>
+                      <h2>{sectionLabel}</h2>
+                    </div>
+                    {chartQuestions.length > 0 && (
+                      <div className="charts-grid">
+                        {chartQuestions.map(q => renderChart(q.id, q.label, q.type === 'range'))}
+                      </div>
                     )}
-                  </div>
-                </section>
-              ))}
-
-              <section className="stats-section">
-                <div className="section-title">
-                  <div className="section-icon">{SECTIONS.length}</div>
-                  <h2>Divers</h2>
-                </div>
-                <div className="charts-grid">
-                  {QUESTIONS.filter(q => q.section === 'Divers' && q.type !== 'text' && q.type !== 'email' && q.type !== 'info').map(q => 
-                    renderChart(q.id, q.label, q.type === 'range')
-                  )}
-                  {/* Manually add custom charts not in Questionnaire but in data if any */}
-                </div>
-              </section>
+                    {textQuestions.length > 0 && (
+                      <div className="text-questions-section">
+                        <h3 className="text-questions-title">Réponses texte libres</h3>
+                        <div className="text-questions-grid">
+                          {textQuestions.map(q => renderTextAnswers(q.id, q.label))}
+                        </div>
+                      </div>
+                    )}
+                  </section>
+                );
+              })}
             </div>
           </div>
         )}
@@ -934,6 +988,70 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
         .status.maybe { background: rgba(252, 177, 51, 0.1); color: #fcb133; }
 
         .venue-cell { max-width: 250px; font-size: 0.8rem; opacity: 0.7; }
+
+        .text-questions-section {
+          margin-top: 3rem;
+        }
+        .text-questions-title {
+          font-size: 1.2rem;
+          font-weight: 800;
+          color: rgba(255,255,255,0.5);
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin: 0 0 2rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .text-questions-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+          gap: 2.5rem;
+        }
+        .text-answers-item {
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.05);
+          border-radius: 24px;
+          padding: 2.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .text-answers-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          max-height: 400px;
+          overflow-y: auto;
+          scrollbar-width: thin;
+          scrollbar-color: #fcb133 rgba(255,255,255,0.05);
+          padding-right: 0.5rem;
+        }
+        .text-answers-list::-webkit-scrollbar { width: 6px; }
+        .text-answers-list::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+        .text-answers-list::-webkit-scrollbar-thumb { background: #fcb133; border-radius: 3px; }
+        .text-answer-entry {
+          display: flex;
+          gap: 1rem;
+          align-items: flex-start;
+          padding: 0.75rem 1rem;
+          background: rgba(255,255,255,0.03);
+          border-radius: 12px;
+          border-left: 3px solid rgba(252, 177, 51, 0.3);
+        }
+        .text-answer-num {
+          font-size: 0.7rem;
+          font-weight: 900;
+          color: #fcb133;
+          opacity: 0.6;
+          min-width: 20px;
+          padding-top: 2px;
+        }
+        .text-answer-text {
+          margin: 0;
+          font-size: 0.9rem;
+          line-height: 1.5;
+          color: rgba(255,255,255,0.8);
+        }
 
         .pagination {
           margin-top: 2rem;
