@@ -186,7 +186,7 @@ export const QUESTIONS: Question[] = [
             'Milano Ice Hockey Arena Santa Giulia – Hockey sur glace (tournoi masculin et toutes les finales)',
             'Milano Rho Hockey Arena – Hockey sur glace (premiers matchs masculins), para hockey sur glace',
             'Ice Skating Arena – Patinage de vitesse sur piste courte / Patinage artistique',
-            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Village olympique', 'Chauffeur', 'Game family Assistant', 'Accréditations / Uniformes', 'Media Center',
             'Autres'
         ],
         required: true
@@ -210,7 +210,7 @@ export const QUESTIONS: Question[] = [
             'Tofane Alpine Skiing Centre – Ski alpin / Para ski alpin / Para snowboard',
             'Cortina Sliding Centre – Bobsleigh / Skeleton / Luge',
             'Cortina Curling Olympic Stadium – Curling / Curling fauteuil',
-            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Village olympique', 'Chauffeur', 'Game family Assistant', 'Accréditations / Uniformes', 'Media Center',
             'Autres'
         ],
         required: true
@@ -251,7 +251,7 @@ export const QUESTIONS: Question[] = [
         options: [
             'Predazzo Ski Jumping Stadium – Saut à ski / Combiné nordique',
             'Tesero Cross-Country Skiing Stadium – Ski de fond / Combiné nordique / Para ski de fond / Para biathlon',
-            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Village olympique', 'Chauffeur', 'Game family Assistant', 'Accréditations / Uniformes', 'Media Center',
             'Autres'
         ],
         required: true
@@ -275,7 +275,7 @@ export const QUESTIONS: Question[] = [
             'Livigno Aerials & Moguls – Ski freestyle',
             'Livigno Snow Park – Snowboard / Ski acrobatique',
             'Bormio Stelvio – Ski alpin / Ski alpinisme',
-            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Village olympique', 'Chauffeur', 'Game family Assistant', 'Accréditations / Uniformes', 'Media Center',
             'Autres'
         ],
         required: true
@@ -297,7 +297,7 @@ export const QUESTIONS: Question[] = [
         condition: (a) => a.sites_zones?.includes('ANTERSELVA'),
         options: [
             'Südtirol Arena (Anterselva / Antholz) – Biathlon',
-            'Village olympique', 'Chauffeur', 'Game family assistant', 'Accréditations / Uniformes', 'Media Center',
+            'Village olympique', 'Chauffeur', 'Game family Assistant', 'Accréditations / Uniformes', 'Media Center',
             'Autres'
         ],
         required: true
@@ -316,7 +316,7 @@ export const QUESTIONS: Question[] = [
         type: 'select',
         section: 'Rôle & Sites',
         label: 'Quelle était votre mission principale ?',
-        options: ['EVS', 'Assistant Famille Olympique', 'Accréditations / Uniformes', 'Médias', 'Sports', 'Chauffeur', 'Fonction support', 'Autres'],
+        options: ['EVS (Service aux spectateurs)', 'Game family Assistant', 'Accréditations / Uniformes', 'Médias', 'Sports', 'Chauffeur', 'Fonction support', 'Autres'],
         required: true
     },
     {
@@ -617,6 +617,20 @@ export const QUESTIONS: Question[] = [
         required: false
     },
     {
+        id: 'appreciations',
+        type: 'text',
+        section: 'Opérationnel',
+        label: 'Quels sont les 3 éléments que vous avez le plus appréciés lors de cette expérience ?',
+        required: false
+    },
+    {
+        id: 'deceptions',
+        type: 'text',
+        section: 'Opérationnel',
+        label: 'Quels sont les 3 points qui ont réduit votre expérience ?',
+        required: false
+    },
+    {
         id: 'conseil_alpes2030',
         type: 'text',
         section: 'Opérationnel',
@@ -846,7 +860,6 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
 
     if (!isLoaded) return null;
 
-
     return (
         <div className="survey-immersive">
             <div className="survey-content">
@@ -868,7 +881,6 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                                 );
                             })}
                         </div>
-
                     </div>
 
                     <div className="progress-wrap">
@@ -888,13 +900,16 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                         {currentQuestion.type === 'select' && (
                             <div className="select-grid">
                                 {currentQuestion.options?.map(opt => (
-                                    <button
-                                        key={opt}
-                                        className={`bubble-btn ${answers[currentQuestion.id] === opt ? 'active' : ''}`}
-                                        onClick={() => { setValue(opt); setTimeout(handleNext, 300); }}
-                                    >
-                                        {opt}
-                                    </button>
+                                        <button
+                                            key={opt}
+                                            className={`bubble-btn ${answers[currentQuestion.id] === opt ? 'active' : ''}`}
+                                            onClick={() => { setValue(opt); setTimeout(handleNext, 800); }}
+                                        >
+                                            <div className="btn-content">
+                                                <span>{opt}</span>
+                                                {answers[currentQuestion.id] === opt && <i className="fas fa-check-circle animate-check"></i>}
+                                            </div>
+                                        </button>
                                 ))}
                             </div>
                         )}
@@ -933,7 +948,7 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                                             } as any}
                                             onClick={() => {
                                                 setValue(num);
-                                                setTimeout(handleNext, 400);
+                                                setTimeout(handleNext, 800);
                                             }}
                                         >
                                             {num}
@@ -1055,6 +1070,7 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                     overflow: hidden;
                     background: linear-gradient(135deg, #067fcc 0%, #fcb133 100%);
                 }
+
                 .survey-content {
                     flex: 1;
                     display: flex;
@@ -1092,6 +1108,8 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                     white-space: nowrap;
                 }
                 .site-link:hover { color: white; }
+
+
                 .reset-link { 
                     background: none; 
                     border: none; 
@@ -1192,40 +1210,86 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
 
                 .select-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
                 .bubble-btn {
-                    padding: 1rem;
-                    background: rgba(255,255,255,0.05);
-                    border: 2px solid rgba(255,255,255,0.1);
-                    border-radius: 12px;
+                    padding: 1.1rem 1.6rem;
+                    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+                    border: 1px solid rgba(255,255,255,0.12);
+                    border-radius: 14px;
                     color: white;
                     font-size: 1rem;
                     font-weight: 600;
                     cursor: pointer;
-                    transition: all 0.2s;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                     text-align: left;
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
                 }
-                .bubble-btn:hover { background: rgba(255,255,255,0.1); border-color: white; }
-                .bubble-btn.active { background: white; color: #067fcc; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+                .btn-content {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                }
+                .bubble-btn:hover { 
+                    background: rgba(255,255,255,0.12); 
+                    border-color: rgba(255,255,255,0.4);
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+                }
+                .bubble-btn.active { 
+                    background: white; 
+                    color: #067fcc; 
+                    box-shadow: inset 0 2px 8px rgba(0,0,0,0.15); 
+                    transform: scale(0.97);
+                    animation: selected-pulse 0.4s ease-out;
+                }
+                .animate-check {
+                    color: #067fcc;
+                    font-size: 1.2rem;
+                    animation: check-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                }
+
+                @keyframes selected-pulse {
+                    0% { transform: scale(1); }
+                    40% { transform: scale(0.92); box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); }
+                    100% { transform: scale(0.97); }
+                }
+                @keyframes check-pop {
+                    0% { transform: scale(0); opacity: 0; }
+                    100% { transform: scale(1); opacity: 1; }
+                }
 
                 .nps-container { width: 100%; max-width: 600px; margin: 0 auto; }
                 .nps-grid { display: flex; justify-content: space-between; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
                 .nps-btn {
                     flex: 1;
-                    min-width: 40px;
-                    height: 55px;
-                    background: rgba(255,255,255,0.05);
-                    border: 2px solid rgba(255,255,255,0.1);
-                    border-radius: 10px;
+                    min-width: 42px;
+                    height: 58px;
+                    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
+                    border: 1px solid rgba(255,255,255,0.15);
+                    border-radius: 12px;
                     color: white;
-                    font-size: 1.1rem;
+                    font-size: 1.15rem;
                     font-weight: 800;
                     cursor: pointer;
-                    transition: all 0.2s;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
                 }
-                .nps-btn:hover { border-color: var(--hover-color) !important; background: rgba(255,255,255,0.1); }
-                .nps-btn.active { transform: scale(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+                .nps-btn:hover { 
+                    border-color: var(--hover-color) !important; 
+                    background: rgba(255,255,255,0.15); 
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+                }
+                .nps-btn.active { 
+                    transform: scale(0.9); 
+                    box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); 
+                    z-index: 10;
+                    animation: selected-pulse 0.4s ease-out;
+                }
                 .nps-labels { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; opacity: 0.7; color: white; text-transform: uppercase; letter-spacing: 0.5px; }
 
                 .finish-ctas { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
@@ -1290,20 +1354,28 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                 
                 .nav-area { display: flex; gap: 10px; }
                 .nav-btn {
-                    padding: 0.7rem 1.4rem;
-                    border-radius: 10px;
+                    padding: 0.8rem 1.8rem;
+                    border-radius: 12px;
                     font-weight: 700;
-                    border: 2px solid white;
-                    background: transparent;
+                    border: 1px solid rgba(255,255,255,0.2);
+                    background: rgba(255,255,255,0.05);
                     color: white;
                     cursor: pointer;
-                    transition: all 0.2s;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                     text-decoration: none;
-                    font-size: 0.9rem;
+                    font-size: 0.95rem;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
                 }
-                .nav-btn.next, .nav-btn.finish { background: white; color: #067fcc; }
+                .nav-btn.next, .nav-btn.finish { 
+                    background: white; 
+                    color: #067fcc; 
+                    border-color: white;
+                }
                 .nav-btn.site-back { background: #07a459; color: white; border-color: #07a459; }
-                .nav-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+                .nav-btn:hover:not(:disabled) { 
+                    transform: translateY(-3px); 
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+                }
                 .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
                 .pulse { animation: ripple 2s infinite; }
@@ -1319,7 +1391,7 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                 .status-text.success { color: #07a459; }
                 .status-text.error { color: #eb2f50; }
 
-                @media (max-width: 600px) {
+                @media (max-width: 1024px) {
                     .survey-content { padding: 0 1rem; }
                     .header-nav .site-link span { display: none; }
                     .header-nav .site-link i { font-size: 1.2rem; }
@@ -1331,9 +1403,8 @@ export default function Questionnaire({ onBack }: { onBack?: () => void }) {
                     .desc-text { font-size: 0.95rem; margin-bottom: 1.5rem; }
                     
                     .bubble-btn { padding: 0.8rem; font-size: 0.9rem; border-radius: 10px; }
-                    .select-grid { grid-template-columns: 1fr; gap: 8px; }
-                    
-                    .nps-btn { height: 50px; min-width: 35px; font-size: 1rem; border-radius: 8px; }
+                    .nps-grid { flex-direction: column; gap: 8px; }
+                    .nps-btn { height: 50px; width: 100%; font-size: 1.1rem; border-radius: 8px; }
                     .nps-labels { font-size: 0.7rem; }
                     
                     .open-input { font-size: 1.4rem; border-bottom-width: 2px; }
