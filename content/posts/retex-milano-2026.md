@@ -24,7 +24,7 @@ Notre association **Volontaires français** lance une grande consultation auprè
 ### Pourquoi cette démarche ?
 Dans quatre ans, la France accueillera les Jeux d'hiver (Alpes 2030). Les organisateurs vont bientôt concevoir le futur programme des volontaires. Pour s'assurer que les conditions d'accueil, d'hébergement et de mission soient optimales, nous avons besoin de nous appuyer sur votre réalité de terrain. Ce qui a fonctionné, ce qui a posé problème, et ce qu'il faut absolument éviter en France.
 
-Nous avons préparé ce questionnaire de retour d'expérience (RETEX) complet. Vos réponses nous permettront de construire un bilan concret que nous porterons auprès des futurs organisateurs. Cela vous prendra une dizaine de minutes.
+Nous avons préparé ce questionnaire de retour d'expérience (RETEX). Vos réponses nous permettront de construire un bilan concret que nous porterons auprès des futurs organisateurs. Cela vous prendra une dizaine de minutes.
 
 À la fin de ce questionnaire, si vous souhaitez prolonger l'aventure et garder le lien avec notre communauté des volontaires pour de futurs événements, vous trouverez les informations pour rejoindre notre association.
 
