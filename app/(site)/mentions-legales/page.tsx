@@ -11,7 +11,18 @@ export default function MentionsLegalesPage() {
                 <div className="container">
                     <div className="legal-content">
                         <h2>1. Éditeur du site</h2>
-                        <p><strong>Association <a href="https://www.journal-officiel.gouv.fr/pages/associations-detail-annonce/?q.id=id:202500442684" target="_blank" rel="noopener noreferrer">VOLONTAIRES FRANÇAIS</a></strong></p>
+                        <p>
+                            <strong>
+                                Association{" "}
+                                <a
+                                    href="https://www.journal-officiel.gouv.fr/pages/associations-detail-annonce/?q.id=id:202500442684"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    VOLONTAIRES FRANÇAIS
+                                </a>
+                            </strong>
+                        </p>
                         <p>Associations loi du 1er juillet 1901</p>
                         <p>Parue le : 4 novembre 2025</p>
                         <p>Type d’annonce : Création</p>
@@ -21,17 +32,25 @@ export default function MentionsLegalesPage() {
 
                         <h3>Siège social</h3>
                         <p>
-                            54, Rue de Marolles<br />
-                            94470 Boissy-Saint-Léger<br />
+                            54, Rue de Marolles
+                            <br />
+                            94470 Boissy-Saint-Léger
+                            <br />
                             Île-de-France, France
                         </p>
 
                         <h3>Contact</h3>
                         <p>
-                            Site web : <a href="https://www.volontairesfrancais.fr">www.volontairesfrancais.fr</a>
+                            Site web :{" "}
+                            <a href="https://www.volontairesfrancais.fr">
+                                www.volontairesfrancais.fr
+                            </a>
                         </p>
                         <p>
-                            Email : <a href="mailto:contact@volontairesfrancais.fr">contact@volontairesfrancais.fr</a>
+                            Email :{" "}
+                            <a href="mailto:contact@volontairesfrancais.fr">
+                                contact@volontairesfrancais.fr
+                            </a>
                         </p>
 
                         <h2>2. Objet de l'association</h2>
@@ -44,10 +63,22 @@ export default function MentionsLegalesPage() {
 
                         <h3>Nos objectifs</h3>
                         <ul>
-                            <li>Animer la communauté unique des volontaires français</li>
-                            <li>Faire vivre notre réseau et partager nos expériences</li>
-                            <li>Appuyer et soutenir les futurs volontaires français</li>
-                            <li>Valoriser l'expérience acquise lors des missions olympiques</li>
+                            <li>
+                                Animer la communauté unique des volontaires
+                                français
+                            </li>
+                            <li>
+                                Faire vivre notre réseau et partager nos
+                                expériences
+                            </li>
+                            <li>
+                                Appuyer et soutenir les futurs volontaires
+                                français
+                            </li>
+                            <li>
+                                Valoriser l'expérience acquise lors des missions
+                                olympiques
+                            </li>
                         </ul>
 
                         <h2>3. Directeur de publication</h2>
@@ -59,13 +90,23 @@ export default function MentionsLegalesPage() {
                         <h2>4. Hébergement et Développement</h2>
                         <p>
                             Ce site est hébergé par :<br />
-                            <strong>Replit, Inc.</strong><br />
-                            548 Market St., PMB 94476<br />
-                            San Francisco, CA 94104-5401<br />
+                            <strong>Replit, Inc.</strong>
+                            <br />
+                            548 Market St., PMB 94476
+                            <br />
+                            San Francisco, CA 94104-5401
+                            <br />
                             États-Unis
                         </p>
                         <p>
-                            Développement : <a href="https://revalo.fr/auteur/thomas-aonzo" target="_blank" rel="nofollow">Thomas Aonzo</a>
+                            Développement :{" "}
+                            <a
+                                href="https://revalo.green/auteur/thomas-aonzo"
+                                target="_blank"
+                                rel="nofollow"
+                            >
+                                Thomas Aonzo
+                            </a>
                         </p>
 
                         <h2>5. Propriété intellectuelle</h2>
@@ -104,7 +145,10 @@ export default function MentionsLegalesPage() {
                         </p>
                         <ul>
                             <li>
-                                Par email : <a href="mailto:contact@volontairesfrancais.fr">contact@volontairesfrancais.fr</a>
+                                Par email :{" "}
+                                <a href="mailto:contact@volontairesfrancais.fr">
+                                    contact@volontairesfrancais.fr
+                                </a>
                             </li>
                             <li>
                                 Par courrier postal : Volontaires français, 54

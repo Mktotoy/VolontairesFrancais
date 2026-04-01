@@ -12,7 +12,7 @@ import {
   ChevronLeft, Search, ArrowUpDown, ArrowUp, ArrowDown, Map as MapIcon,
   HelpCircle
 } from 'lucide-react';
-import { QUESTIONS, SECTIONS } from './Questionnaire';
+import { QUESTIONS, SECTIONS } from '@/lib/survey-questions';
 
 const SurveyMap = dynamic(() => import('./SurveyMap'), { 
   ssr: false,
@@ -36,13 +36,37 @@ const COLORS = ['#067fcc', '#fcb133', '#07a459', '#eb2f50', '#8884d8', '#82ca9d'
 
 export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
   const [view, setView] = useState<'stats' | 'table' | 'map'>('stats');
-  
+  const [serverExporting, setServerExporting] = useState(false);
+
   // Table state
   const [searchTerm, setSearchTerm] = useState('');
   const [sortKey, setSortKey] = useState<string>('created_at');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const exportFromServer = async () => {
+    setServerExporting(true);
+    try {
+      const pass = sessionStorage.getItem('survey_auth') || '';
+      const res = await fetch('/api/enquete/export', {
+        headers: { 'Authorization': pass }
+      });
+      if (!res.ok) throw new Error('Unauthorized');
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const date = new Date().toISOString().split('T')[0];
+      a.download = `RETEX_Milano_Cortina_2026_${date}.xlsx`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (e) {
+      alert('Erreur lors du téléchargement.');
+    } finally {
+      setServerExporting(false);
+    }
+  };
 
   const stats = useMemo(() => {
     const counts: Record<string, Record<string, number>> = {};
@@ -166,20 +190,19 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
     ];
 
     const allCols = [...fixedCols, ...questionCols, ...metaCols];
+    const totalCols = allCols.length;
+
+    // Apply column metadata (widths) FIRST so letters are available
+    worksheet.columns = allCols.map(c => ({ key: c.key, width: c.width }));
 
     // Title row spanning all columns
-    const totalCols = allCols.length;
-    const lastColLetter = worksheet.getColumn(totalCols).letter || 'Z';
-    worksheet.mergeCells(`A1:${lastColLetter}1`);
+    worksheet.mergeCells(1, 1, 1, totalCols);
     const titleRow = worksheet.getRow(1);
     titleRow.values = ['RAPPORT DES RÉSULTATS - RETEX MILANO CORTINA 2026'];
     titleRow.font = { name: 'Arial Black', size: 16, color: { argb: 'FFFFFFFF' }, bold: true };
     titleRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF067FCC' } };
     titleRow.alignment = { vertical: 'middle', horizontal: 'center' };
     titleRow.height = 40;
-
-    // Apply column metadata (widths)
-    worksheet.columns = allCols.map(c => ({ key: c.key, width: c.width }));
 
     // Header row at row 2
     const headerRow = worksheet.getRow(2);
@@ -465,8 +488,8 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
               <Table size={18} /> Réponses
             </button>
           </div>
-          <button onClick={exportToExcel} className="export-btn">
-            <Download size={18} /> Exporter Excel
+          <button onClick={exportFromServer} className="export-btn server-export-btn" disabled={serverExporting}>
+            <Download size={18} /> {serverExporting ? 'Génération…' : 'Télécharger Excel (complet)'}
           </button>
         </div>
       </div>
@@ -723,6 +746,7 @@ export default function SurveyResults({ data }: { data: SurveyResponse[] }) {
           transition: all 0.3s;
         }
         .export-btn:hover { background: #07a459; color: white; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(7, 164, 89, 0.2); }
+        .export-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
         .stats-layout { gap: 6rem; display: flex; flex-direction: column; }
         
