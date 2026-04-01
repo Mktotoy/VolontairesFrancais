@@ -289,16 +289,17 @@ export async function GET(req: NextRequest) {
 
     // Generate buffer and return as file download
     const buffer = await workbook.xlsx.writeBuffer();
+    const uint8Array = new Uint8Array(buffer);
 
     const date = new Date().toISOString().split('T')[0];
     const filename = `RETEX_Milano_Cortina_2026_${date}.xlsx`;
 
-    return new NextResponse(buffer as Buffer, {
+    return new NextResponse(uint8Array, {
       status: 200,
       headers: {
         'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'Content-Disposition': `attachment; filename="${filename}"`,
-        'Content-Length': String((buffer as Buffer).byteLength),
+        'Content-Length': String(uint8Array.byteLength),
       },
     });
 
