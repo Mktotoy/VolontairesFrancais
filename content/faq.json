@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "question": "« Volontaires Français », c’est quoi exactement ?",
-    "answer": "<p>« Volontaires Français » est une association loi 1901 créée le 28 octobre 2025, qui rassemble tous les volontaires ayant participé ou s’apprêtant à participer aux Jeux Olympiques et Paralympiques, été comme hiver. Notre mission est de faire vivre cette communauté unique, de partager nos expériences, de promouvoir les valeurs du bénévolat et de soutenir les futurs volontaires.</p>",
+    "question": "« Volontaires français », c’est quoi exactement ?",
+    "answer": "<p>« Volontaires français » est une association loi 1901 créée le 28 octobre 2025, qui rassemble tous les volontaires ayant participé ou s’apprêtant à participer aux Jeux Olympiques et Paralympiques, été comme hiver. Notre mission est de faire vivre cette communauté unique, de partager nos expériences, de promouvoir les valeurs du bénévolat et de soutenir les futurs volontaires.</p>",
     "category": "Général",
     "sort": 1,
     "slug": "volontaires-francais-c-est-quoi-exactement"
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "question": "Doit-on obligatoirement avoir été volontaire sur des JO pour rejoindre l’association ?",
-    "answer": "<p><b>Oui.</b> L’association « Volontaires Français » est spécifiquement destinée à rassembler les bénévoles ayant participé – ou participant prochainement – aux Jeux Olympiques et Paralympiques, quelle que soit l’édition. Que vous ayez été volontaire pour Paris 2024 (COJO), le Club France ou la Ville Hôte, vous êtes au bon endroit.</p>",
+    "answer": "<p><b>Oui.</b> L’association « Volontaires français » est spécifiquement destinée à rassembler les bénévoles ayant participé – ou participant prochainement – aux Jeux Olympiques et Paralympiques, quelle que soit l’édition. Que vous ayez été volontaire pour Paris 2024 (COJO), le Club France ou la Ville Hôte, vous êtes au bon endroit.</p>",
     "category": "Adhésion",
     "sort": 2,
     "slug": "doit-on-obligatoirement-avoir-ete-volontaire-sur-des-jo-pour"
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "question": "Je n’ai pas la nationalité française mais je souhaiterais rejoindre l’association. Est-ce possible ?",
-    "answer": "<p>L’association « Volontaires Français » a pour vocation première d’identifier et rassembler les anciens volontaires français. Pour l’instant, l’adhésion est réservée aux volontaires de nationalité française. Suivez nos réseaux sociaux pour les infos publiques.</p>",
+    "answer": "<p>L’association \"Volontaires français\" a pour vocation première d’identifier et rassembler les anciens volontaires français. Toutefois, l’adhésion est également ouverte aux personnes étrangères résidant en France.</p>",
     "category": "Adhésion",
     "sort": 3,
     "slug": "je-n-ai-pas-la-nationalite-francaise-mais-je-souhaiterais-re"
