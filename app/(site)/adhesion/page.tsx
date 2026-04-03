@@ -76,24 +76,14 @@ export default function AdhesionPage() {
                                     <div className="condition-item">
                                         <div className="condition-number">1</div>
                                         <div className="condition-text">
-                                            <strong>Être de nationalité française.</strong>
+                                            <strong>Être de nationalité française ou résident.e français.e.</strong>
                                         </div>
                                     </div>
                                     <div className="condition-item">
                                         <div className="condition-number">2</div>
                                         <div className="condition-text">
-                                            <strong>ET</strong> remplir l'une de ces deux
-                                            conditions :
-                                            <ul>
-                                                <li>
-                                                    <strong>Avoir été volontaire sur une Olympiade</strong> (été ou hiver).
-                                                    <em>(Que vous ayez été volontaire pour le COJO, le Club France ou la Ville Hôte, c'est la même famille !)</em>
-                                                </li>
-                                                <li>
-                                                    <strong>OU être titulaire d'une mission affectée ou réserviste pour Milano Cortina.</strong>
-                                                    <em>(prépare ton accréditation ou ordre de mission)</em>
-                                                </li>
-                                            </ul>
+                                            <strong>Avoir été volontaire sur une Olympiade (été ou hiver).</strong>
+                                            <em>(Que vous ayez été volontaire pour le COJO, le Club France ou la Ville Hôte, c'est la même famille !)</em>
                                         </div>
                                     </div>
                                 </div>
