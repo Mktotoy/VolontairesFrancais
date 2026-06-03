@@ -56,7 +56,7 @@ export default function OgImage() {
                     {/* Flag + rings */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                         <span style={{ fontSize: 56 }}>🇫🇷</span>
-                        <span style={{ fontSize: 36, color: 'rgba(255,255,255,0.7)' }}>✦</span>
+                        <span style={{ fontSize: 28, color: 'rgba(255,255,255,0.7)', fontWeight: 'bold' }}>|</span>
                         <span style={{ fontSize: 48 }}>🏅</span>
                     </div>
 
