@@ -21,6 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" suppressHydrationWarning>
+      <head>
+        <meta property="og:image" content="https://volontairesfrancais.fr/opengraph-image" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Volontaires français - Association des volontaires des Jeux Olympiques et Paralympiques" />
+        <meta property="og:logo" content="https://volontairesfrancais.fr/images/LOGO_BLANC_COULEUR_1.png" />
+      </head>
       <body suppressHydrationWarning>
         <GoogleAnalytics />
         <FontAwesomeLoader />
