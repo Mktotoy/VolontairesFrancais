@@ -1,3 +1,9 @@
+export const metadata = {
+  title: 'Mentions légales | Volontaires français',
+  description: 'Mentions légales de l\'association Volontaires français : éditeur, hébergement, données personnelles et propriété intellectuelle.',
+  robots: { index: false, follow: false },
+};
+
 export default function MentionsLegalesPage() {
     return (
         <>

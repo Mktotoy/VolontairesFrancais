@@ -2,8 +2,21 @@ import Link from 'next/link';
 import { fetchGuideArticles } from '@/lib/data';
 
 export const metadata = {
-    title: 'Guide des Volontaires - Milano Cortina 2026 | Volontaires français',
-    description: 'Bienvenue dans la communauté des Volontaires français pour Milano Cortina 2026.',
+    title: 'Milano Cortina 2026 - Guide des Volontaires | Volontaires français',
+    description: 'Guide complet pour les volontaires français aux Jeux Olympiques d\'hiver Milano Cortina 2026 : conseils pratiques, ressources et téléchargement du guide PDF.',
+    openGraph: {
+        title: 'Milano Cortina 2026 - Guide des Volontaires | Volontaires français',
+        description: 'Guide complet pour les volontaires français aux JO d\'hiver 2026.',
+        type: 'website',
+        locale: 'fr_FR',
+        siteName: 'Volontaires français',
+        url: 'https://volontairesfrancais.fr/milano-cortina',
+    },
+    twitter: {
+        card: 'summary',
+        title: 'Milano Cortina 2026 | Volontaires français',
+        description: 'Guide et ressources pour les volontaires français aux JO d\'hiver 2026.',
+    },
 };
 
 

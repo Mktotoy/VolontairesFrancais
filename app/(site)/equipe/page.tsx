@@ -22,7 +22,14 @@ export const metadata = {
     title: 'Notre Équipe | Volontaires français',
     description: 'Rencontrez les bénévoles passionnés qui font vivre l\'association !',
     type: 'website',
-    images: ['/assets/favicon.ico'], // Fallback image, ideally replace with a team photo
+    locale: 'fr_FR',
+    siteName: 'Volontaires français',
+    url: 'https://volontairesfrancais.fr/equipe',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Notre Équipe | Volontaires français',
+    description: 'Rencontrez les bénévoles passionnés qui font vivre l\'association !',
   },
 };
 

@@ -18,6 +18,13 @@ export const metadata = {
     description: 'Rejoignez la communauté des volontaires français des JOP !',
     type: 'website',
     locale: 'fr_FR',
+    siteName: 'Volontaires français',
+    url: 'https://volontairesfrancais.fr',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Volontaires français',
+    description: 'Rejoignez la communauté des volontaires français des Jeux Olympiques et Paralympiques.',
   },
 };
 

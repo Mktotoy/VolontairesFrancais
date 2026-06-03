@@ -1,3 +1,21 @@
+export const metadata = {
+  title: 'Adhérer à l\'association | Volontaires français',
+  description: 'Rejoignez l\'association Volontaires français : 15€/an pour rester connecté à la communauté des volontaires des Jeux Olympiques et Paralympiques.',
+  openGraph: {
+    title: 'Adhérer à l\'association | Volontaires français',
+    description: 'Rejoignez la communauté des volontaires français des JOP pour 15€/an.',
+    type: 'website',
+    locale: 'fr_FR',
+    siteName: 'Volontaires français',
+    url: 'https://volontairesfrancais.fr/adhesion',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Adhérer | Volontaires français',
+    description: 'Rejoignez la communauté des volontaires français des Jeux Olympiques et Paralympiques.',
+  },
+};
+
 export default function AdhesionPage() {
     return (
         <>

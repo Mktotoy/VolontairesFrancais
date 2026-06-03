@@ -29,8 +29,21 @@ function buildFaqSchema(faqs: Faq[]) {
 }
 
 export const metadata = {
-  title: 'FAQ | Volontaires français',
-  description: 'Questions fréquentes sur l\'association Volontaires français et comment nous rejoindre.',
+  title: 'FAQ - Questions fréquentes | Volontaires français',
+  description: 'Questions fréquentes sur l\'association Volontaires français : adhésion, missions olympiques, conditions d\'éligibilité et vie de la communauté.',
+  openGraph: {
+    title: 'FAQ - Questions fréquentes | Volontaires français',
+    description: 'Toutes les réponses sur l\'association Volontaires français.',
+    type: 'website',
+    locale: 'fr_FR',
+    siteName: 'Volontaires français',
+    url: 'https://volontairesfrancais.fr/faq',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'FAQ | Volontaires français',
+    description: 'Questions fréquentes sur l\'adhésion et les missions olympiques.',
+  },
 };
 
 export default async function FaqPage() {

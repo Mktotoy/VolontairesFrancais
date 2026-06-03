@@ -27,8 +27,21 @@ function formatDate(dateStr?: string | null) {
 }
 
 export const metadata = {
-    title: 'On parle de nous | Volontaires français',
-    description: 'Retrouvez tous les articles de presse et reportages parlant de l\'association Volontaires français.',
+    title: 'Ils parlent de nous | Volontaires français',
+    description: 'Retrouvez tous les articles de presse, reportages et médias qui parlent de l\'association Volontaires français et de la communauté des volontaires olympiques.',
+    openGraph: {
+        title: 'Ils parlent de nous | Volontaires français',
+        description: 'Articles de presse et reportages sur les volontaires français des Jeux Olympiques.',
+        type: 'website',
+        locale: 'fr_FR',
+        siteName: 'Volontaires français',
+        url: 'https://volontairesfrancais.fr/on-parle-de-nous',
+    },
+    twitter: {
+        card: 'summary',
+        title: 'Ils parlent de nous | Volontaires français',
+        description: 'Articles de presse et reportages sur les volontaires français des JOP.',
+    },
 };
 
 export default async function PressPage() {

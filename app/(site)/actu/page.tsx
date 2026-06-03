@@ -4,6 +4,24 @@ import { getAssetUrl } from '@/lib/assets';
 
 export const revalidate = 60; // revalidate every 1 minute
 
+export const metadata = {
+  title: 'Actualités | Volontaires français',
+  description: 'Toutes les dernières nouvelles de l\'association Volontaires français : événements, retours d\'expérience et vie de la communauté.',
+  openGraph: {
+    title: 'Actualités | Volontaires français',
+    description: 'Toutes les dernières nouvelles de l\'association Volontaires français.',
+    type: 'website',
+    locale: 'fr_FR',
+    siteName: 'Volontaires français',
+    url: 'https://volontairesfrancais.fr/actu',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Actualités | Volontaires français',
+    description: 'Toutes les dernières nouvelles de l\'association Volontaires français.',
+  },
+};
+
 function formatDate(dateStr?: string | null) {
   if (!dateStr) return '';
   return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(dateStr));
