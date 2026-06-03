@@ -5,41 +5,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await fetchPosts({ includeNested: true });
     const baseUrl = 'https://volontairesfrancais.fr';
 
-    // Base routes
     const routes = [
-        '',
-        '/equipe',
-        '/actu',
-        '/on-parle-de-nous',
-        '/faq',
-    ].map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-    }));
-
-    // Post routes
-    // Note: We need to handle nested slugs logic if we were strictly following the file system,
-    // but fetchPosts now returns slugs.
-    // Exception: For our nested structure, fetchPosts returns "rdv-.../index" which is wrong for the URL.
-    // We need to fix fetchPosts to return the correct slug for the index page.
-
-    // Wait, I need to check what fetchPosts returns for the index file.
-    // "slug: entry.name" -> "rdv-..." (directory name). 
-    // OK, so the index article has slug "rdv-...".
-    // URL: /actu/rdv-...
-
-    // What about sub-pages?
-    // fetchPosts only scans the root of POSTS_DIR.
-    // It DOES NOT scan subdirectories recursively for *files*.
-    // It only checks if a directory has `index.md`.
-
-    // **CRITICAL BUG FOUND**: `fetchPosts` does NOT recursively find `nice.md` inside `rdv-.../`.
-    // It only looks at top-level entries.
-    // I need to update `fetchPosts` to recurse or specifically look into directories.
+        { url: `${baseUrl}`, priority: 1.0 },
+        { url: `${baseUrl}/actu`, priority: 0.9 },
+        { url: `${baseUrl}/adhesion`, priority: 0.9 },
+        { url: `${baseUrl}/equipe`, priority: 0.7 },
+        { url: `${baseUrl}/faq`, priority: 0.7 },
+        { url: `${baseUrl}/on-parle-de-nous`, priority: 0.6 },
+        { url: `${baseUrl}/milano-cortina`, priority: 0.8 },
+        { url: `${baseUrl}/galerie-milano-cortina`, priority: 0.6 },
+        { url: `${baseUrl}/mentions-legales`, priority: 0.3 },
+    ].map((r) => ({ ...r, lastModified: new Date() }));
 
     const postRoutes = posts.map((post) => ({
         url: `${baseUrl}/actu/${post.slug}`,
         lastModified: new Date(post.published_at || new Date()),
+        priority: 0.8,
     }));
 
     return [...routes, ...postRoutes];
