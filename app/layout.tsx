@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import FontAwesomeLoader from "@/components/FontAwesomeLoader";
 import "./styles/main.css";
 
 export const metadata: Metadata = {
@@ -9,10 +10,6 @@ export const metadata: Metadata = {
     icon: '/assets/favicon.ico',
     shortcut: '/assets/favicon.ico',
     apple: '/assets/favicon.ico',
-  },
-  other: {
-    rel: 'stylesheet',
-    url: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
   },
   metadataBase: new URL('https://volontairesfrancais.fr'),
 };
@@ -24,9 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" suppressHydrationWarning>
-
       <body>
         <GoogleAnalytics />
+        <FontAwesomeLoader />
         {children}
       </body>
     </html>

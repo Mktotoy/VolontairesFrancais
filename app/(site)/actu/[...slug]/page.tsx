@@ -64,6 +64,28 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   const contentHtml = post.content ? await marked.parse(post.content, { breaks: true }) : '';
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.seo?.title || post.title,
+    description: post.seo?.meta_description || post.excerpt || undefined,
+    image: image || undefined,
+    datePublished: post.published_at || undefined,
+    dateModified: post.published_at || undefined,
+    url: `https://volontairesfrancais.fr/actu/${slug}`,
+    author: {
+      '@type': 'Organization',
+      name: 'Volontaires français',
+      url: 'https://volontairesfrancais.fr',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Volontaires français',
+      url: 'https://volontairesfrancais.fr',
+    },
+    inLanguage: 'fr-FR',
+  };
+
   return (
     <>
       <section className="page-header">
@@ -104,7 +126,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {seo && (
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      {seo && Object.keys(seo).length > 0 && (
         <script
           type="application/ld+json"
           suppressHydrationWarning
