@@ -44,31 +44,31 @@ export default function OgImage() {
                     display: 'flex',
                 }} />
 
+                {/* Tricolor bar */}
+                <div style={{ display: 'flex', marginBottom: 32, gap: 0, borderRadius: 6, overflow: 'hidden' }}>
+                    <div style={{ width: 36, height: 10, background: '#002395', display: 'flex' }} />
+                    <div style={{ width: 36, height: 10, background: 'white', display: 'flex' }} />
+                    <div style={{ width: 36, height: 10, background: '#ED2939', display: 'flex' }} />
+                </div>
+
                 {/* Main content */}
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: 28,
+                    gap: 24,
                     padding: '0 80px',
                     textAlign: 'center',
                 }}>
-                    {/* Flag + rings */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                        <span style={{ fontSize: 56 }}>🇫🇷</span>
-                        <span style={{ fontSize: 28, color: 'rgba(255,255,255,0.7)', fontWeight: 'bold' }}>|</span>
-                        <span style={{ fontSize: 48 }}>🏅</span>
-                    </div>
-
                     <div style={{
-                        fontSize: 72,
+                        fontSize: 76,
                         fontWeight: 900,
                         color: 'white',
                         letterSpacing: '-1px',
                         lineHeight: 1.1,
                         display: 'flex',
                     }}>
-                        Volontaires français
+                        Volontaires francais
                     </div>
 
                     <div style={{
@@ -79,7 +79,7 @@ export default function OgImage() {
                         maxWidth: 900,
                         display: 'flex',
                     }}>
-                        L'association des volontaires français des Jeux Olympiques et Paralympiques
+                        Association des volontaires des Jeux Olympiques et Paralympiques
                     </div>
 
                     {/* Badge */}
