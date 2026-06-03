@@ -11,11 +11,11 @@ function formatDate(dateStr?: string | null) {
 }
 
 export const metadata = {
-  title: 'Volontaires français | Accueil',
-  description: 'L\'association qui rassemble, soutient et valorise les volontaires français des Jeux Olympiques et Paralympiques.',
+  title: 'Volontaires français | Association internationale des bénévoles olympiques',
+  description: 'Volontaires français rassemble, soutient et valorise les bénévoles des Jeux Olympiques et Paralympiques, été comme hiver. Rejoignez la communauté depuis Paris 2024 !',
   openGraph: {
-    title: 'Volontaires français | Accueil',
-    description: 'Rejoignez la communauté des volontaires français des JOP !',
+    title: 'Volontaires français | Association internationale des bénévoles olympiques',
+    description: 'Rejoignez la communauté des volontaires français des Jeux Olympiques et Paralympiques — Paris 2024, Milano Cortina 2026 et au-delà !',
     type: 'website',
     locale: 'fr_FR',
     siteName: 'Volontaires français',

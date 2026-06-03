@@ -4,8 +4,8 @@ import FontAwesomeLoader from "@/components/FontAwesomeLoader";
 import "./styles/main.css";
 
 export const metadata: Metadata = {
-  title: "Volontaires français - Accueil",
-  description: "Volontaires français - Association internationale des volontaires de Jeux olympiques et paralympiques",
+  title: "Volontaires français | Association internationale des bénévoles olympiques",
+  description: "Volontaires français rassemble, soutient et valorise les bénévoles des Jeux Olympiques et Paralympiques, été comme hiver. Rejoignez la communauté !",
   icons: {
     icon: '/assets/favicon.ico',
     shortcut: '/assets/favicon.ico',

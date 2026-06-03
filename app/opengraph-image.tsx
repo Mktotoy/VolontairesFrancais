@@ -5,7 +5,26 @@ export const alt = 'Volontaires français - Association des volontaires des Jeux
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-export default function OgImage() {
+async function loadRighteousFont(): Promise<ArrayBuffer | null> {
+    try {
+        // Use an older user agent to get woff (not woff2) — satori only supports woff
+        const css = await fetch(
+            'https://fonts.googleapis.com/css?family=Righteous',
+            { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko' } }
+        ).then(r => r.text());
+
+        const match = css.match(/url\((.+?)\)/);
+        if (!match?.[1]) return null;
+
+        return fetch(match[1]).then(r => r.arrayBuffer());
+    } catch {
+        return null;
+    }
+}
+
+export default async function OgImage() {
+    const fontData = await loadRighteousFont();
+
     return new ImageResponse(
         (
             <div
@@ -17,7 +36,7 @@ export default function OgImage() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     background: 'linear-gradient(135deg, #0056b3 0%, #067fcc 60%, #fcb133 100%)',
-                    fontFamily: 'sans-serif',
+                    fontFamily: fontData ? 'Righteous' : 'sans-serif',
                     position: 'relative',
                     overflow: 'hidden',
                 }}
@@ -45,10 +64,10 @@ export default function OgImage() {
                 }} />
 
                 {/* Tricolor bar */}
-                <div style={{ display: 'flex', marginBottom: 32, gap: 0, borderRadius: 6, overflow: 'hidden' }}>
-                    <div style={{ width: 36, height: 10, background: '#002395', display: 'flex' }} />
-                    <div style={{ width: 36, height: 10, background: 'white', display: 'flex' }} />
-                    <div style={{ width: 36, height: 10, background: '#ED2939', display: 'flex' }} />
+                <div style={{ display: 'flex', marginBottom: 36, gap: 0, borderRadius: 6, overflow: 'hidden' }}>
+                    <div style={{ width: 48, height: 12, background: '#002395', display: 'flex' }} />
+                    <div style={{ width: 48, height: 12, background: 'white', display: 'flex' }} />
+                    <div style={{ width: 48, height: 12, background: '#ED2939', display: 'flex' }} />
                 </div>
 
                 {/* Main content */}
@@ -62,9 +81,9 @@ export default function OgImage() {
                 }}>
                     <div style={{
                         fontSize: 76,
-                        fontWeight: 900,
+                        fontWeight: 400,
                         color: 'white',
-                        letterSpacing: '-1px',
+                        letterSpacing: '0px',
                         lineHeight: 1.1,
                         display: 'flex',
                     }}>
@@ -72,26 +91,26 @@ export default function OgImage() {
                     </div>
 
                     <div style={{
-                        fontSize: 30,
+                        fontSize: 28,
                         color: 'rgba(255,255,255,0.88)',
                         fontWeight: 400,
                         lineHeight: 1.4,
-                        maxWidth: 900,
+                        maxWidth: 860,
                         display: 'flex',
                     }}>
-                        Association des volontaires des Jeux Olympiques et Paralympiques
+                        Association des benevoles des Jeux Olympiques et Paralympiques
                     </div>
 
                     {/* Badge */}
                     <div style={{
                         marginTop: 8,
-                        padding: '12px 36px',
+                        padding: '12px 40px',
                         background: 'rgba(255,255,255,0.18)',
                         border: '2px solid rgba(255,255,255,0.4)',
                         borderRadius: 50,
                         fontSize: 22,
                         color: 'white',
-                        fontWeight: 600,
+                        fontWeight: 400,
                         display: 'flex',
                     }}>
                         volontairesfrancais.fr
@@ -99,6 +118,11 @@ export default function OgImage() {
                 </div>
             </div>
         ),
-        { ...size }
+        {
+            ...size,
+            fonts: fontData
+                ? [{ name: 'Righteous', data: fontData, style: 'normal', weight: 400 }]
+                : [],
+        }
     );
 }
