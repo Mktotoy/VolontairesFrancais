@@ -46,3 +46,7 @@ packages = ["wget"]
 
 [objectStorage]
 defaultBucketID = "replit-objstore-8b26f28f-1b7d-402f-bc93-d2ccd42f6e12"
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 120000
