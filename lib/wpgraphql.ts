@@ -1,3 +1,4 @@
+import * as cheerio from 'cheerio';
 import { Post, PressArticle } from './types';
 
 const WP_GRAPHQL_URL = process.env.WP_GRAPHQL_URL || 'https://espace.volontairesfrancais.fr/graphql';
@@ -91,23 +92,26 @@ export async function fetchWPPostBySlug(slug: string): Promise<Post | null> {
 // 1er paragraphe <em>Source : <strong>NOM</strong> — publié le ...</em>
 // dernier paragraphe <p class="press-cta"><a href="URL_EXTERNE">...</a></p>
 function extractPressMeta(content?: string | null): { source: string | null; url: string | null } {
-  const sourceMatch = content?.match(/<strong>([^<]+)<\/strong>/);
-  const urlMatch = content?.match(/<p class="press-cta">\s*<a href="([^"]+)"/);
-  return {
-    source: sourceMatch?.[1]?.trim() ?? null,
-    url: urlMatch?.[1] ?? null,
-  };
+  if (!content) return { source: null, url: null };
+  const $ = cheerio.load(content);
+  const source = $('p').first().find('strong').first().text().trim() || null;
+  const url = $('p.press-cta a').first().attr('href') ?? null;
+  return { source, url };
 }
 
+// .text() de cheerio décode les entités HTML (&rsquo; &#039; ...), contrairement à un strip regex brut
 function extractPressBody(content?: string | null): string {
   if (!content) return '';
-  return content
-    .replace(/<p><em>Source[\s\S]*?<\/em><\/p>/i, '')
-    .replace(/<p><!--\s*press-cta\s*-->\s*<\/p>/i, '')
-    .replace(/<p class="press-cta">[\s\S]*?<\/p>/i, '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
+  const $ = cheerio.load(content);
+  const parts: string[] = [];
+  $('p, h1, h2, h3').each((_, el) => {
+    const $el = $(el);
+    if ($el.hasClass('press-cta')) return;
+    const text = $el.text().trim();
+    if (!text || /^Source\s*:/i.test(text)) return;
+    parts.push(text);
+  });
+  return parts.join(' ');
 }
 
 export async function fetchWPPressArticles(categorySlug = 'on-parle-de-nous', first = 50): Promise<PressArticle[]> {
