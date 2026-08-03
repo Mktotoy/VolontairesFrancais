@@ -65,10 +65,16 @@ function mapWPPost(node: WPPostNode): Post {
   };
 }
 
-export async function fetchWPPosts(first = 50): Promise<Post[]> {
+export async function fetchWPPosts(options: { first?: number; categorySlug?: string } = {}): Promise<Post[]> {
+  const { first = 50, categorySlug } = options;
+
+  const query = categorySlug
+    ? `query Posts($first: Int!, $categorySlug: String!) { posts(first: $first, where: { categoryName: $categorySlug }) { nodes { ${POST_FIELDS} } } }`
+    : `query Posts($first: Int!) { posts(first: $first) { nodes { ${POST_FIELDS} } } }`;
+
   const data = await wpFetch<{ posts: { nodes: WPPostNode[] } }>(
-    `query Posts($first: Int!) { posts(first: $first) { nodes { ${POST_FIELDS} } } }`,
-    { first }
+    query,
+    categorySlug ? { first, categorySlug } : { first }
   );
   return data.posts.nodes.map(mapWPPost);
 }

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { fetchPosts } from '@/lib/data';
+import { fetchWPPosts } from '@/lib/wpgraphql';
 import { getAssetUrl } from '@/lib/assets';
 
 export const revalidate = 60; // revalidate every 1 minute
@@ -29,7 +29,7 @@ function formatDate(dateStr?: string | null) {
 
 
 export default async function ActuPage() {
-  const posts = await fetchPosts();
+  const posts = await fetchWPPosts({ categorySlug: 'actualites' });
   const hasPosts = posts.length > 0;
 
   return (

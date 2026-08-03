@@ -1,4 +1,4 @@
-import { fetchPost } from '@/lib/data';
+import { fetchWPPostBySlug } from '@/lib/wpgraphql';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAssetUrl } from '@/lib/assets';
@@ -13,7 +13,6 @@ function formatDate(dateStr?: string | null) {
 }
 
 
-import { marked } from 'marked';
 import ArticleBody from '@/components/ArticleBody';
 import Carousel from '@/components/Carousel';
 
@@ -21,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug: rawSlug } = await params;
   const slug = rawSlug.join('/'); // Reconstruct full slug path
 
-  const post = await fetchPost(slug);
+  const post = await fetchWPPostBySlug(slug);
   if (!post) return {};
 
   const title = post.seo?.title || post.title;
@@ -53,7 +52,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug: rawSlug } = await params;
   const slug = rawSlug.join('/'); // Reconstruct full slug path
 
-  const post = await fetchPost(slug);
+  const post = await fetchWPPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -62,7 +61,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const image = getAssetUrl(post.featured_picture);
   const seo = post.seo || {};
 
-  const contentHtml = post.content ? await marked.parse(post.content, { breaks: true }) : '';
+  // post.content vient de WPGraphQL déjà rendu en HTML (the_content), pas du markdown
+  const contentHtml = post.content || '';
 
   const articleSchema = {
     '@context': 'https://schema.org',
