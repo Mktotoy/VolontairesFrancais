@@ -1,4 +1,4 @@
-import { Post } from './types';
+import { Post, PressArticle } from './types';
 
 const WP_GRAPHQL_URL = process.env.WP_GRAPHQL_URL || 'https://espace.volontairesfrancais.fr/graphql';
 const WP_GRAPHQL_TOKEN = process.env.WP_GRAPHQL_TOKEN;
@@ -85,4 +85,44 @@ export async function fetchWPPostBySlug(slug: string): Promise<Post | null> {
     { slug }
   );
   return data.postBy ? mapWPPost(data.postBy) : null;
+}
+
+// Convention éditoriale WP pour la catégorie "on-parle-de-nous" :
+// 1er paragraphe <em>Source : <strong>NOM</strong> — publié le ...</em>
+// dernier paragraphe <p class="press-cta"><a href="URL_EXTERNE">...</a></p>
+function extractPressMeta(content?: string | null): { source: string | null; url: string | null } {
+  const sourceMatch = content?.match(/<strong>([^<]+)<\/strong>/);
+  const urlMatch = content?.match(/<p class="press-cta">\s*<a href="([^"]+)"/);
+  return {
+    source: sourceMatch?.[1]?.trim() ?? null,
+    url: urlMatch?.[1] ?? null,
+  };
+}
+
+function extractPressBody(content?: string | null): string {
+  if (!content) return '';
+  return content
+    .replace(/<p><em>Source[\s\S]*?<\/em><\/p>/i, '')
+    .replace(/<p><!--\s*press-cta\s*-->\s*<\/p>/i, '')
+    .replace(/<p class="press-cta">[\s\S]*?<\/p>/i, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export async function fetchWPPressArticles(categorySlug = 'on-parle-de-nous', first = 50): Promise<PressArticle[]> {
+  const posts = await fetchWPPosts({ first, categorySlug });
+  return posts.map((post) => {
+    const { source, url } = extractPressMeta(post.content);
+    const body = extractPressBody(post.content);
+    return {
+      id: post.id,
+      title: post.title,
+      source: source ?? '',
+      publication_date: post.published_at ?? '',
+      url: url ?? '#',
+      image: post.featured_picture ?? null,
+      extract: body.length > 220 ? `${body.slice(0, 220)}…` : body,
+    };
+  });
 }
