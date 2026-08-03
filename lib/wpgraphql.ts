@@ -81,7 +81,7 @@ export async function fetchWPPosts(options: { first?: number; categorySlug?: str
 
 export async function fetchWPPostBySlug(slug: string): Promise<Post | null> {
   const data = await wpFetch<{ postBy: WPPostNode | null }>(
-    `query PostBySlug($slug: ID!) { postBy(slug: $slug) { ${POST_FIELDS} } }`,
+    `query PostBySlug($slug: String!) { postBy(slug: $slug) { ${POST_FIELDS} } }`,
     { slug }
   );
   return data.postBy ? mapWPPost(data.postBy) : null;
