@@ -2,12 +2,13 @@ import * as cheerio from 'cheerio';
 import { Post, PressArticle } from './types';
 
 const WP_GRAPHQL_URL = process.env.WP_GRAPHQL_URL || 'https://espace.volontairesfrancais.fr/graphql';
+// Format attendu : "user:application_password" (Application Password WP, auth Basic — pas un Bearer token)
 const WP_GRAPHQL_TOKEN = process.env.WP_GRAPHQL_TOKEN;
 
 async function wpFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
   if (WP_GRAPHQL_TOKEN) {
-    headers['Authorization'] = `Bearer ${WP_GRAPHQL_TOKEN}`;
+    headers['Authorization'] = `Basic ${Buffer.from(WP_GRAPHQL_TOKEN).toString('base64')}`;
   }
 
   const res = await fetch(WP_GRAPHQL_URL, {
