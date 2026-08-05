@@ -1,4 +1,4 @@
-import { fetchWPPostBySlug } from '@/lib/wpgraphql';
+import { getActualitePostBySlug } from '@/lib/content';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAssetUrl } from '@/lib/assets';
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug: rawSlug } = await params;
   const slug = rawSlug.join('/'); // Reconstruct full slug path
 
-  const post = await fetchWPPostBySlug(slug);
+  const post = await getActualitePostBySlug(slug);
   if (!post) return {};
 
   const title = post.seo?.title || post.title;
@@ -52,7 +52,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug: rawSlug } = await params;
   const slug = rawSlug.join('/'); // Reconstruct full slug path
 
-  const post = await fetchWPPostBySlug(slug);
+  const post = await getActualitePostBySlug(slug);
 
   if (!post) {
     notFound();

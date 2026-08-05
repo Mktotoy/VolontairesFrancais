@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { fetchWPPressArticles } from '@/lib/wpgraphql';
+import { getPressArticles } from '@/lib/content';
 import { getAssetUrl } from '@/lib/assets';
 import * as cheerio from 'cheerio';
 import fs from 'fs';
@@ -45,7 +45,7 @@ export const metadata = {
 };
 
 export default async function PressPage() {
-    const rawArticles = await fetchWPPressArticles();
+    const rawArticles = await getPressArticles();
     const hasArticles = rawArticles.length > 0;
 
     const articles = await Promise.all(
