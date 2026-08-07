@@ -1,15 +1,52 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CATEGORIES, VOTE_DEADLINE } from '@/lib/athletes';
 import AthleteCard from '@/components/AthleteCard';
 import { voteStyles } from './vote-styles';
+
+const DRAFT_KEY = 'athlete-vote-draft';
+
+function loadDraft(): Record<string, string> {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Record<string, string>;
+    const valid: Record<string, string> = {};
+    for (const cat of CATEGORIES) {
+      const v = parsed[cat.key];
+      if (typeof v === 'string' && (cat.candidates as readonly string[]).includes(v)) {
+        valid[cat.key] = v;
+      }
+    }
+    return valid;
+  } catch {
+    return {};
+  }
+}
 
 export default function VoteAthletesPage() {
   const [email, setEmail] = useState('');
   const [votes, setVotes] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+
+  useEffect(() => {
+    const draft = loadDraft();
+    if (Object.keys(draft).length) setVotes(draft);
+  }, []);
+
+  const selectAthlete = (categoryKey: string, name: string) => {
+    setVotes((v) => {
+      const next = { ...v, [categoryKey]: name };
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(next));
+      } catch {
+        // stockage indisponible (navigation privée) : sélection en mémoire seulement
+      }
+      return next;
+    });
+  };
 
   const closed = new Date() > VOTE_DEADLINE;
   const allSelected = CATEGORIES.every((c) => votes[c.key]);
@@ -30,6 +67,11 @@ export default function VoteAthletesPage() {
         setErrorMsg(data.error || 'Une erreur est survenue.');
         setStatus('error');
         return;
+      }
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch {
+        // ignore
       }
       setStatus('success');
     } catch {
@@ -82,7 +124,7 @@ export default function VoteAthletesPage() {
                     key={name}
                     name={name}
                     selected={votes[category.key] === name}
-                    onSelect={() => setVotes((v) => ({ ...v, [category.key]: name }))}
+                    onSelect={() => selectAthlete(category.key, name)}
                   />
                 ))}
               </div>
