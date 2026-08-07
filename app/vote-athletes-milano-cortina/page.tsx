@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { CATEGORIES, VOTE_DEADLINE } from '@/lib/athletes';
 import AthleteCard from '@/components/AthleteCard';
+import AthleteModal from '@/components/AthleteModal';
 import { voteStyles } from './vote-styles';
 
 const DRAFT_KEY = 'athlete-vote-draft';
@@ -30,6 +31,7 @@ export default function VoteAthletesPage() {
   const [votes, setVotes] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [modal, setModal] = useState<{ catKey: string; name: string } | null>(null);
 
   useEffect(() => {
     const draft = loadDraft();
@@ -130,6 +132,7 @@ export default function VoteAthletesPage() {
                   name={name}
                   selected={votes[category.key] === name}
                   onSelect={() => selectAthlete(category.key, name)}
+                  onInfo={() => setModal({ catKey: category.key, name })}
                 />
               ))}
             </div>
@@ -159,6 +162,15 @@ export default function VoteAthletesPage() {
           </button>
         </div>
       </form>
+
+      {modal && (
+        <AthleteModal
+          name={modal.name}
+          selected={votes[modal.catKey] === modal.name}
+          onSelect={() => selectAthlete(modal.catKey, modal.name)}
+          onClose={() => setModal(null)}
+        />
+      )}
 
       <p className="credit">
         Photos, fiches et informations athlètes © CNOSF, equipedefrance.com

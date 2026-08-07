@@ -133,11 +133,15 @@ export const voteStyles = `
   }
   .photo {
     width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
   }
   .photo img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
+    object-position: top center;
   }
   .photo.no-img {
     aspect-ratio: 3 / 2;
@@ -180,6 +184,121 @@ export const voteStyles = `
   .medals {
     font-size: 0.95rem;
     color: #333;
+  }
+  .card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .btn-info {
+    flex: 1;
+    padding: 10px 8px;
+    border: 1.5px solid #067fcc;
+    border-radius: 24px;
+    background: transparent;
+    color: #067fcc;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-info:hover {
+    background: rgba(6, 127, 204, 0.08);
+  }
+  .btn-vote {
+    flex: 1;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 24px;
+    background: #067fcc;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-vote:hover {
+    filter: brightness(1.1);
+  }
+  .btn-vote.voted {
+    background: #07a459;
+  }
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeUp 0.2s ease both;
+  }
+  .modal-card {
+    background: #fff;
+    color: #333;
+    width: 100%;
+    max-width: 560px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 22px 22px 0 0;
+    position: relative;
+    animation: fadeUp 0.28s ease both;
+  }
+  @media (min-width: 560px) {
+    .modal-overlay { align-items: center; padding: 24px; }
+    .modal-card { border-radius: 22px; }
+  }
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  .modal-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .modal-body {
+    padding: 18px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .modal-body h3 {
+    font-size: 1.35rem;
+    color: #222;
+  }
+  .modal-body .bio {
+    font-size: 0.88rem;
+    color: #444;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+  .modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    align-items: center;
+  }
+  .modal-actions .btn-vote {
+    flex: 1;
+    min-width: 180px;
+    padding: 13px;
+    font-size: 0.95rem;
   }
   .fiche-link {
     margin-top: 6px;

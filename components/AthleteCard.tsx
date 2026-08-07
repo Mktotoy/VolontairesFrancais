@@ -6,15 +6,7 @@ import { ATHLETES_INFO } from '@/lib/athletes-info';
 // Photo locale cachée : public/athletes/<slug>.webp (source equipedefrance.com).
 // "X et son guide Y" (para) : slug et fiche portent sur l'athlète X seul.
 
-function initials(name: string): string {
-  return name
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((p) => p[0]?.toUpperCase() ?? '')
-    .join('');
-}
-
-function age(birthdate: string | null): number | null {
+export function athleteAge(birthdate: string | null): number | null {
   if (!birthdate) return null;
   const b = new Date(birthdate);
   const now = new Date();
@@ -24,7 +16,7 @@ function age(birthdate: string | null): number | null {
   return a;
 }
 
-function medalsLine(m: { gold: number; silver: number; bronze: number }): string {
+export function medalsLine(m: { gold: number; silver: number; bronze: number }): string {
   const parts: string[] = [];
   if (m.gold) parts.push(`🥇 ${m.gold}`);
   if (m.silver) parts.push(`🥈 ${m.silver}`);
@@ -32,17 +24,26 @@ function medalsLine(m: { gold: number; silver: number; bronze: number }): string
   return parts.join('  ');
 }
 
+function initials(name: string): string {
+  return name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((p) => p[0]?.toUpperCase() ?? '')
+    .join('');
+}
+
 interface Props {
   name: string;
   selected: boolean;
   onSelect: () => void;
+  onInfo: () => void;
 }
 
-export default function AthleteCard({ name, selected, onSelect }: Props) {
+export default function AthleteCard({ name, selected, onSelect, onInfo }: Props) {
   const [imgOk, setImgOk] = useState(true);
   const info = ATHLETES_INFO[name];
   const slug = info?.slug ?? '';
-  const athleteAge = age(info?.birthdate ?? null);
+  const age = athleteAge(info?.birthdate ?? null);
   const medals = info ? medalsLine(info.medals) : '';
 
   return (
@@ -76,22 +77,35 @@ export default function AthleteCard({ name, selected, onSelect }: Props) {
         <span className="athlete-name">{name}</span>
         {info?.discipline && <span className="discipline">{info.discipline}</span>}
         <span className="meta">
-          {athleteAge !== null && <span>{athleteAge} ans</span>}
+          {age !== null && <span>{age} ans</span>}
           {info?.birthCity && <span> · {info.birthCity.replace(/\s*\(.*\)$/, '')}</span>}
         </span>
         {info?.handicap && <span className="meta">{info.handicap}</span>}
         {medals && <span className="medals">{medals}</span>}
-        <a
-          className="fiche-link"
-          href={`https://www.equipedefrance.com/athlete/${slug}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Fiche Équipe de France ↗
-        </a>
+        <div className="card-actions">
+          <button
+            type="button"
+            className="btn-info"
+            onClick={(e) => {
+              e.stopPropagation();
+              onInfo();
+            }}
+          >
+            En savoir plus
+          </button>
+          <button
+            type="button"
+            className={`btn-vote${selected ? ' voted' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect();
+            }}
+          >
+            {selected ? '✓ Choisi' : 'Voter'}
+          </button>
+        </div>
       </div>
-      {selected && <span className="badge">✓ Choisi</span>}
+      {selected && <span className="badge">✓</span>}
     </div>
   );
 }

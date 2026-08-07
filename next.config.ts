@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   // env removed
   allowedDevOrigins: [
     "*.janeway.replit.dev",
+    "*.riker.replit.dev",
     "*.replit.dev",
     "*.repl.co",
     "localhost:3000",
