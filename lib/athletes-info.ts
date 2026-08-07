@@ -1,13 +1,22 @@
-// Cache local des infos athlètes, extrait de
-// https://resultats.equipedefrance.com/milano-cortina-2026/data/drupal-athletes.json
-// et widget-resultat-athlete-<id>.json (résultats Milano Cortina 2026).
-// Généré hors-ligne, aucune dépendance runtime au site externe.
+// Cache local des infos athlètes, sources equipedefrance.com (générées hors-ligne) :
+// - data/drupal-athletes.json (identité, bio, discipline)
+// - data/widget-resultat-athlete-<id>.json (résultats Milano Cortina 2026)
+// - pages /athlete/<slug> (bloc "Palmarès aux jeux", scrapé — le champ olympicMedals
+//   du drupal JSON est figé pré-Milano, ne pas s'y fier)
+// medals = décompte 2026 uniquement (contexte du vote). palmares = tous les Jeux.
 export interface AthleteResult {
   event: string | null;
   position: string | null;
   score: string | null;
   date: string;
   status: string | null;
+}
+
+export interface PalmaresEntry {
+  year: number;
+  games: string;
+  medal: 'Or' | 'Argent' | 'Bronze';
+  event: string;
 }
 
 export interface AthleteInfo {
@@ -19,6 +28,7 @@ export interface AthleteInfo {
   handicap: string | null;
   bio: string | null;
   results: AthleteResult[];
+  palmares: PalmaresEntry[];
 }
 
 export const ATHLETES_INFO: Record<string, AthleteInfo> = {
@@ -27,8 +37,8 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Biathlon",
     "medals": {
       "gold": 0,
-      "silver": 0,
-      "bronze": 0
+      "silver": 1,
+      "bronze": 1
     },
     "birthdate": "1998-10-28",
     "birthCity": "Pontarlier (Doubs)",
@@ -77,13 +87,27 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-21",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Individuel 15km (Femmes)"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "Sprint 7,5km (Femmes)"
+      }
     ]
   },
   "Julia Simon": {
     "slug": "julia-simon",
     "discipline": "Biathlon",
     "medals": {
-      "gold": 0,
+      "gold": 2,
       "silver": 1,
       "bronze": 0
     },
@@ -134,13 +158,33 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-21",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Relais mixte"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Relais"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Mass-start 12,5km (Femmes)"
+      }
     ]
   },
   "Camille Bened": {
     "slug": "camille-bened",
     "discipline": "Biathlon",
     "medals": {
-      "gold": 0,
+      "gold": 1,
       "silver": 0,
       "bronze": 0
     },
@@ -163,14 +207,22 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-18",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Relais"
+      }
     ]
   },
   "Océane Michelon": {
     "slug": "oceane-michelon",
     "discipline": "Biathlon",
     "medals": {
-      "gold": 0,
-      "silver": 0,
+      "gold": 1,
+      "silver": 1,
       "bronze": 0
     },
     "birthdate": "2002-03-04",
@@ -206,6 +258,20 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-21",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Mass-start 12,5km (Femmes)"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Sprint 7,5km (Femmes)"
+      }
     ]
   },
   "Emily Harrop": {
@@ -213,7 +279,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Ski-alpinisme",
     "medals": {
       "gold": 0,
-      "silver": 0,
+      "silver": 1,
       "bronze": 0
     },
     "birthdate": "1997-09-27",
@@ -249,13 +315,21 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-21",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Ski-alpinisme - Sprint (femmes)"
+      }
     ]
   },
   "Laurence Fournier Beaudry": {
     "slug": "laurence-fournier-beaudry",
     "discipline": "Patinage Artistique",
     "medals": {
-      "gold": 0,
+      "gold": 1,
       "silver": 0,
       "bronze": 0
     },
@@ -285,6 +359,14 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-11",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Danse sur glace mixte"
+      }
     ]
   },
   "Romane Miradoli": {
@@ -292,7 +374,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Ski Alpin",
     "medals": {
       "gold": 0,
-      "silver": 0,
+      "silver": 1,
       "bronze": 0
     },
     "birthdate": "1994-03-10",
@@ -328,15 +410,23 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-12",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Super-G"
+      }
     ]
   },
   "Perrine Laffont": {
     "slug": "perrine-laffont",
     "discipline": "Ski Freestyle",
     "medals": {
-      "gold": 1,
+      "gold": 0,
       "silver": 0,
-      "bronze": 0
+      "bronze": 1
     },
     "birthdate": "1998-10-18",
     "birthCity": "Lavelanet (Ariège)",
@@ -399,6 +489,20 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-14",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "Bosses"
+      },
+      {
+        "year": 2018,
+        "games": "Pyeongchang",
+        "medal": "Or",
+        "event": "Bosses"
+      }
     ]
   },
   "Léa Casta": {
@@ -407,7 +511,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "medals": {
       "gold": 0,
       "silver": 0,
-      "bronze": 0
+      "bronze": 1
     },
     "birthdate": "2006-02-10",
     "birthCity": "Thonon-les-Bains (Haute-Savoie)",
@@ -421,14 +525,22 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-13",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "Snowboard cross par équipes mixtes"
+      }
     ]
   },
   "Eric Perrot": {
     "slug": "eric-perrot",
     "discipline": "Biathlon",
     "medals": {
-      "gold": 0,
-      "silver": 0,
+      "gold": 1,
+      "silver": 1,
       "bronze": 0
     },
     "birthdate": "2001-06-29",
@@ -478,6 +590,20 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-20",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Relais mixte"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Individuel 20km (Hommes)"
+      }
     ]
   },
   "Quentin Fillon Maillet": {
@@ -485,8 +611,8 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Biathlon",
     "medals": {
       "gold": 2,
-      "silver": 3,
-      "bronze": 0
+      "silver": 0,
+      "bronze": 1
     },
     "birthdate": "1992-08-16",
     "birthCity": "Champagnole (Jura)",
@@ -535,14 +661,34 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-20",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Sprint 10km (Hommes)"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "Mass-start 15km (Hommes)"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Relais"
+      }
     ]
   },
   "Fabien Claude": {
     "slug": "fabien-claude",
     "discipline": "Biathlon",
     "medals": {
-      "gold": 0,
-      "silver": 1,
+      "gold": 1,
+      "silver": 0,
       "bronze": 0
     },
     "birthdate": "1994-12-22",
@@ -585,15 +731,29 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-20",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Relais"
+      },
+      {
+        "year": 2022,
+        "games": "Pékin",
+        "medal": "Argent",
+        "event": "Relais"
+      }
     ]
   },
   "Emilien Jacquelin": {
     "slug": "emilien-jacquelin",
     "discipline": "Biathlon",
     "medals": {
-      "gold": 0,
-      "silver": 2,
-      "bronze": 0
+      "gold": 1,
+      "silver": 0,
+      "bronze": 1
     },
     "birthdate": "1995-07-11",
     "birthCity": "Grenoble (Isère)",
@@ -635,6 +795,26 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-20",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Relais"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "Poursuite 12,5km (Hommes)"
+      },
+      {
+        "year": 2022,
+        "games": "Pékin",
+        "medal": "Argent",
+        "event": "Relais mixte"
+      }
     ]
   },
   "Mathis Desloges": {
@@ -642,7 +822,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Ski de Fond",
     "medals": {
       "gold": 0,
-      "silver": 0,
+      "silver": 2,
       "bronze": 0
     },
     "birthdate": "2002-05-01",
@@ -692,6 +872,20 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-21",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Individuel 10 km libre (Hommes)"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Skiathlon - 10 km + 10 km (Hommes)"
+      }
     ]
   },
   "Thibault Anselmet": {
@@ -700,7 +894,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "medals": {
       "gold": 0,
       "silver": 0,
-      "bronze": 0
+      "bronze": 1
     },
     "birthdate": "1997-11-02",
     "birthCity": "Chambéry (Savoie)",
@@ -735,13 +929,21 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-21",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "Ski-alpinisme - Sprint (hommes)"
+      }
     ]
   },
   "Guillaume Cizeron": {
     "slug": "guillaume-cizeron",
     "discipline": "Patinage Artistique",
     "medals": {
-      "gold": 0,
+      "gold": 1,
       "silver": 0,
       "bronze": 0
     },
@@ -771,6 +973,20 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-11",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Danse sur glace mixte"
+      },
+      {
+        "year": 2022,
+        "games": "Pékin",
+        "medal": "Or",
+        "event": "Danse sur glace mixte"
+      }
     ]
   },
   "Hugo Lapalus": {
@@ -778,7 +994,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Ski de Fond",
     "medals": {
       "gold": 0,
-      "silver": 0,
+      "silver": 1,
       "bronze": 0
     },
     "birthdate": "1998-07-09",
@@ -814,6 +1030,14 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-21",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Relais"
+      }
     ]
   },
   "Victor Lovera": {
@@ -821,7 +1045,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Ski de Fond",
     "medals": {
       "gold": 0,
-      "silver": 0,
+      "silver": 1,
       "bronze": 0
     },
     "birthdate": "2000-06-05",
@@ -857,6 +1081,14 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-21",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Relais"
+      }
     ]
   },
   "Loan Bozzolo": {
@@ -865,7 +1097,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "medals": {
       "gold": 0,
       "silver": 0,
-      "bronze": 0
+      "bronze": 1
     },
     "birthdate": "1999-05-04",
     "birthCity": "Sallanches (Haute-Savoie)",
@@ -879,6 +1111,14 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-02-12",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "Snowboard cross par équipes mixtes"
+      }
     ]
   },
   "Cécile Hernandez": {
@@ -886,8 +1126,8 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Para Snowboard",
     "medals": {
       "gold": 1,
-      "silver": 2,
-      "bronze": 1
+      "silver": 0,
+      "bronze": 0
     },
     "birthdate": "1974-06-19",
     "birthCity": "Perpignan (Pyrénnées-Orientales)",
@@ -922,6 +1162,26 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-03-13",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Snowboard Cross SB-LL2 (Femmes)"
+      },
+      {
+        "year": 2018,
+        "games": "Pyeongchang",
+        "medal": "Bronze",
+        "event": "Snowboard Cross SB-LL1 (Femmes)"
+      },
+      {
+        "year": 2014,
+        "games": "Sotchi",
+        "medal": "Argent",
+        "event": "Snowboard Cross SB-LL1 (Femmes)"
+      }
     ]
   },
   "Aurélie Richard": {
@@ -929,7 +1189,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "discipline": "Para Ski Alpin",
     "medals": {
       "gold": 0,
-      "silver": 0,
+      "silver": 2,
       "bronze": 0
     },
     "birthdate": "2005-06-15",
@@ -993,15 +1253,29 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-03-14",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Descente debout - LW1 à LW9"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Combiné alpin debout - LW1 à LW9"
+      }
     ]
   },
   "Arthur Bauchet": {
     "slug": "arthur-bauchet",
     "discipline": "Para Ski Alpin",
     "medals": {
-      "gold": 3,
-      "silver": 4,
-      "bronze": 1
+      "gold": 1,
+      "silver": 1,
+      "bronze": 0
     },
     "birthdate": "2000-10-10",
     "birthCity": "Saint-Tropez (Var)",
@@ -1064,13 +1338,33 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-03-15",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Descente debout - LW1 à LW9"
+      },
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "Combiné alpin debout - LW1 à LW9"
+      },
+      {
+        "year": 2022,
+        "games": "Pékin",
+        "medal": "Or",
+        "event": "Descente debout - LW1 à LW9"
+      }
     ]
   },
   "Karl Tabouret": {
     "slug": "karl-tabouret",
     "discipline": "Para Ski de Fond",
     "medals": {
-      "gold": 0,
+      "gold": 1,
       "silver": 0,
       "bronze": 0
     },
@@ -1135,15 +1429,23 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-03-15",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Or",
+        "event": "10km debout - LW2 à LW9"
+      }
     ]
   },
   "Benjamin Daviet": {
     "slug": "benjamin-daviet",
     "discipline": "Para Ski de Fond",
     "medals": {
-      "gold": 5,
-      "silver": 4,
-      "bronze": 1
+      "gold": 0,
+      "silver": 1,
+      "bronze": 0
     },
     "birthdate": "1989-06-16",
     "birthCity": "Annecy (Haute-Savoie)",
@@ -1220,6 +1522,26 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-03-15",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Argent",
+        "event": "Sprint 10km (Hommes)"
+      },
+      {
+        "year": 2022,
+        "games": "Pékin",
+        "medal": "Argent",
+        "event": "Moyenne distance 12,5km (Hommes) - LW2 à LW9"
+      },
+      {
+        "year": 2022,
+        "games": "Pékin",
+        "medal": "Or",
+        "event": "Individuel 15km (Hommes) - LW2 à LW9"
+      }
     ]
   },
   "Jules Segers": {
@@ -1228,7 +1550,7 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
     "medals": {
       "gold": 0,
       "silver": 0,
-      "bronze": 0
+      "bronze": 1
     },
     "birthdate": "2002-11-18",
     "birthCity": "Ambilly (Haute-Savoie)",
@@ -1284,14 +1606,22 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "date": "2026-03-15",
         "status": "Terminé"
       }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "Super G debout - LW1 à LW9"
+      }
     ]
   },
   "Anthony Chalençon et son guide Florian Michelon": {
     "slug": "anthony-chalencon",
     "discipline": "Para Ski de Fond",
     "medals": {
-      "gold": 1,
-      "silver": 1,
+      "gold": 0,
+      "silver": 0,
       "bronze": 1
     },
     "birthdate": "1990-08-13",
@@ -1340,6 +1670,20 @@ export const ATHLETES_INFO: Record<string, AthleteInfo> = {
         "score": "43:21.9",
         "date": "2026-03-15",
         "status": "Terminé"
+      }
+    ],
+    "palmares": [
+      {
+        "year": 2026,
+        "games": "Milan-Cortina",
+        "medal": "Bronze",
+        "event": "20km - B1, B2, B3"
+      },
+      {
+        "year": 2022,
+        "games": "Pékin",
+        "medal": "Argent",
+        "event": "Relais open - B1, B2, B3"
       }
     ]
   }

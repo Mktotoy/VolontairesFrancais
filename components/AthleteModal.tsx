@@ -56,6 +56,22 @@ export default function AthleteModal({ name, selected, onSelect, onClose }: Prop
           {info.handicap && <p className="meta">{info.handicap}</p>}
           {medals && <p className="medals">{medals}</p>}
           {info.bio && <p className="bio">{info.bio}</p>}
+          {info.palmares.length > 0 && (
+            <div className="results-block">
+              <h4>Palmarès aux Jeux</h4>
+              <ul>
+                {info.palmares.map((p, i) => (
+                  <li key={i}>
+                    <span className="pos">
+                      {p.medal === 'Or' ? '🥇' : p.medal === 'Argent' ? '🥈' : '🥉'} {p.medal}
+                    </span>
+                    <span className="event">{p.event}</span>
+                    <span className="score">{p.year !== 2026 ? `${p.games} ${p.year}` : p.games}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {info.results.length > 0 && (
             <div className="results-block">
               <h4>Résultats Milano Cortina 2026</h4>
