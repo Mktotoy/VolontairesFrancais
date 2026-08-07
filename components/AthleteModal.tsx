@@ -56,6 +56,20 @@ export default function AthleteModal({ name, selected, onSelect, onClose }: Prop
           {info.handicap && <p className="meta">{info.handicap}</p>}
           {medals && <p className="medals">{medals}</p>}
           {info.bio && <p className="bio">{info.bio}</p>}
+          {info.results.length > 0 && (
+            <div className="results-block">
+              <h4>Résultats Milano Cortina 2026</h4>
+              <ul>
+                {info.results.map((r, i) => (
+                  <li key={i}>
+                    {r.position && <span className="pos">#{r.position}</span>}
+                    <span className="event">{r.event}</span>
+                    {r.score && <span className="score">{r.score}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className="modal-actions">
             <a
               className="fiche-link"

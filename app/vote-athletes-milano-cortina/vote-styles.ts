@@ -49,8 +49,9 @@ export const voteStyles = `
   }
   .vote-category legend {
     width: 100%;
-    font-weight: 700;
-    font-size: 1.15rem;
+    font-weight: 800;
+    font-size: 1.45rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     color: #fff;
     margin-bottom: 14px;
     padding: 0 16px;
@@ -127,6 +128,7 @@ export const voteStyles = `
   @media (min-width: 900px) {
     .athlete-grid { grid-template-columns: repeat(3, 1fr); }
     .vote-header h1 { font-size: 2rem; }
+    .vote-category legend { font-size: 1.7rem; }
   }
   @media (min-width: 1200px) {
     .athlete-grid { grid-template-columns: repeat(4, 1fr); }
@@ -286,6 +288,45 @@ export const voteStyles = `
     color: #444;
     line-height: 1.6;
     margin-top: 8px;
+  }
+  .results-block {
+    margin-top: 14px;
+  }
+  .results-block h4 {
+    font-size: 0.95rem;
+    color: #067fcc;
+    margin-bottom: 8px;
+  }
+  .results-block ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .results-block li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #444;
+  }
+  .results-block .pos {
+    flex: 0 0 auto;
+    background: #067fcc;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border-radius: 12px;
+    padding: 2px 8px;
+  }
+  .results-block .event {
+    flex: 1;
+  }
+  .results-block .score {
+    color: #888;
+    font-size: 0.78rem;
+    white-space: nowrap;
   }
   .modal-actions {
     display: flex;
