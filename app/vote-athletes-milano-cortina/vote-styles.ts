@@ -140,7 +140,7 @@ export const voteStyles = `
   }
   .photo {
     width: 100%;
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
   }
   .photo img {
@@ -151,7 +151,7 @@ export const voteStyles = `
     object-position: top center;
   }
   .photo.no-img {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 4 / 5;
     background: linear-gradient(135deg, #067fcc, #07a459);
     display: flex;
     align-items: center;
@@ -275,8 +275,10 @@ export const voteStyles = `
   }
   .modal-photo img {
     width: 100%;
-    height: auto;
+    max-height: 48vh;
     display: block;
+    object-fit: cover;
+    object-position: top center;
   }
   .modal-body {
     padding: 18px 22px 24px;
