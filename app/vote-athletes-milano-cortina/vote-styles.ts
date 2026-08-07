@@ -19,7 +19,6 @@ export const voteStyles = `
     color: #fff;
   }
   .vote-header {
-    max-width: 1200px;
     margin: 0 auto 28px;
     padding: 0 16px;
     text-align: center;
@@ -39,7 +38,7 @@ export const voteStyles = `
     margin: 0 auto;
   }
   .vote-form {
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
   }
   .vote-category {
@@ -131,12 +130,12 @@ export const voteStyles = `
     .athlete-card { flex: none; max-width: none; }
   }
   @media (min-width: 900px) {
-    .athlete-grid { grid-template-columns: repeat(3, 1fr); }
+    .athlete-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      padding: 0 32px;
+    }
     .vote-header h1 { font-size: 2rem; }
-    .vote-category legend { font-size: 1.7rem; }
-  }
-  @media (min-width: 1200px) {
-    .athlete-grid { grid-template-columns: repeat(4, 1fr); }
+    .vote-category legend { font-size: 1.7rem; padding: 0 32px; }
   }
   .photo {
     width: 100%;
