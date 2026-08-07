@@ -53,7 +53,6 @@ export default function AthleteModal({ name, selected, onSelect, onClose }: Prop
             {age !== null && `${age} ans`}
             {info.birthCity && ` · Né(e) à ${info.birthCity}`}
           </p>
-          {info.handicap && <p className="meta">{info.handicap}</p>}
           {medals && <p className="medals">{medals}</p>}
           {info.bio && (
             <div className="bio">
