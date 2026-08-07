@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { tallyVotes } from '@/lib/vote-store';
+import { loadAllVotes } from '@/lib/vote-store';
+import { wpVotesEnabled, wpLoadAllVotes } from '@/lib/vote-backend';
+import { tally } from '@/lib/vote-tally';
 
 export async function GET(req: NextRequest) {
   const authHeader = req.headers.get('Authorization');
@@ -8,7 +10,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   try {
-    return NextResponse.json(await tallyVotes());
+    const votes = wpVotesEnabled() ? await wpLoadAllVotes() : await loadAllVotes();
+    return NextResponse.json({ ...tally(votes), backend: wpVotesEnabled() ? 'wordpress' : 'files' });
   } catch (error) {
     console.error('Athlete vote results error:', error);
     return NextResponse.json({ error: 'Failed to fetch results' }, { status: 500 });

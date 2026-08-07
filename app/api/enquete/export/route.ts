@@ -3,7 +3,7 @@ import ExcelJS from 'exceljs';
 import { QUESTIONS, SECTIONS } from '@/lib/survey-questions';
 
 const VF_API_BASE = process.env.VF_API_BASE || 'https://espace.volontairesfrancais.fr/wp-json/vf/v1';
-const VF_UA = 'Mozilla/5.0 (compatible; VolontairesFrancaisNextApp/1.0)';
+const VF_UA = 'VolontairesFrancaisNextApp/1.0';
 
 
 const SECTION_COLORS: Record<string, string> = {

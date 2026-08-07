@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { CATEGORIES, VOTE_DEADLINE } from '@/lib/athletes';
 import { hasVoted, saveVote } from '@/lib/vote-store';
+import { wpVotesEnabled, wpSaveVote } from '@/lib/vote-backend';
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,19 +28,30 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (await hasVoted(email)) {
+    const vote = {
+      email: email.trim().toLowerCase(),
+      votes: Object.fromEntries(CATEGORIES.map((c) => [c.key, votes[c.key]])),
+      submittedAt: new Date().toISOString(),
+    };
+
+    if (wpVotesEnabled()) {
+      const r = await wpSaveVote(vote);
+      if (!r.ok) {
+        const msg = r.status === 409
+          ? 'Un vote a déjà été enregistré avec cette adresse email.'
+          : r.error || "Erreur lors de l'enregistrement du vote.";
+        return NextResponse.json({ error: msg }, { status: r.status >= 400 && r.status < 500 ? r.status : 500 });
+      }
+      return NextResponse.json({ ok: true });
+    }
+
+    if (await hasVoted(vote.email)) {
       return NextResponse.json(
         { error: 'Un vote a déjà été enregistré avec cette adresse email.' },
         { status: 409 },
       );
     }
-
-    await saveVote({
-      email: email.trim().toLowerCase(),
-      votes: Object.fromEntries(CATEGORIES.map((c) => [c.key, votes[c.key]])),
-      submittedAt: new Date().toISOString(),
-    });
-
+    await saveVote(vote);
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error('Athlete vote submission error:', error);
