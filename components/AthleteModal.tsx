@@ -79,22 +79,6 @@ export default function AthleteModal({ name, selected, onSelect, onClose }: Prop
               </ul>
             </div>
           )}
-          {info.palmares.length > 0 && (
-            <div className="results-block">
-              <h4>Palmarès aux Jeux</h4>
-              <ul>
-                {info.palmares.map((p, i) => (
-                  <li key={i}>
-                    <span className="pos">
-                      {p.medal === 'Or' ? '🥇' : p.medal === 'Argent' ? '🥈' : '🥉'} {p.medal}
-                    </span>
-                    <span className="event">{p.event}</span>
-                    <span className="score">{p.year !== 2026 ? `${p.games} ${p.year}` : p.games}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
           <div className="modal-actions">
             <a
               className="fiche-link"
