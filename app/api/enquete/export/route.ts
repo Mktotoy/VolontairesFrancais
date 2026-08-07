@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Pool } from 'pg';
 import ExcelJS from 'exceljs';
 import { QUESTIONS, SECTIONS } from '@/lib/survey-questions';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const VF_API_BASE = process.env.VF_API_BASE || 'https://espace.volontairesfrancais.fr/wp-json/vf/v1';
+const VF_UA = 'Mozilla/5.0 (compatible; VolontairesFrancaisNextApp/1.0)';
+
 
 const SECTION_COLORS: Record<string, string> = {
   'Profil': 'FF1B4F72',
@@ -19,14 +18,17 @@ const SECTION_COLORS: Record<string, string> = {
 export async function GET(req: NextRequest) {
   try {
     const authHeader = req.headers.get('Authorization');
-    const password = (process.env.SURVEY_PASSWORD || '').replace(/"/g, '');
-
-    if (!authHeader || authHeader.replace(/"/g, '') !== password) {
+    if (!authHeader) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const result = await pool.query('SELECT * FROM survey_responses ORDER BY created_at DESC');
-    const rows = result.rows;
+    const vfRes = await fetch(`${VF_API_BASE}/survey/results`, {
+      headers: { 'Authorization': authHeader, 'User-Agent': VF_UA },
+    });
+    if (!vfRes.ok) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: vfRes.status });
+    }
+    const rows = await vfRes.json() as any[];
 
     const workbook = new ExcelJS.Workbook();
     workbook.creator = 'Volontaires Français';

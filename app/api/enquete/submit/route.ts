@@ -1,39 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Pool } from 'pg';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const VF_API_BASE = process.env.VF_API_BASE || 'https://espace.volontairesfrancais.fr/wp-json/vf/v1';
+const VF_UA = 'Mozilla/5.0 (compatible; VolontairesFrancaisNextApp/1.0)';
+
 
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
-    const { email, version, answers } = data;
-
-    const query = `
-      INSERT INTO survey_responses (email, answers, version)
-      VALUES ($1, $2, $3)
-      RETURNING id
-    `;
-    
-    const values = [
-      email || null,
-      JSON.stringify(answers),
-      version || 'V4'
-    ];
-
-    const result = await pool.query(query, values);
-
-    return NextResponse.json({ 
-      success: true, 
-      id: result.rows[0].id 
-    }, { status: 201 });
-
+    const res = await fetch(`${VF_API_BASE}/survey/submit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'User-Agent': VF_UA },
+      body: JSON.stringify(data),
+    });
+    const json = await res.json();
+    return NextResponse.json(json, { status: res.status });
   } catch (error) {
     console.error('Survey submission error:', error);
-    return NextResponse.json({ 
-      success: false, 
-      error: 'Failed to store survey response' 
+    return NextResponse.json({
+      success: false,
+      error: 'Failed to store survey response',
     }, { status: 500 });
   }
 }
