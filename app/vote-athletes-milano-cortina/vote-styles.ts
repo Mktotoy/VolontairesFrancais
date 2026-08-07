@@ -142,12 +142,13 @@ export const voteStyles = `
     width: 100%;
     aspect-ratio: 4 / 5;
     overflow: hidden;
+    background: #fff;
   }
   .photo img {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top center;
   }
   .photo.no-img {
