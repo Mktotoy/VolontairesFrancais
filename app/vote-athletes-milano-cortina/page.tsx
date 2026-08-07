@@ -109,7 +109,10 @@ export default function VoteAthletesPage() {
             {status === 'loading' ? 'Envoi en cours...' : 'À vos votes… Prêts ? Partez ! 🚀'}
           </button>
         </form>
-        <p className="credit">Photos et fiches © CNOSF, equipedefrance.com</p>
+        <p className="credit">
+          Photos, fiches et informations athlètes © CNOSF, equipedefrance.com
+          (données Milano Cortina 2026, resultats.equipedefrance.com).
+        </p>
       </div>
       {styleTag}
     </section>

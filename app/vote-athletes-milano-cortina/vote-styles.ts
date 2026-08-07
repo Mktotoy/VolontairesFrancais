@@ -14,7 +14,7 @@ export const voteStyles = `
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     padding: 40px;
-    max-width: 920px;
+    max-width: 1100px;
     width: 100%;
   }
   .vote-card h1 {
@@ -41,7 +41,7 @@ export const voteStyles = `
   }
   .athlete-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 12px;
   }
   .athlete-card {
@@ -68,7 +68,7 @@ export const voteStyles = `
   }
   .photo {
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 3 / 2;
     border-radius: 8px;
     overflow: hidden;
     background: linear-gradient(135deg, #067fcc, #07a459);
@@ -79,30 +79,53 @@ export const voteStyles = `
   .photo img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
   .initials {
     color: #fff;
     font-size: 1.8rem;
     font-weight: 700;
   }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+  }
   .athlete-name {
-    font-size: 0.82rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 700;
     color: #333;
     text-align: center;
     line-height: 1.25;
   }
+  .discipline {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #067fcc;
+    text-align: center;
+  }
+  .meta {
+    font-size: 0.75rem;
+    color: #666;
+    text-align: center;
+  }
+  .medals {
+    font-size: 0.85rem;
+    color: #333;
+  }
   .badge {
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: 8px;
+    right: 8px;
     background: #07a459;
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    padding: 4px 8px;
+    padding: 5px 10px;
     border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   }
   .email-block {
     margin-bottom: 20px;
@@ -157,12 +180,19 @@ export const voteStyles = `
     cursor: not-allowed;
   }
   .fiche-link {
-    font-size: 0.75rem;
+    margin-top: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
     color: #067fcc;
-    text-decoration: underline;
+    text-decoration: none;
+    border: 1.5px solid #067fcc;
+    border-radius: 20px;
+    padding: 4px 10px;
+    transition: all 0.15s;
   }
   .fiche-link:hover {
-    color: #045a91;
+    background: #067fcc;
+    color: #fff;
   }
   .credit {
     font-size: 0.75rem;
