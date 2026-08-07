@@ -65,6 +65,20 @@ export default function AthleteModal({ name, selected, onSelect, onClose }: Prop
               {info.bio.paragraphs.map((par, i) => <p key={i}>{par}</p>)}
             </div>
           )}
+          {info.results.length > 0 && (
+            <div className="results-block">
+              <h4>Résultats Milano Cortina 2026</h4>
+              <ul>
+                {info.results.map((r, i) => (
+                  <li key={i}>
+                    {r.position && <span className="pos">#{r.position}</span>}
+                    <span className="event">{r.event}</span>
+                    {r.score && <span className="score">{r.score}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {info.palmares.length > 0 && (
             <div className="results-block">
               <h4>Palmarès aux Jeux</h4>
@@ -76,20 +90,6 @@ export default function AthleteModal({ name, selected, onSelect, onClose }: Prop
                     </span>
                     <span className="event">{p.event}</span>
                     <span className="score">{p.year !== 2026 ? `${p.games} ${p.year}` : p.games}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {info.results.length > 0 && (
-            <div className="results-block">
-              <h4>Résultats Milano Cortina 2026</h4>
-              <ul>
-                {info.results.map((r, i) => (
-                  <li key={i}>
-                    {r.position && <span className="pos">#{r.position}</span>}
-                    <span className="event">{r.event}</span>
-                    {r.score && <span className="score">{r.score}</span>}
                   </li>
                 ))}
               </ul>
