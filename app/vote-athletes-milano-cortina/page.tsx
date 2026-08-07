@@ -173,8 +173,10 @@ export default function VoteAthletesPage() {
       )}
 
       <p className="credit">
-        Photos, fiches et informations athlètes © CNOSF, equipedefrance.com
-        (données Milano Cortina 2026, resultats.equipedefrance.com).
+        L&apos;ensemble des textes, photos et informations athlètes (biographies, palmarès,
+        résultats) proviennent du site officiel equipedefrance.com (CNOSF) et de
+        resultats.equipedefrance.com (données Milano Cortina 2026). Ils sont reproduits
+        sans aucune modification.
       </p>
       {styleTag}
     </main>

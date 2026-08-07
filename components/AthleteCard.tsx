@@ -80,7 +80,6 @@ export default function AthleteCard({ name, selected, onSelect, onInfo }: Props)
           {age !== null && <span>{age} ans</span>}
           {info?.birthCity && <span> · {info.birthCity.replace(/\s*\(.*\)$/, '')}</span>}
         </span>
-        {info?.handicap && <span className="meta">{info.handicap}</span>}
         {medals && <span className="medals">{medals}</span>}
         <div className="card-actions">
           <button

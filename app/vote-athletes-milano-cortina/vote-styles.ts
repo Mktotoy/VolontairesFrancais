@@ -296,6 +296,19 @@ export const voteStyles = `
     color: #444;
     line-height: 1.6;
     margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bio-brief {
+    margin: 0;
+    padding-left: 20px;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-weight: 600;
+    color: #333;
   }
   .results-block {
     margin-top: 14px;

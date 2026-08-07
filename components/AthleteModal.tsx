@@ -55,7 +55,16 @@ export default function AthleteModal({ name, selected, onSelect, onClose }: Prop
           </p>
           {info.handicap && <p className="meta">{info.handicap}</p>}
           {medals && <p className="medals">{medals}</p>}
-          {info.bio && <p className="bio">{info.bio}</p>}
+          {info.bio && (
+            <div className="bio">
+              {info.bio.brief.length > 0 && (
+                <ul className="bio-brief">
+                  {info.bio.brief.map((b, i) => <li key={i}>{b}</li>)}
+                </ul>
+              )}
+              {info.bio.paragraphs.map((par, i) => <p key={i}>{par}</p>)}
+            </div>
+          )}
           {info.palmares.length > 0 && (
             <div className="results-block">
               <h4>Palmarès aux Jeux</h4>
