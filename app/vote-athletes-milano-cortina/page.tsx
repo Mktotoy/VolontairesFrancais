@@ -49,7 +49,8 @@ export default function VoteAthletesPage() {
   };
 
   const closed = new Date() > VOTE_DEADLINE;
-  const allSelected = CATEGORIES.every((c) => votes[c.key]);
+  const selectedCount = CATEGORIES.filter((c) => votes[c.key]).length;
+  const allSelected = selectedCount === CATEGORIES.length;
   const styleTag = <style dangerouslySetInnerHTML={{ __html: voteStyles }} />;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -82,8 +83,8 @@ export default function VoteAthletesPage() {
 
   if (status === 'success') {
     return (
-      <section className="vote-wrap">
-        <div className="vote-card success-card">
+      <section className="status-wrap">
+        <div className="status-card">
           <h1>Merci pour votre vote ! 🇫🇷❄️</h1>
           <p>Vos athlètes préférés seront mis à l&apos;honneur lors de l&apos;Assemblée générale du samedi 28 novembre.</p>
         </div>
@@ -94,8 +95,8 @@ export default function VoteAthletesPage() {
 
   if (closed) {
     return (
-      <section className="vote-wrap">
-        <div className="vote-card">
+      <section className="status-wrap">
+        <div className="status-card">
           <h1>Les votes sont clos</h1>
           <p>La période de vote s&apos;est terminée le 2 septembre 2026. Merci de votre participation !</p>
         </div>
@@ -105,58 +106,65 @@ export default function VoteAthletesPage() {
   }
 
   return (
-    <section className="vote-wrap">
-      <div className="vote-card">
+    <main className="vote-page">
+      <header className="vote-header">
         <h1>Élisez vos athlètes préférés 🏅</h1>
         <p className="intro">
           Les athlètes qui vous ont le plus marqués lors des Jeux Olympiques et Paralympiques
           d&apos;hiver de Milano Cortina 2026. Résultats mis à l&apos;honneur lors de l&apos;Assemblée
           générale du samedi 28 novembre. Fin des votes : <strong>2 septembre 2026</strong>.
         </p>
+      </header>
 
-        <form onSubmit={handleSubmit}>
-          {CATEGORIES.map((category) => (
-            <fieldset className="vote-category" key={category.key}>
-              <legend>{category.emoji} {category.label}</legend>
-              <div className="athlete-grid">
-                {category.candidates.map((name) => (
-                  <AthleteCard
-                    key={name}
-                    name={name}
-                    selected={votes[category.key] === name}
-                    onSelect={() => selectAthlete(category.key, name)}
-                  />
-                ))}
-              </div>
-            </fieldset>
-          ))}
+      <form className="vote-form" onSubmit={handleSubmit}>
+        {CATEGORIES.map((category, i) => (
+          <fieldset className="vote-category" key={category.key} style={{ animationDelay: `${0.1 + i * 0.08}s` }}>
+            <legend>
+              {category.emoji} {category.label}
+              {votes[category.key] && <span className="cat-done">✓ {votes[category.key]}</span>}
+            </legend>
+            <div className="athlete-grid">
+              {category.candidates.map((name) => (
+                <AthleteCard
+                  key={name}
+                  name={name}
+                  selected={votes[category.key] === name}
+                  onSelect={() => selectAthlete(category.key, name)}
+                />
+              ))}
+            </div>
+          </fieldset>
+        ))}
 
-          <div className="email-block">
-            <label htmlFor="email">Votre email</label>
-            <input
-              id="email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="prenom.nom@exemple.fr"
-              autoComplete="email"
-            />
-            <p className="hint">Un seul vote par adresse email.</p>
-          </div>
+        <div className="email-block">
+          <label htmlFor="email">Votre email</label>
+          <input
+            id="email"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="prenom.nom@exemple.fr"
+            autoComplete="email"
+          />
+          <p className="hint">Un seul vote par adresse email.</p>
+        </div>
 
-          {errorMsg && <p className="error-msg">{errorMsg}</p>}
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
 
-          <button type="submit" className="submit-btn" disabled={!allSelected || !email || status === 'loading'}>
-            {status === 'loading' ? 'Envoi en cours...' : 'À vos votes… Prêts ? Partez ! 🚀'}
+        <div className="submit-bar">
+          <span className="progress">{selectedCount}/{CATEGORIES.length} choix</span>
+          <button type="submit" className="submit-btn" disabled={!allSelected || status === 'loading'}>
+            {status === 'loading' ? 'Envoi en cours...' : 'Voter 🚀'}
           </button>
-        </form>
-        <p className="credit">
-          Photos, fiches et informations athlètes © CNOSF, equipedefrance.com
-          (données Milano Cortina 2026, resultats.equipedefrance.com).
-        </p>
-      </div>
+        </div>
+      </form>
+
+      <p className="credit">
+        Photos, fiches et informations athlètes © CNOSF, equipedefrance.com
+        (données Milano Cortina 2026, resultats.equipedefrance.com).
+      </p>
       {styleTag}
-    </section>
+    </main>
   );
 }

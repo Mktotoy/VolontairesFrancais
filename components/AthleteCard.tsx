@@ -59,7 +59,7 @@ export default function AthleteCard({ name, selected, onSelect }: Props) {
         }
       }}
     >
-      <div className="photo">
+      <div className={`photo${imgOk && slug ? '' : ' no-img'}`}>
         {imgOk && slug ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
