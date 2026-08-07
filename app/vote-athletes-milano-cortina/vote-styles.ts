@@ -13,6 +13,7 @@ export const voteStyles = `
   }
   .vote-page {
     min-height: 100vh;
+    overflow-x: hidden;
     background: linear-gradient(160deg, #067fcc 0%, #07a459 100%);
     padding: 24px 0 110px;
     color: #fff;
@@ -46,6 +47,9 @@ export const voteStyles = `
     padding: 0;
     margin: 0 0 34px;
     animation: fadeUp 0.5s ease both;
+    min-inline-size: 0;
+    width: 100%;
+    max-width: 100%;
   }
   .vote-category legend {
     width: 100%;
@@ -75,6 +79,7 @@ export const voteStyles = `
     display: flex;
     gap: 14px;
     overflow-x: auto;
+    max-width: 100%;
     scroll-snap-type: x mandatory;
     padding: 6px 16px 14px;
     -webkit-overflow-scrolling: touch;
