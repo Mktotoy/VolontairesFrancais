@@ -68,7 +68,7 @@ export default function VoteResultsPage() {
             {error && <p className="error-msg">{error}</p>}
           </form>
         </div>
-        <style jsx>{styles}</style>
+        <style dangerouslySetInnerHTML={{ __html: styles }} />
       </section>
     );
   }
@@ -96,7 +96,7 @@ export default function VoteResultsPage() {
           );
         })}
       </div>
-      <style jsx>{styles}</style>
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
     </section>
   );
 }
