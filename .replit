@@ -27,7 +27,7 @@ waitForPort = 3000
 [deployment]
 build = ["sh", "-c", "npm run build"]
 run = ["npm", "start"]
-deploymentTarget = "cloudrun"
+deploymentTarget = "vm"
 
 [[ports]]
 localPort = 3000
