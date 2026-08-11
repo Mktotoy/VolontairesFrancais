@@ -69,11 +69,19 @@ export default function Header() {
                                     Adhérer
                                 </Link>
                             </li>
+                            <li className="nav-member-mobile">
+                                <Link href="/espace-adherents" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+                                    Espace adhérents
+                                </Link>
+                            </li>
                         </ul>
                     </nav>
                     <div className="header-actions">
                         <Link href="/adhesion" className="btn-member">
                             Adhérer
+                        </Link>
+                        <Link href="/espace-adherents" className="btn-member btn-espace">
+                            Espace adhérents
                         </Link>
                     </div>
                     <button

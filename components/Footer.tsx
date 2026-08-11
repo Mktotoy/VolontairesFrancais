@@ -58,8 +58,8 @@ export default function Footer() {
                         <h4>Contact</h4>
                         <ul className="footer-links">
                             <li>
-                                <a href="mailto:volontairesfrancais@gmail.com">
-                                    <i className="fas fa-envelope"></i> volontairesfrancais@gmail.com
+                                <a href="mailto:contact@volontairesfrancais.fr">
+                                    <i className="fas fa-envelope"></i> contact@volontairesfrancais.fr
                                 </a>
                             </li>
                         </ul>

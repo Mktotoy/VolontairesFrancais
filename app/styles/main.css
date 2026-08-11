@@ -1824,3 +1824,8 @@ img {
         align-self: flex-start;
     }
 }
+.btn-espace {
+    background-color: transparent;
+    color: var(--color-blue);
+    border: 2px solid var(--color-blue);
+}

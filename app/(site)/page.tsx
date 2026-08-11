@@ -276,10 +276,10 @@ export default async function Home() {
             <h2 className="section-title">Nous contacter</h2>
             <p>Une question ? Une suggestion ? N'hésitez pas à nous écrire !</p>
             <p>
-              <strong>volontairesfrancais@gmail.com</strong>
+              <strong>contact@volontairesfrancais.fr</strong>
             </p>
             <a
-              href="mailto:volontairesfrancais@gmail.com"
+              href="mailto:contact@volontairesfrancais.fr"
               className="btn-primary contact-btn"
             >
               <i className="fas fa-envelope"></i>
