@@ -168,12 +168,17 @@ export default function AdhesionPage() {
                     <div className="widget-section">
                         <h2 className="section-title">Formulaire d'adhésion</h2>
                         <div className="widget-container">
+                            <p style={{ textAlign: 'center', fontSize: '1.15rem', fontWeight: 600, padding: '40px 20px' }}>
+                                Les adhésions sont suspendues et reprennent le 1er septembre !
+                            </p>
+                            {/* Formulaire HelloAsso désactivé temporairement, à réactiver quand le formulaire sera de retour en ligne :
                             <iframe
                                 id="haWidget"
                                 allowTransparency={true}
                                 src="https://www.helloasso.com/associations/volontaires-francais/adhesions/adherez-a-volontaires-francais/widget"
                                 style={{ width: '100%', height: '1500px', border: 'none' }}
                             ></iframe>
+                            */}
                         </div>
                     </div>
                 </div>
