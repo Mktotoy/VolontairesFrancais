@@ -110,12 +110,31 @@ export default function VoteAthletesPage() {
   return (
     <main className="vote-page">
       <header className="vote-header">
-        <h1>Élisez vos athlètes préférés 🏅</h1>
-        <p className="intro">
-          Les athlètes qui vous ont le plus marqués lors des Jeux Olympiques et Paralympiques
-          d&apos;hiver de Milano Cortina 2026. Résultats mis à l&apos;honneur lors de l&apos;Assemblée
-          générale du samedi 28 novembre. Fin des votes : <strong>2 septembre 2026</strong>.
-        </p>
+        <h1>Élisez vos athlètes préférés de Milano Cortina 2026 ! 🏅</h1>
+        <div className="intro">
+          <p>
+            Les Jeux d&apos;hiver de Milano Cortina nous ont fait vibrer en début d&apos;année !
+            Il est maintenant temps de désigner vos athlètes coups de cœur de cette édition.
+            Les gagnants de cette élection seront dévoilés lors de notre Assemblée Générale
+            du 28 novembre prochain.
+          </p>
+          <p>
+            Le principe est simple : pour valider votre participation, vous devez exprimer
+            4 choix au total. Redécouvrez les profils de nos champions et sélectionnez votre
+            athlète favori dans chacune des catégories suivantes :
+          </p>
+          <ul className="intro-list">
+            <li>1 Athlète Olympique (Femme)</li>
+            <li>1 Athlète Olympique (Homme)</li>
+            <li>1 Athlète Paralympique (Femme)</li>
+            <li>1 Athlète Paralympique (Homme)</li>
+          </ul>
+          <p>
+            Faites vos choix en cliquant sur le bouton « Voter » sous l&apos;athlète de votre
+            choix dans chaque section, renseignez votre e-mail en bas de page, puis validez.
+          </p>
+          <p><strong>À vous de jouer pour célébrer ceux qui vous ont le plus inspirés !</strong></p>
+        </div>
       </header>
 
       <form className="vote-form" onSubmit={handleSubmit}>
@@ -131,6 +150,7 @@ export default function VoteAthletesPage() {
                   key={name}
                   name={name}
                   selected={votes[category.key] === name}
+                  feminine={category.key.includes('femme')}
                   onSelect={() => selectAthlete(category.key, name)}
                   onInfo={() => setModal({ catKey: category.key, name })}
                 />
@@ -166,6 +186,7 @@ export default function VoteAthletesPage() {
       {modal && (
         <AthleteModal
           name={modal.name}
+          feminine={modal.catKey.includes('femme')}
           selected={votes[modal.catKey] === modal.name}
           onSelect={() => selectAthlete(modal.catKey, modal.name)}
           onClose={() => setModal(null)}

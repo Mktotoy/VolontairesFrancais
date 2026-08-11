@@ -7,11 +7,12 @@ import { athleteAge, medalsLine } from './AthleteCard';
 interface Props {
   name: string;
   selected: boolean;
+  feminine: boolean;
   onSelect: () => void;
   onClose: () => void;
 }
 
-export default function AthleteModal({ name, selected, onSelect, onClose }: Props) {
+export default function AthleteModal({ name, selected, feminine, onSelect, onClose }: Props) {
   const info = ATHLETES_INFO[name];
   const age = athleteAge(info?.birthdate ?? null);
   const medals = info ? medalsLine(info.medals) : '';
@@ -95,7 +96,7 @@ export default function AthleteModal({ name, selected, onSelect, onClose }: Prop
                 onClose();
               }}
             >
-              {selected ? '✓ Choisi' : `Voter pour ${name.split(' ')[0]}`}
+              {selected ? (feminine ? '✓ Choisie' : '✓ Choisi') : `Voter pour ${name.split(' ')[0]}`}
             </button>
           </div>
         </div>

@@ -34,8 +34,18 @@ export const voteStyles = `
     color: rgba(255, 255, 255, 0.92);
     font-size: 0.92rem;
     line-height: 1.6;
-    max-width: 640px;
+    max-width: 680px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+  }
+  .intro-list {
+    margin: 0;
+    padding-left: 24px;
+    list-style: disc;
+    font-weight: 600;
   }
   .vote-form {
     width: 100%;

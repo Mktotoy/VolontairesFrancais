@@ -35,11 +35,12 @@ function initials(name: string): string {
 interface Props {
   name: string;
   selected: boolean;
+  feminine: boolean;
   onSelect: () => void;
   onInfo: () => void;
 }
 
-export default function AthleteCard({ name, selected, onSelect, onInfo }: Props) {
+export default function AthleteCard({ name, selected, feminine, onSelect, onInfo }: Props) {
   const [imgOk, setImgOk] = useState(true);
   const info = ATHLETES_INFO[name];
   const slug = info?.slug ?? '';
@@ -100,7 +101,7 @@ export default function AthleteCard({ name, selected, onSelect, onInfo }: Props)
               onSelect();
             }}
           >
-            {selected ? '✓ Choisi' : 'Voter'}
+            {selected ? (feminine ? '✓ Choisie' : '✓ Choisi') : 'Voter'}
           </button>
         </div>
       </div>
