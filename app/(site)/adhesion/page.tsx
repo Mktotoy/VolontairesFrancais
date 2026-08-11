@@ -168,9 +168,31 @@ export default function AdhesionPage() {
                     <div className="widget-section">
                         <h2 className="section-title">Formulaire d'adhésion</h2>
                         <div className="widget-container">
-                            <p style={{ textAlign: 'center', fontSize: '1.15rem', fontWeight: 600, padding: '40px 20px' }}>
-                                Les adhésions sont suspendues et reprennent le 1er septembre !
-                            </p>
+                            <div style={{ maxWidth: 680, margin: '0 auto', padding: '30px 20px', lineHeight: 1.7 }}>
+                                <h3 style={{ textAlign: 'center', marginBottom: 18 }}>☀️ Fermeture estivale des adhésions ! 🌴</h3>
+                                <p>Bonjour à toutes et à tous,</p>
+                                <p style={{ marginTop: 12 }}>
+                                    En ce mois d&apos;août, l&apos;équipe de l&apos;association va prendre quelques jours
+                                    de repos bien mérités ! 🏖️ Par conséquent, le traitement des nouvelles adhésions
+                                    est mis en pause. Les inscriptions à l&apos;association sont donc temporairement
+                                    suspendues jusqu&apos;au 1er septembre.
+                                </p>
+                                <p style={{ marginTop: 12 }}>
+                                    <strong>💡 Bonne nouvelle pour la rentrée :</strong><br />
+                                    Afin de garantir une totale équité entre l&apos;ensemble de nos membres, les
+                                    personnes qui adhéreront à compter du 1er septembre bénéficieront d&apos;un tarif
+                                    réduit, correspondant au dernier trimestre de l&apos;année.
+                                </p>
+                                <p style={{ marginTop: 12 }}>
+                                    🗓️ Pour rappel : comme vous le savez, toutes les adhésions en cours (ainsi que
+                                    celles à venir à la rentrée) prendront fin le 31 décembre 2026.
+                                </p>
+                                <p style={{ marginTop: 12 }}>
+                                    Nous vous souhaitons à toutes et à tous un excellent mois d&apos;août et de belles
+                                    vacances. On se retrouve en pleine forme en septembre pour de nouveaux projets ! 💙
+                                </p>
+                                <p style={{ marginTop: 12, fontWeight: 600 }}>L&apos;équipe Volontaires français</p>
+                            </div>
                             {/* Formulaire HelloAsso désactivé temporairement, à réactiver quand le formulaire sera de retour en ligne :
                             <iframe
                                 id="haWidget"
