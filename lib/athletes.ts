@@ -6,7 +6,7 @@ export const VOTE_DEADLINE = new Date('2026-09-02T23:59:59+02:00');
 export const CATEGORIES = [
   {
     key: 'vote_olympique_femme',
-    label: 'Athlète olympique féminin',
+    label: 'Athlète olympique féminine',
     emoji: '🏅',
     candidates: [
       'Lou Jeanmonnot',
@@ -39,7 +39,7 @@ export const CATEGORIES = [
   },
   {
     key: 'vote_paralympique_femme',
-    label: 'Athlète paralympique féminin',
+    label: 'Athlète paralympique féminine',
     emoji: '🏅',
     candidates: [
       'Cécile Hernandez',
